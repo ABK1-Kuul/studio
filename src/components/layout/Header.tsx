@@ -4,7 +4,8 @@ import { UserNav } from './UserNav';
 import { DarkModeToggle } from './DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth';
-import { Briefcase, LayoutGrid } from 'lucide-react'; // Added LayoutGrid
+import { Briefcase, LayoutGrid, Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
 export default async function Header() {
   const user = await getCurrentUser();
@@ -14,38 +15,65 @@ export default async function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <AppLogo />
-          <nav className="hidden md:flex items-center gap-4 text-sm font-medium">
-            <Link href="/professionals" className="text-foreground/70 hover:text-foreground transition-colors">
-              <Button variant="ghost" className="gap-1.5">
-                <Briefcase className="h-4 w-4" />
-                Professionals
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
+            <Link href="/professionals" passHref legacyBehavior>
+              <Button variant="ghost" asChild>
+                <a className="flex items-center gap-1.5 px-3 py-2 text-foreground/70 hover:text-foreground transition-colors">
+                  <Briefcase className="h-4 w-4" />
+                  Professionals
+                </a>
               </Button>
             </Link>
-            <Link href="/services" className="text-foreground/70 hover:text-foreground transition-colors">
-              <Button variant="ghost" className="gap-1.5">
-                <LayoutGrid className="h-4 w-4" />
-                Services
+            <Link href="/services" passHref legacyBehavior>
+              <Button variant="ghost" asChild>
+                <a className="flex items-center gap-1.5 px-3 py-2 text-foreground/70 hover:text-foreground transition-colors">
+                  <LayoutGrid className="h-4 w-4" />
+                  Services
+                </a>
               </Button>
             </Link>
-            {/* Example: Add a Blog link or other relevant navigation items here */}
-            {/* <Link href="/blog" className="text-foreground/70 hover:text-foreground transition-colors">
-              <Button variant="ghost" className="gap-1.5">
-                <FileText className="h-4 w-4" />
-                Blog
-              </Button>
-            </Link> */}
           </nav>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <div className="md:hidden">
-            {/* Potentially a mobile menu trigger here */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Open navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[340px] p-0 flex flex-col">
+                <div className="p-4 border-b">
+                  <AppLogo />
+                </div>
+                <nav className="flex-grow p-4 space-y-2">
+                  <SheetClose asChild>
+                    <Link href="/professionals" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent transition-colors text-foreground/90">
+                      <Briefcase className="h-5 w-5 text-primary" />
+                      Professionals
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link href="/services" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent transition-colors text-foreground/90">
+                      <LayoutGrid className="h-5 w-5 text-primary" />
+                      Services
+                    </Link>
+                  </SheetClose>
+                </nav>
+                <div className="p-4 border-t mt-auto">
+                  <DarkModeToggle />
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
           <UserNav />
-          <DarkModeToggle />
+          <div className="hidden md:block">
+            <DarkModeToggle />
+          </div>
         </div>
       </div>
     </header>
   );
 }
-
