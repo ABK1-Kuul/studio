@@ -4,8 +4,9 @@ import { UserNav } from './UserNav';
 import { DarkModeToggle } from './DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth';
-import { Briefcase, LayoutGrid, Menu } from 'lucide-react';
+import { Briefcase, LayoutGrid, Menu, LogIn, UserPlus } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Separator } from '@/components/ui/separator';
 
 export default async function Header() {
   const user = await getCurrentUser();
@@ -62,6 +63,23 @@ export default async function Header() {
                       Services
                     </Link>
                   </SheetClose>
+                  {!user && (
+                    <>
+                      <Separator className="my-3" />
+                      <SheetClose asChild>
+                        <Link href="/login" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-foreground/90">
+                          <LogIn className="h-5 w-5 text-primary" />
+                          Login
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link href="/signup" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-foreground/90">
+                          <UserPlus className="h-5 w-5 text-primary" />
+                          Sign Up
+                        </Link>
+                      </SheetClose>
+                    </>
+                  )}
                 </nav>
                 <div className="p-4 border-t mt-auto">
                   <DarkModeToggle />
@@ -78,4 +96,3 @@ export default async function Header() {
     </header>
   );
 }
-
