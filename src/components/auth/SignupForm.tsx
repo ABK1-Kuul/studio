@@ -8,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// RadioGroup and RadioGroupItem removed as role selection is removed
+import { Textarea } from "@/components/ui/textarea";
 import { signupAction } from "@/lib/auth";
 import { Loader2 } from "lucide-react";
 import { useTransition } from "react";
@@ -29,14 +30,19 @@ const formSchema = z.object({
     message: "Password must be at least 8 characters.",
   }),
   confirmPassword: z.string(),
-  // Role is no longer selected by the user in the form, it's implicitly 'professional'
+  industry: z.string().min(1, "Industry is required."),
+  expertise: z.string().min(1, "Expertise tags are required (comma-separated)."),
+  bio: z.string().min(20, "Bio must be at least 20 characters."),
+  experienceYears: z.coerce.number().min(0, "Experience years cannot be negative."),
+  location: z.string().optional(),
+  phone: z.string().optional(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"], 
 });
 
 
-export function SignupForm() { // Removed initialRole prop
+export function SignupForm() {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
@@ -47,7 +53,12 @@ export function SignupForm() { // Removed initialRole prop
       email: "",
       password: "",
       confirmPassword: "",
-      // Role defaults to professional implicitly, not part of form values anymore
+      industry: "",
+      expertise: "",
+      bio: "",
+      experienceYears: 0,
+      location: "",
+      phone: "",
     },
   });
 
@@ -59,6 +70,13 @@ export function SignupForm() { // Removed initialRole prop
         formData.append('email', values.email);
         formData.append('password', values.password);
         formData.append('role', 'professional'); // Hardcode role to professional
+        formData.append('industry', values.industry);
+        formData.append('expertise', values.expertise);
+        formData.append('bio', values.bio);
+        formData.append('experienceYears', values.experienceYears.toString());
+        if (values.location) formData.append('location', values.location);
+        if (values.phone) formData.append('phone', values.phone);
+        
 
         await signupAction(formData);
         toast({
@@ -68,7 +86,7 @@ export function SignupForm() { // Removed initialRole prop
       } catch (error) {
          toast({
           title: "Signup Failed",
-          description: "An unexpected error occurred. Please try again.",
+          description: (error instanceof Error && error.message) || "An unexpected error occurred. Please try again.",
           variant: "destructive",
         });
         console.error("Signup error:", error);
@@ -131,7 +149,86 @@ export function SignupForm() { // Removed initialRole prop
             </FormItem>
           )}
         />
-        {/* Role selection RadioGroup removed */}
+        <FormField
+          control={form.control}
+          name="industry"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Industry</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., Web Development, Cybersecurity" {...field} disabled={isPending} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="expertise"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Expertise / Skills</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., React, UI/UX, SEO (comma-separated)" {...field} disabled={isPending} />
+              </FormControl>
+              <FormDescription>Separate skills with a comma.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="bio"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Biography</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Tell us about your professional journey and skills..." {...field} rows={4} disabled={isPending} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="experienceYears"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Years of Experience</FormLabel>
+              <FormControl>
+                <Input type="number" placeholder="e.g., 5" {...field} disabled={isPending} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Location (Optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., San Francisco, CA or Remote" {...field} disabled={isPending} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number (Optional)</FormLabel>
+              <FormControl>
+                <Input type="tel" placeholder="e.g., +1 555 123 4567" {...field} disabled={isPending} />
+              </FormControl>
+              <FormDescription>This will be used for administrative purposes if needed and not displayed publicly.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button type="submit" className="w-full" disabled={isPending}>
           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Sign Up as Professional
