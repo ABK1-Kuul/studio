@@ -19,7 +19,10 @@ export async function UserNav() {
 
   if (!user) {
     return (
-      <div className="flex items-center gap-2">
+      // These buttons are hidden on mobile (screens smaller than md)
+      // because they are accessible via the hamburger menu.
+      // They are shown on md screens and larger.
+      <div className="hidden md:flex items-center gap-2">
         <Button asChild variant="outline">
           <Link href="/login">Login</Link>
         </Button>
@@ -104,3 +107,4 @@ export async function UserNav() {
     </DropdownMenu>
   );
 }
+
