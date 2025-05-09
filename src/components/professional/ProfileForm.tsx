@@ -1,3 +1,4 @@
+src/components/professional/ProfileForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,8 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Professional, PortfolioItem, Service } from "@/lib/types";
 import { updateProfessionalProfileAction } from "@/actions/profileActions";
 import { Loader2, PlusCircle, Trash2 } from "lucide-react";
-import { useFormState } from "react-dom";
-import { useEffect } from "react";
+import { useActionState, useEffect } from "react"; // Changed from react-dom
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -35,7 +35,7 @@ const serviceSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, "Service name is required"),
   description: z.string().min(1, "Service description is required"),
-  price: z.string().optional(), // Price for service (e.g. "Project-based", "$500") is kept
+  price: z.string().optional(),
 });
 
 const profileFormSchema = z.object({
@@ -45,8 +45,7 @@ const profileFormSchema = z.object({
   bio: z.string().min(20, "Bio must be at least 20 characters long."),
   experienceYears: z.coerce.number().min(0, "Experience years cannot be negative."),
   location: z.string().optional(),
-  // hourlyRate field removed from schema
-  phone: z.string().optional(), // Phone kept for internal/admin use potentially
+  phone: z.string().optional(),
   portfolioItems: z.array(portfolioItemSchema).optional(),
   servicesOffered: z.array(serviceSchema).optional(),
 });
@@ -57,7 +56,8 @@ const initialState = { message: null, errors: null, isSuccess: false };
 
 export function ProfileForm({ professional }: { professional: Professional }) {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(updateProfessionalProfileAction, initialState);
+  // Updated to useActionState
+  const [state, formAction, isPending] = useActionState(updateProfessionalProfileAction, initialState);
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
@@ -68,7 +68,6 @@ export function ProfileForm({ professional }: { professional: Professional }) {
       bio: professional.bio || "",
       experienceYears: professional.experienceYears || 0,
       location: professional.location || "",
-      // hourlyRate removed from defaultValues
       phone: professional.phone || "",
       portfolioItems: professional.portfolio || [],
       servicesOffered: professional.servicesOffered || [],
@@ -93,9 +92,6 @@ export function ProfileForm({ professional }: { professional: Professional }) {
         variant: state.isSuccess ? "default" : "destructive",
       });
     }
-    if (state.isSuccess) {
-        // form.reset(); // Optionally reset form on success
-    }
   }, [state, toast, form]);
 
   function onSubmit(values: ProfileFormValues) {
@@ -107,7 +103,6 @@ export function ProfileForm({ professional }: { professional: Professional }) {
         formData.append(key, String(value));
       }
     });
-    // hourlyRate is not part of `values` anymore
     formAction(formData);
   }
 
@@ -165,7 +160,6 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                   </FormItem>
                 )}
               />
-              {/* Hourly Rate field removed */}
                <FormField control={form.control} name="phone" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Phone Number (Optional - for admin use)</FormLabel>
@@ -246,8 +240,8 @@ export function ProfileForm({ professional }: { professional: Professional }) {
           </CardContent>
         </Card>
 
-        <Button type="submit" className="w-full md:w-auto" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        <Button type="submit" className="w-full md:w-auto" disabled={isPending}>
+          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Save Changes
         </Button>
         {state.errors && (

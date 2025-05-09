@@ -1,3 +1,4 @@
+src/components/forms/QuoteRequestForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,8 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { submitQuoteRequestAction } from "@/app/actions/quoteActions";
 import { Loader2 } from "lucide-react";
-import { useFormState } from "react-dom";
-import { useEffect } from "react";
+import { useActionState, useEffect } from "react"; // Changed from react-dom
 import { useToast } from "@/hooks/use-toast";
 import type { MockUser } from "@/lib/types";
 
@@ -47,7 +47,8 @@ interface QuoteRequestFormProps {
 
 export function QuoteRequestForm({ professionalId, professionalName, serviceId, serviceName, currentUser }: QuoteRequestFormProps) {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(submitQuoteRequestAction, initialState);
+  // Updated to useActionState
+  const [state, formAction, isPending] = useActionState(submitQuoteRequestAction, initialState);
 
   const form = useForm<QuoteRequestFormValues>({
     resolver: zodResolver(formSchema),
@@ -156,8 +157,8 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
           />
         </div>
 
-        <Button type="submit" className="w-full md:w-auto" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        <Button type="submit" className="w-full md:w-auto" disabled={isPending}>
+          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Submit Quote Request
         </Button>
 
