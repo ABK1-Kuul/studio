@@ -1,4 +1,3 @@
-src/components/forms/QuoteRequestForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { submitQuoteRequestAction } from "@/app/actions/quoteActions";
 import { Loader2 } from "lucide-react";
-import { useActionState, useEffect } from "react"; // Changed from react-dom
+import { useActionState, useEffect } from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import type { MockUser } from "@/lib/types";
 
@@ -47,7 +46,6 @@ interface QuoteRequestFormProps {
 
 export function QuoteRequestForm({ professionalId, professionalName, serviceId, serviceName, currentUser }: QuoteRequestFormProps) {
   const { toast } = useToast();
-  // Updated to useActionState
   const [state, formAction, isPending] = useActionState(submitQuoteRequestAction, initialState);
 
   const form = useForm<QuoteRequestFormValues>({

@@ -1,4 +1,3 @@
-src/components/professional/ProfileForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Professional, PortfolioItem, Service } from "@/lib/types";
 import { updateProfessionalProfileAction } from "@/actions/profileActions";
 import { Loader2, PlusCircle, Trash2 } from "lucide-react";
-import { useActionState, useEffect } from "react"; // Changed from react-dom
+import { useActionState, useEffect } from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -56,7 +55,6 @@ const initialState = { message: null, errors: null, isSuccess: false };
 
 export function ProfileForm({ professional }: { professional: Professional }) {
   const { toast } = useToast();
-  // Updated to useActionState
   const [state, formAction, isPending] = useActionState(updateProfessionalProfileAction, initialState);
 
   const form = useForm<ProfileFormValues>({
