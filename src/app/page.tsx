@@ -174,11 +174,11 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24">
         <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
           <Image
-            alt="Modern Workspace"
+            alt="Team collaborating in a conference meeting"
             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last shadow-2xl"
             height="310"
-            src="https://picsum.photos/seed/modern-workspace/550/310"
-            data-ai-hint="modern workspace"
+            src="https://picsum.photos/seed/conference-meeting/550/310"
+            data-ai-hint="conference meeting"
             width="550"
           />
           <div className="flex flex-col justify-center space-y-4">
@@ -204,4 +204,3 @@ export default function HomePage() {
     </div>
   );
 }
-
