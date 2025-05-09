@@ -48,7 +48,9 @@ export default async function ProfessionalDashboardPage() {
             <div className="text-2xl font-bold">{stats.quoteRequests}</div>
             {/* <p className="text-xs text-muted-foreground">2 new today</p> */}
             <Button variant="link" asChild className="p-0 h-auto text-xs">
-              <Link href="#">View Requests</Link> {/* Placeholder link */}
+              <span>
+                <Link href="#">View Requests</Link> {/* Placeholder link */}
+              </span>
             </Button>
           </CardContent>
         </Card>
