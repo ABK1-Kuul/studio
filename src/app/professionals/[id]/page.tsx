@@ -1,3 +1,4 @@
+
 import { mockProfessionals } from '@/data/mock';
 import type { Professional } from '@/lib/types';
 import Image from 'next/image';
@@ -30,18 +31,18 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
           <Card className="overflow-hidden shadow-xl">
             <div className="relative h-48 w-full bg-gradient-to-r from-primary/30 to-accent/30">
               <Image
-                src={`https://picsum.photos/seed/${professional.id}_banner/1200/300`}
+                src={`https://picsum.photos/seed/${professional.id}_office/1200/300`}
                 alt={`${professional.name}'s banner`}
                 layout="fill"
                 objectFit="cover"
                 className="opacity-50"
-                data-ai-hint="professional banner"
+                data-ai-hint="modern workspace"
               />
             </div>
             <CardContent className="p-6 relative -mt-16">
               <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6">
                 <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-                  <AvatarImage src={professional.avatarUrl || `https://picsum.photos/seed/${professional.id}/200/200`} alt={professional.name} data-ai-hint="professional avatar" />
+                  <AvatarImage src={professional.avatarUrl || `https://picsum.photos/seed/${professional.id}_portrait/200/200`} alt={professional.name} data-ai-hint="professional portrait" />
                   <AvatarFallback className="text-4xl">{professional.name.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 text-center sm:text-left">
@@ -127,3 +128,4 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
     </div>
   );
 }
+

@@ -177,8 +177,8 @@ export default function HomePage() {
             alt="Collaboration"
             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last shadow-2xl"
             height="310"
-            src="https://picsum.photos/seed/collab/550/310"
-            data-ai-hint="team collaboration"
+            src="https://picsum.photos/seed/consult/550/310"
+            data-ai-hint="professional consultation"
             width="550"
           />
           <div className="flex flex-col justify-center space-y-4">
