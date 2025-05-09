@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { submitQuoteRequestAction } from "@/actions/quoteActions";
+import { submitQuoteRequestAction } from "@/app/actions/quoteActions";
 import { Loader2 } from "lucide-react";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
