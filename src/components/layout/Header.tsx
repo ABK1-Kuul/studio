@@ -5,7 +5,7 @@ import { DarkModeToggle } from './DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth';
 import { Briefcase, LayoutGrid, Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 export default async function Header() {
   const user = await getCurrentUser();
@@ -45,18 +45,19 @@ export default async function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[340px] p-0 flex flex-col">
-                <div className="p-4 border-b">
+                <SheetHeader className="p-4 border-b">
                   <AppLogo />
-                </div>
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                </SheetHeader>
                 <nav className="flex-grow p-4 space-y-2">
                   <SheetClose asChild>
-                    <Link href="/professionals" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent transition-colors text-foreground/90">
+                    <Link href="/professionals" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-foreground/90">
                       <Briefcase className="h-5 w-5 text-primary" />
                       Professionals
                     </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                    <Link href="/services" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent transition-colors text-foreground/90">
+                    <Link href="/services" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-foreground/90">
                       <LayoutGrid className="h-5 w-5 text-primary" />
                       Services
                     </Link>
@@ -77,3 +78,4 @@ export default async function Header() {
     </header>
   );
 }
+
