@@ -19,7 +19,7 @@ const serviceSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, "Service name is required"),
   description: z.string().min(1, "Service description is required"),
-  price: z.string().optional(),
+  price: z.string().optional(), // Price for service (e.g. "Project-based", "$500") is kept
 });
 
 const profileFormSchema = z.object({
@@ -29,9 +29,8 @@ const profileFormSchema = z.object({
   bio: z.string().min(20, "Bio must be at least 20 characters."),
   experienceYears: z.coerce.number().min(0, "Experience years cannot be negative."),
   location: z.string().optional(),
-  hourlyRate: z.coerce.number().min(0, "Hourly rate cannot be negative.").optional(),
+  // hourlyRate removed
   phone: z.string().optional(),
-  // Portfolio items and services will be handled via JSON string for simplicity with FormData
   portfolioItems: z.string().transform((str) => {
     try {
       return JSON.parse(str) as Partial<PortfolioItem>[];
@@ -65,7 +64,7 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
     bio: formData.get("bio"),
     experienceYears: formData.get("experienceYears"),
     location: formData.get("location"),
-    hourlyRate: formData.get("hourlyRate") || undefined, // Ensure undefined if empty
+    // hourlyRate removed from formData parsing
     phone: formData.get("phone"),
     portfolioItems: formData.get("portfolioItemsJson"),
     servicesOffered: formData.get("servicesOfferedJson"),
@@ -82,7 +81,6 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
 
   const data = validatedFields.data;
 
-  // Find the professional in mock data and update them
   const professionalIndex = mockProfessionals.findIndex(p => p.email === user.email);
   if (professionalIndex === -1) {
     return {
@@ -102,10 +100,10 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
     bio: data.bio,
     experienceYears: data.experienceYears,
     location: data.location || existingProfessional.location,
-    hourlyRate: data.hourlyRate !== undefined ? data.hourlyRate : existingProfessional.hourlyRate,
+    // hourlyRate removed from update
     phone: data.phone || existingProfessional.phone,
     portfolio: data.portfolioItems.map((item, index) => ({
-      id: item.id || `p_new_${Date.now()}_${index}`, // Generate new ID if not present
+      id: item.id || `p_new_${Date.now()}_${index}`, 
       title: item.title!,
       description: item.description!,
       imageUrl: item.imageUrl || undefined,
@@ -118,13 +116,15 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
       price: service.price || undefined,
     })),
   };
+  // Ensure hourlyRate is not accidentally re-added if it existed on existingProfessional
+  delete updatedProfessional.hourlyRate;
+
 
   mockProfessionals[professionalIndex] = updatedProfessional;
   console.log("Professional Profile Updated:", updatedProfessional);
 
-  // Revalidate paths that display this professional's data
   revalidatePath(`/professional/profile`);
-  revalidatePath(`/professionals/${user.id}`); // Assuming user.id is professional's id
+  revalidatePath(`/professionals/${user.id}`); 
   revalidatePath(`/professionals`);
 
 

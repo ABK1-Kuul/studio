@@ -4,10 +4,9 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, MapPin, Mail, Phone, Star, CalendarDays, DollarSign } from 'lucide-react';
+import { Briefcase, MapPin, CalendarDays } from 'lucide-react'; // Removed Mail, Phone, Star, DollarSign
 import { PortfolioItemCard } from '@/components/professionals/PortfolioItemCard';
 import { ProfessionalDetailsClient } from '@/components/professionals/ProfessionalDetailsClient';
-import { Separator } from '@/components/ui/separator';
 import { notFound } from 'next/navigation';
 
 async function getProfessionalById(id: string): Promise<Professional | undefined> {
@@ -30,7 +29,6 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
           {/* Header Card */}
           <Card className="overflow-hidden shadow-xl">
             <div className="relative h-48 w-full bg-gradient-to-r from-primary/30 to-accent/30">
-              {/* Optional banner image here, for now a gradient */}
               <Image
                 src={`https://picsum.photos/seed/${professional.id}_banner/1200/300`}
                 alt={`${professional.name}'s banner`}
@@ -51,13 +49,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
                   <p className="text-lg text-muted-foreground flex items-center justify-center sm:justify-start mt-1">
                     <Briefcase className="h-5 w-5 mr-2 text-primary" /> {professional.industry}
                   </p>
-                  {/* Mock Rating */}
-                  <div className="flex items-center justify-center sm:justify-start mt-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`h-5 w-5 ${i < 4 ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} />
-                    ))}
-                    <span className="ml-2 text-sm text-muted-foreground">(4.7 stars from 82 reviews)</span>
-                  </div>
+                  {/* Rating display removed */}
                 </div>
               </div>
             </CardContent>
@@ -75,13 +67,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
                   <div className="flex items-center"><MapPin className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Location:</strong>&nbsp; {professional.location}</div>
                 )}
                 <div className="flex items-center"><CalendarDays className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Experience:</strong>&nbsp; {professional.experienceYears} years</div>
-                {professional.hourlyRate && (
-                  <div className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Rate:</strong>&nbsp; ${professional.hourlyRate}/hr</div>
-                )}
-                <div className="flex items-center"><Mail className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Email:</strong>&nbsp; {professional.email}</div>
-                {professional.phone && (
-                   <div className="flex items-center"><Phone className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Phone:</strong>&nbsp; {professional.phone}</div>
-                )}
+                {/* Hourly rate, email, and phone removed from public display */}
               </div>
               <div>
                 <h3 className="font-semibold mb-2 mt-3">Skills & Expertise:</h3>
@@ -94,7 +80,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
             </CardContent>
           </Card>
           
-          {/* Services Offered Section - if exists on professional object */}
+          {/* Services Offered Section */}
           {professional.servicesOffered && professional.servicesOffered.length > 0 && (
             <Card className="shadow-lg">
               <CardHeader><CardTitle>Services Offered</CardTitle></CardHeader>
@@ -125,20 +111,11 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
             </Card>
           )}
           
-          {/* Reviews Section (Placeholder) */}
+          {/* Reviews Section (Placeholder) - Kept as placeholder, or remove if no reviews ever */}
           <Card className="shadow-lg">
             <CardHeader><CardTitle>Client Reviews</CardTitle></CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Client reviews will be displayed here. (Coming Soon)</p>
-              {/* Example Review Structure
-              <div className="border-t pt-4 mt-4">
-                <div className="flex items-center mb-1">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />)}
-                </div>
-                <p className="font-semibold">Excellent Work!</p>
-                <p className="text-sm text-muted-foreground mb-1">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit...&quot; - Jane C.</p>
-              </div>
-              */}
+              <p className="text-muted-foreground">Client reviews are not publicly displayed. Quotes are managed by admin.</p>
             </CardContent>
           </Card>
 
@@ -150,10 +127,3 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
     </div>
   );
 }
-
-// Generate static paths for mock professionals if needed for build performance
-// export async function generateStaticParams() {
-//   return mockProfessionals.map((professional) => ({
-//     id: professional.id,
-//   }));
-// }

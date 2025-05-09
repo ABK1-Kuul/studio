@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Briefcase, Star, ArrowRight } from 'lucide-react';
+import { MapPin, Briefcase, ArrowRight } from 'lucide-react'; // Removed Star
 
 interface ProfessionalCardProps {
   professional: Professional;
@@ -43,13 +43,8 @@ export function ProfessionalCard({ professional }: ProfessionalCardProps) {
         </div>
       </CardContent>
       <CardFooter className="p-4 border-t">
-        <div className="flex justify-between items-center w-full">
-          <div className="flex items-center">
-             {/* Mock rating - replace with actual if available */}
-            <Star className="h-5 w-5 text-yellow-400 fill-yellow-400 mr-1" /> 
-            <span className="text-sm font-medium">{(Math.random() * (5 - 4.2) + 4.2).toFixed(1)}</span> 
-            <span className="text-xs text-muted-foreground ml-1">({Math.floor(Math.random() * 100) + 10} reviews)</span>
-          </div>
+        <div className="flex justify-end items-center w-full"> {/* Changed justify-between to justify-end */}
+          {/* Rating display removed */}
           <Button asChild size="sm">
             <Link href={`/professionals/${professional.id}`}>
               View Profile <ArrowRight className="ml-1.5 h-4 w-4" />

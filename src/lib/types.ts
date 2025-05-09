@@ -8,9 +8,9 @@ export interface Professional {
   experienceYears: number;
   portfolio: PortfolioItem[];
   location?: string;
-  hourlyRate?: number; 
-  email: string;
-  phone?: string;
+  hourlyRate?: number; // Kept optional for potential internal use, but removed from public forms/display
+  email: string; // Retained for admin/internal use
+  phone?: string; // Retained for admin/internal use
   servicesOffered?: Service[];
 }
 
@@ -23,7 +23,7 @@ export interface PortfolioItem {
 }
 
 export interface QuoteRequest {
-  id: string;
+  id:string;
   professionalId: string;
   professionalName: string;
   userName: string;
@@ -43,7 +43,7 @@ export interface Service {
   price?: string; // e.g., "$50/hr" or "$500 project"
 }
 
-export type UserRole = 'admin' | 'professional' | 'guest';
+export type UserRole = 'admin' | 'professional'; // Removed 'guest'
 
 export interface MockUser {
   id: string;
@@ -51,3 +51,4 @@ export interface MockUser {
   email: string;
   role: UserRole;
 }
+

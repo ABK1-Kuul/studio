@@ -35,7 +35,7 @@ const serviceSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, "Service name is required"),
   description: z.string().min(1, "Service description is required"),
-  price: z.string().optional(),
+  price: z.string().optional(), // Price for service (e.g. "Project-based", "$500") is kept
 });
 
 const profileFormSchema = z.object({
@@ -45,8 +45,8 @@ const profileFormSchema = z.object({
   bio: z.string().min(20, "Bio must be at least 20 characters long."),
   experienceYears: z.coerce.number().min(0, "Experience years cannot be negative."),
   location: z.string().optional(),
-  hourlyRate: z.coerce.number().min(0, "Hourly rate cannot be negative.").optional().or(z.nan()), // Allow NaN for optional coerce
-  phone: z.string().optional(),
+  // hourlyRate field removed from schema
+  phone: z.string().optional(), // Phone kept for internal/admin use potentially
   portfolioItems: z.array(portfolioItemSchema).optional(),
   servicesOffered: z.array(serviceSchema).optional(),
 });
@@ -68,7 +68,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
       bio: professional.bio || "",
       experienceYears: professional.experienceYears || 0,
       location: professional.location || "",
-      hourlyRate: professional.hourlyRate || undefined,
+      // hourlyRate removed from defaultValues
       phone: professional.phone || "",
       portfolioItems: professional.portfolio || [],
       servicesOffered: professional.servicesOffered || [],
@@ -102,11 +102,12 @@ export function ProfileForm({ professional }: { professional: Professional }) {
     const formData = new FormData();
     Object.entries(values).forEach(([key, value]) => {
       if (key === "portfolioItems" || key === "servicesOffered") {
-        formData.append(`${key}Json`, JSON.stringify(value)); // Send arrays as JSON strings
+        formData.append(`${key}Json`, JSON.stringify(value)); 
       } else if (value !== undefined && value !== null) {
         formData.append(key, String(value));
       }
     });
+    // hourlyRate is not part of `values` anymore
     formAction(formData);
   }
 
@@ -153,7 +154,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
         </Card>
 
         <Card>
-          <CardHeader><CardTitle>Contact & Location</CardTitle></CardHeader>
+          <CardHeader><CardTitle>Details & Contact</CardTitle></CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <FormField control={form.control} name="experienceYears" render={({ field }) => (
@@ -164,14 +165,16 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                   </FormItem>
                 )}
               />
-              <FormField control={form.control} name="hourlyRate" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Hourly Rate (USD, optional)</FormLabel>
-                    <FormControl><Input type="number" placeholder="e.g., 75" {...field} onChange={event => field.onChange(+event.target.value)} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {/* Hourly Rate field removed */}
+               <FormField control={form.control} name="phone" render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number (Optional - for admin use)</FormLabel>
+                  <FormControl><Input type="tel" placeholder="e.g., (555) 123-4567" {...field} /></FormControl>
+                  <FormDescription>This will not be shown publicly.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             </div>
             <FormField control={form.control} name="location" render={({ field }) => (
                 <FormItem>
@@ -181,18 +184,9 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                 </FormItem>
               )}
             />
-            <FormField control={form.control} name="phone" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone Number (Optional)</FormLabel>
-                  <FormControl><Input type="tel" placeholder="e.g., (555) 123-4567" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </CardContent>
         </Card>
         
-        {/* Portfolio Items */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Portfolio</CardTitle>
@@ -224,7 +218,6 @@ export function ProfileForm({ professional }: { professional: Professional }) {
           </CardContent>
         </Card>
 
-        {/* Services Offered */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Services Offered</CardTitle>
@@ -242,7 +235,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                   <FormItem><FormLabel>Service Description</FormLabel><FormControl><Textarea {...field} rows={2} /></FormControl><FormMessage /></FormItem>)}
                 />
                 <FormField control={form.control} name={`servicesOffered.${index}.price`} render={({ field }) => (
-                  <FormItem><FormLabel>Price (Optional)</FormLabel><FormControl><Input placeholder="e.g., $50/hr or $500 project" {...field} /></FormControl><FormMessage /></FormItem>)}
+                  <FormItem><FormLabel>Price Indication (Optional)</FormLabel><FormControl><Input placeholder="e.g., Project-based, From $500" {...field} /></FormControl><FormDescription>General pricing idea, admin will confirm final quote.</FormDescription><FormMessage /></FormItem>)}
                 />
                  <Button type="button" variant="destructive" size="sm" onClick={() => removeService(index)} className="absolute top-2 right-2">
                   <Trash2 className="h-4 w-4" />
@@ -259,7 +252,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
         </Button>
         {state.errors && (
           <div className="mt-4 text-sm text-destructive">
-            <p>{state.message}</p>
+            <p>{typeof state.message === 'string' ? state.message : "An error occurred"}</p>
             {/* <pre>{JSON.stringify(state.errors, null, 2)}</pre> */}
           </div>
         )}

@@ -1,9 +1,9 @@
 "use client";
 
-import type { Professional, Service } from '@/lib/types';
+import type { Professional } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { FileText, MessageSquare } from 'lucide-react';
+import { FileText } from 'lucide-react'; // Removed MessageSquare
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ProfessionalDetailsClientProps {
@@ -23,10 +23,7 @@ export function ProfessionalDetailsClient({ professional }: ProfessionalDetailsC
               <FileText className="mr-2 h-5 w-5" /> Get a Quote
             </Link>
           </Button>
-          {/* Placeholder for direct messaging */}
-          <Button variant="outline" size="lg" className="w-full" disabled>
-            <MessageSquare className="mr-2 h-5 w-5" /> Message {professional.name.split(' ')[0]} (Coming Soon)
-          </Button>
+          {/* Direct messaging button removed */}
         </CardContent>
       </Card>
 

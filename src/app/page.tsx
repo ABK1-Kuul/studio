@@ -14,8 +14,7 @@ export default function HomePage() {
             Connect with Top Professionals
           </h1>
           <p className="mx-auto max-w-[700px] text-foreground/80 md:text-xl mt-6">
-            HDM ProConnect is your premier platform to find and collaborate with skilled experts across various industries.
-            Build your dream team or showcase your expertise to the world.
+            HDM ProConnect is your premier platform to find skilled experts for your projects or showcase your expertise to the world.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center">
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/50 transition-shadow">
@@ -24,7 +23,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="shadow-lg hover:shadow-accent/50 transition-shadow">
-              <Link href="/signup?role=professional">
+              <Link href="/signup"> {/* Default signup is now for professionals */}
                 Join as a Professional <UserPlus className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -48,7 +47,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Easily search and filter through a diverse range of professionals. Find the perfect match for your project based on industry, expertise, and location.
+                  Easily search and filter through a diverse range of professionals. Find the perfect match for your project based on industry and expertise.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -61,7 +60,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Professionals can create detailed profiles, highlight their experience, and build impressive portfolios to attract potential clients.
+                  Professionals can create detailed profiles, highlight their experience, and build impressive portfolios to attract project opportunities.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -74,7 +73,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Request quotes directly from professionals or for specific services. A simple process to get your project started.
+                  Request quotes directly from professionals for specific services. A simple, admin-mediated process to get your project started.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -94,21 +93,21 @@ export default function HomePage() {
                 <UserPlus className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">1. Sign Up</h3>
-              <p className="text-foreground/70">Create your account as a client or a professional.</p>
+              <p className="text-foreground/70">Professionals create an account to showcase their skills.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <Search className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">2. Discover/Showcase</h3>
-              <p className="text-foreground/70">Clients find experts. Professionals build profiles.</p>
+              <p className="text-foreground/70">Users discover experts. Professionals build detailed profiles.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <FileText className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">3. Request Quote</h3>
-              <p className="text-foreground/70">Clients request quotes for projects or services.</p>
+              <p className="text-foreground/70">Request quotes for projects or services via an admin-mediated process.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
@@ -141,7 +140,7 @@ export default function HomePage() {
                 Build Your Next Big Thing, Together.
               </h2>
               <p className="max-w-[600px] text-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Whether you're a startup looking for talent or a seasoned professional seeking new opportunities, HDM ProConnect provides the tools and network you need to succeed.
+                Whether you're looking for talent for your next project or a seasoned professional seeking new opportunities, HDM ProConnect provides the tools and network you need to succeed.
               </p>
             </div>
             <Button asChild size="lg" className="w-fit shadow-lg hover:shadow-primary/50 transition-shadow">

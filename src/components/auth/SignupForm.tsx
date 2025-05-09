@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// RadioGroup and RadioGroupItem removed as role selection is removed
 import { signupAction } from "@/lib/auth";
 import { Loader2 } from "lucide-react";
 import { useTransition } from "react";
@@ -28,16 +28,14 @@ const formSchema = z.object({
     message: "Password must be at least 8 characters.",
   }),
   confirmPassword: z.string(),
-  role: z.enum(["client", "professional"], {
-    required_error: "You need to select an account type.",
-  }),
+  // Role is no longer selected by the user in the form, it's implicitly 'professional'
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
-  path: ["confirmPassword"], // path to field that gets the error
+  path: ["confirmPassword"], 
 });
 
 
-export function SignupForm({ initialRole = "client" }: { initialRole?: "client" | "professional" }) {
+export function SignupForm() { // Removed initialRole prop
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
@@ -48,7 +46,7 @@ export function SignupForm({ initialRole = "client" }: { initialRole?: "client" 
       email: "",
       password: "",
       confirmPassword: "",
-      role: initialRole,
+      // Role defaults to professional implicitly, not part of form values anymore
     },
   });
 
@@ -59,10 +57,9 @@ export function SignupForm({ initialRole = "client" }: { initialRole?: "client" 
         formData.append('name', values.name);
         formData.append('email', values.email);
         formData.append('password', values.password);
-        formData.append('role', values.role);
+        formData.append('role', 'professional'); // Hardcode role to professional
 
         await signupAction(formData);
-        // signupAction handles redirection on success
         toast({
           title: "Signup Successful!",
           description: "Welcome to HDM ProConnect. You are being redirected...",
@@ -133,44 +130,10 @@ export function SignupForm({ initialRole = "client" }: { initialRole?: "client" 
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="role"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Account Type</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="flex flex-col space-y-1"
-                  disabled={isPending}
-                >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="client" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      I&apos;m looking for a professional (Client)
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="professional" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      I&apos;m a professional offering services
-                    </FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/* Role selection RadioGroup removed */}
         <Button type="submit" className="w-full" disabled={isPending}>
           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Sign Up
+          Sign Up as Professional
         </Button>
       </form>
     </Form>
