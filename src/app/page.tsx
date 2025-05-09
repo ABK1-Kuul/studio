@@ -1,10 +1,11 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid } from "lucide-react";
-import { mockServices } from '@/data/mock'; // Import mockServices
-import type { Service } from "@/lib/types"; // Import Service type
+import { mockServices } from '@/data/mock'; 
+import type { Service } from "@/lib/types"; 
 
 export default function HomePage() {
   return (
@@ -16,7 +17,7 @@ export default function HomePage() {
             Connect with Top Professionals
           </h1>
           <p className="mx-auto max-w-[700px] text-foreground/80 md:text-xl mt-6">
-            HDM ProConnect is your premier platform to find skilled experts for your projects or showcase your expertise to the world.
+            HDM consultation is your premier platform to find skilled experts for your projects or showcase your expertise to the world.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center">
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/50 transition-shadow">
@@ -25,7 +26,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="shadow-lg hover:shadow-accent/50 transition-shadow">
-              <Link href="/signup"> {/* Default signup is now for professionals */}
+              <Link href="/signup"> 
                 Join as a Professional <UserPlus className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -37,7 +38,7 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24 bg-secondary/50 dark:bg-secondary/20">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl mb-12">
-            Why Choose HDM ProConnect?
+            Why Choose HDM consultation?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -98,16 +99,18 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mockServices.slice(0,3).map((service: Service) => ( // Displaying first 3 services for brevity on homepage
-              <Card key={service.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="text-xl leading-snug">{service.name}</CardTitle>
+            {mockServices.slice(0,3).map((service: Service) => ( 
+              <Card key={service.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
+                <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
+                  {/* You can add an icon related to the service here if you have them */}
+                  {/* <Briefcase className="w-10 h-10 text-primary mb-3" />  Example Icon */}
+                  <CardTitle className="text-xl leading-snug text-foreground">{service.name}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <CardDescription className="line-clamp-4">{service.description}</CardDescription>
+                <CardContent className="flex-grow p-6">
+                  <CardDescription className="line-clamp-4 text-foreground/80">{service.description}</CardDescription>
                 </CardContent>
-                <CardFooter>
-                  <Button asChild className="w-full" variant="outline">
+                <CardFooter className="p-6 bg-secondary/30 dark:bg-secondary/10 border-t border-border">
+                  <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow" variant="default">
                     <Link href={`/professionals?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}`}>
                       Find Experts <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -118,7 +121,7 @@ export default function HomePage() {
           </div>
           {mockServices.length > 3 && (
             <div className="mt-12 text-center">
-              <Button asChild size="lg" variant="default">
+              <Button asChild size="lg" variant="default" className="shadow-lg hover:shadow-primary/50 transition-shadow">
                 <Link href="/services">
                   View All Services <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -172,7 +175,7 @@ export default function HomePage() {
         <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
           <Image
             alt="Collaboration"
-            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last shadow-2xl"
             height="310"
             src="https://picsum.photos/seed/collab/550/310"
             data-ai-hint="team collaboration"
@@ -180,14 +183,14 @@ export default function HomePage() {
           />
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+              <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
                 Empowering Connections
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Build Your Next Big Thing, Together.
               </h2>
               <p className="max-w-[600px] text-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Whether you're looking for talent for your next project or a seasoned professional seeking new opportunities, HDM ProConnect provides the tools and network you need to succeed.
+                Whether you're looking for talent for your next project or a seasoned professional seeking new opportunities, HDM consultation provides the tools and network you need to succeed.
               </p>
             </div>
             <Button asChild size="lg" className="w-fit shadow-lg hover:shadow-primary/50 transition-shadow">
@@ -201,3 +204,4 @@ export default function HomePage() {
     </div>
   );
 }
+

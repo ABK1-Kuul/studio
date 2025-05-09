@@ -1,3 +1,4 @@
+
 import { SignupForm } from '@/components/auth/SignupForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AppLogo } from '@/components/layout/AppLogo';
@@ -14,7 +15,7 @@ export default function SignupPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Create a Professional Account</CardTitle>
           <CardDescription>
-            Join HDM ProConnect to showcase your expertise and connect with opportunities.
+            Join HDM consultation to showcase your expertise and connect with opportunities.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -30,3 +31,4 @@ export default function SignupPage() {
     </div>
   );
 }
+

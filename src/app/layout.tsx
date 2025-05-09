@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google'; // Using Inter as a common professional font
 import './globals.css';
@@ -13,7 +14,7 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: 'HDM ProConnect',
+  title: 'HDM consultation',
   description: 'Connect with top industry professionals.',
 };
 
@@ -47,3 +48,4 @@ export default function RootLayout({
     </html>
   );
 }
+

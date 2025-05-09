@@ -1,8 +1,9 @@
+
 import { LoginForm } from '@/components/auth/LoginForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AppLogo } from '@/components/layout/AppLogo';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button'; // Added import
+import { Button } from '@/components/ui/button'; 
 
 export default function LoginPage({ searchParams }: { searchParams?: { error?: string }}) {
   return (
@@ -13,7 +14,7 @@ export default function LoginPage({ searchParams }: { searchParams?: { error?: s
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Welcome Back!</CardTitle>
-          <CardDescription>Log in to access your HDM ProConnect account.</CardDescription>
+          <CardDescription>Log in to access your HDM consultation account.</CardDescription>
         </CardHeader>
         <CardContent>
           {searchParams?.error && (
@@ -33,4 +34,5 @@ export default function LoginPage({ searchParams }: { searchParams?: { error?: s
     </div>
   );
 }
+
 

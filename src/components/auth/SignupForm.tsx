@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -62,7 +63,7 @@ export function SignupForm() { // Removed initialRole prop
         await signupAction(formData);
         toast({
           title: "Signup Successful!",
-          description: "Welcome to HDM ProConnect. You are being redirected...",
+          description: "Welcome to HDM consultation. You are being redirected...",
         });
       } catch (error) {
          toast({
@@ -139,3 +140,4 @@ export function SignupForm() { // Removed initialRole prop
     </Form>
   );
 }
+

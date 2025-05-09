@@ -1,6 +1,7 @@
+
 import type { Professional, QuoteRequest, Service } from '@/lib/types';
 
-// New services based on "Title" fields from the provided text
+// Services based on "Title" fields from the provided text
 export const mockServices: Service[] = [
   { 
     id: 'hdm_s1', 
@@ -39,34 +40,31 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p1',
     name: 'Henok Doni',
     avatarUrl: 'https://picsum.photos/seed/henok_doni/200/200',
-    industry: 'Project Management Consulting',
-    expertise: [
-      'PMP®', 'ISO 27001:2022 Lead Auditor/Implementer', 'CEH', 'CAPC™', '(ISC)2-CC',
+    industry: 'Project, Program, & Portfolio Management Consulting', // Matches service name
+    expertise: [ // "Consultation Area"
       'Business analysis', 'Project Management', 'Risk Management', 'Program Management', 
       'Portfolio Management', 'Business Requirement Document Development', 
       'Cybersecurity Governance, Risk and Compliance (GRC)', 'Cybersecurity Awareness program'
-    ].map(e => e.trim()).filter(e => e),
-    bio: "Henok Doni is a highly skilled and certified consultant with 10+ years of experience providing expert guidance in project, program, and portfolio management, and business analysis. He excels at guiding clients in optimizing project management practices, implementing effective programs, and managing diverse portfolios; conducting thorough business analysis to understand client needs and drive business value; developing and implementing project management plans, program frameworks, and portfolio management processes; identifying and managing risks, issues, and changes in complex projects and programs; and ensuring alignment with client strategic objectives and delivering solutions that meet their specific needs.",
+    ],
+    bio: "PMP®| ISO 27001:2022 Lead Auditor/Implementer | CEH | CAPC™ | and (ISC)2-CC certifications. Henok Doni is a highly skilled and certified consultant with 10+ years of experience providing expert guidance in project, program, and portfolio management, and business analysis. He excels at guiding clients in optimizing project management practices, implementing effective programs, and managing diverse portfolios; conducting thorough business analysis to understand client needs and drive business value; developing and implementing project management plans, program frameworks, and portfolio management processes; identifying and managing risks, issues, and changes in complex projects and programs; and ensuring alignment with client strategic objectives and delivering solutions that meet their specific needs.", // Profile + Description
     experienceYears: 10,
     location: 'Remote',
-    email: 'henok.doni@hdmxperts.com',
+    email: 'henok.doni@hdmconsultation.com',
     portfolio: [],
-    servicesOffered: [mockServices[0]],
+    servicesOffered: [mockServices[0]], 
   },
   {
     id: 'hdm_p2',
     name: 'Daniel Manaye',
     avatarUrl: 'https://picsum.photos/seed/daniel_manaye/200/200',
-    industry: 'Cybersecurity Consulting',
-    expertise: [
-      'CISSP', 'CISM', 'CEHv8', 'ITIL', 'ISO27001 Lead Implementer', 
-      'Certified Cybersecurity Expert', 'Cisco CyberOps', 'CyberArk Trustee', 'M.Sc. Information Systems',
+    industry: 'Cybersecurity & Anti-Financial Fraud Management Consulting', // Matches service name
+    expertise: [ // "Consultation Area"
       'Cybersecurity Controls and Implementation', 'Cybersecurity Training and Anti-Fraud Management'
-    ].map(e => e.trim()).filter(e => e),
-    bio: "Daniel Manaye is a highly accomplished and results-oriented consultant specializing in cybersecurity and information systems (IS) fraud management, with a proven track record of delivering impactful solutions, particularly within the digital banking sector. He leverages extensive technical expertise, strategic problem-solving abilities, and leadership skills to mitigate risks, enhance security posture, and drive operational excellence. His core competencies encompass IS fraud management through data-driven initiatives, cybersecurity strategy and implementation, proactive risk management, securing digital banking platforms, and designing effective security awareness programs.",
-    experienceYears: 10, // Assumed based on "proven track record"
+    ],
+    bio: "CISSP | CISM| CEHv8 | ITIL | ISO27001 Lead Implementer | Certified Cybersecurity Expert | Cisco CyberOps | CyberArk Trustee | M.Sc. Information Systems. Daniel Manaye is a highly accomplished and results-oriented consultant specializing in cybersecurity and information systems (IS) fraud management, with a proven track record of delivering impactful solutions, particularly within the digital banking sector. He leverages extensive technical expertise, strategic problem-solving abilities, and leadership skills to mitigate risks, enhance security posture, and drive operational excellence. His core competencies encompass IS fraud management through data-driven initiatives, cybersecurity strategy and implementation, proactive risk management, securing digital banking platforms, and designing effective security awareness programs.", // Profile + Description
+    experienceYears: 10, 
     location: 'Remote',
-    email: 'daniel.manaye@hdmxperts.com',
+    email: 'daniel.manaye@hdmconsultation.com',
     portfolio: [],
     servicesOffered: [mockServices[1]],
   },
@@ -74,16 +72,15 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p3',
     name: 'Yohannes Yemane',
     avatarUrl: 'https://picsum.photos/seed/yohannes_yemane/200/200',
-    industry: 'Cybersecurity Analysis',
-    expertise: [
-      'CISSP', 'CISM', 'CRISC', 'CEH', 'ISO 27001:2022 Lead Auditor/Implementer',
-      'Cybersecurity Analysis and Research', 'Programming', 'Digital Forensic', 
-      'VAPT', 'Mobile Application Development and Security Analysis'
-    ].map(e => e.trim()).filter(e => e),
-    bio: "Yohannes is a dedicated and versatile professional with over 12 years of experience in cybersecurity analysis and research, programming, and digital forensics. His expertise encompasses a wide range of areas, including vulnerability assessment and penetration testing (VAPT), reverse engineering, and security research. He possesses hands-on expertise in various programming languages, such as C, C++, Java, C#, and Python, with a keen interest in mobile application development and security analysis.",
+    industry: 'Cyber Security Analysis, Research & Forensics', // Matches service name
+    expertise: [ // "Consultation Area"
+      'Cybersecurity Analysis and Research', 'Programming', 'Digital Forensic', 'VAPT', 
+      'Mobile Application Development and Security Analysis'
+    ],
+    bio: "CISSP | CISM| CRISC | CEH | ISO 27001:2022 Lead Auditor/Implementer. Yohannes is a dedicated and versatile professional with over 12 years of experience in cybersecurity analysis and research, programming, and digital forensics. His expertise encompasses a wide range of areas, including vulnerability assessment and penetration testing (VAPT), reverse engineering, and security research. He possesses hands-on expertise in various programming languages, such as C, C++, Java, C#, and Python, with a keen interest in mobile application development and security analysis.", // Profile + Description
     experienceYears: 12,
     location: 'Remote',
-    email: 'yohannes.yemane@hdmxperts.com',
+    email: 'yohannes.yemane@hdmconsultation.com',
     portfolio: [],
     servicesOffered: [mockServices[2]],
   },
@@ -91,16 +88,15 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p4',
     name: 'Maedot Assefa',
     avatarUrl: 'https://picsum.photos/seed/maedot_assefa/200/200',
-    industry: 'Digital Business Advisory',
-    expertise: [
-      'Executive Diploma In Digital Business', 'MA in International Service Management',
+    industry: 'Digital Business Advisory', // Matches service name
+    expertise: [ // "Consultation Area"
       'Digital Business Advisor', 'International Service Marketing and Management', 
       'E-commerce and Digital Marketing Training'
-    ].map(e => e.trim()).filter(e => e),
-    bio: "Maedot is a Digital Business Advisor and Consultant specializing in International Service Marketing and Management, E-commerce, and Digital Marketing Training. Maedot provides expert guidance and training to businesses seeking to enhance their digital presence and optimize e-commerce operations, develop and implement effective digital marketing strategies, and expand their reach and manage their services in international markets. With a focus on practical application and results-driven strategies, Maedot equips businesses with the knowledge and tools to thrive in the global digital landscape.",
-    experienceYears: 7, // Assumed
+    ],
+    bio: "Executive Diploma In Digital Business and MA in International Service Management. Maedot is a Digital Business Advisor and Consultant specializing in International Service Marketing and Management, E-commerce, and Digital Marketing Training. Maedot provides expert guidance and training to businesses seeking to enhance their digital presence and optimize e-commerce operations, develop and implement effective digital marketing strategies, and expand their reach and manage their services in international markets. With a focus on practical application and results-driven strategies, Maedot equips businesses with the knowledge and tools to thrive in the global digital landscape.", // Profile + Description
+    experienceYears: 7, 
     location: 'Remote',
-    email: 'maedot.assefa@hdmxperts.com',
+    email: 'maedot.assefa@hdmconsultation.com',
     portfolio: [],
     servicesOffered: [mockServices[3]],
   },
@@ -108,15 +104,14 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p5',
     name: 'Henok Heruy Gizaw',
     avatarUrl: 'https://picsum.photos/seed/henok_heruy/200/200',
-    industry: 'Hospitality & Tourism Consulting',
-    expertise: [
-      'MA in International Business and Tourism Management', // No direct certs, using degree as profile item
+    industry: 'Hotel & Tourism Management Consulting', // Matches service name
+    expertise: [ // "Consultation Area"
       'International Business', 'Hotel and Tourism Management'
-    ].map(e => e.trim()).filter(e => e),
-    bio: "Henok Heruy is a seasoned professional with several years of experience in international development projects, specifically in education, trade competency, and tourism, with experience in international marketing for B2B and B2C in the East Africa region. He has a proven track record of working across governmental, non-governmental, and private organizations. Qualified as a coordinator for international project management in development cooperation, his expertise encompasses project planning, financing, and quality management. Henok's educational background includes International Business/Tourism Management, pedagogy, and leadership.",
-    experienceYears: 7, // Assumed "several years"
+    ],
+    bio: "MA in International Business and Tourism Management from Hochschule Heilbronn - Hochschule für Technik, Wirtschaft und Informatik (Germany). Henok Heruy is a seasoned professional with several years of experience in international development projects, specifically in education, trade competency, and tourism, with experience in international marketing for B2B and B2C in the East Africa region. He has a proven track record of working across governmental, non-governmental, and private organizations. Qualified as a coordinator for international project management in development cooperation, his expertise encompasses project planning, financing, and quality management. Henok's educational background includes International Business/Tourism Management, pedagogy, and leadership.", // Profile + Description
+    experienceYears: 7, 
     location: 'Remote',
-    email: 'henok.heruy@hdmxperts.com',
+    email: 'henok.heruy@hdmconsultation.com',
     portfolio: [],
     servicesOffered: [mockServices[4]],
   },
@@ -125,7 +120,7 @@ export const mockProfessionals: Professional[] = [
 export const mockQuoteRequests: QuoteRequest[] = [
   {
     id: 'q1',
-    professionalId: 'hdm_p1', // Updated to new ID
+    professionalId: 'hdm_p1', 
     professionalName: 'Henok Doni',
     userName: 'Eve Client',
     userEmail: 'eve.client@example.com',
@@ -134,11 +129,11 @@ export const mockQuoteRequests: QuoteRequest[] = [
     budget: '$5,000 - $10,000',
     timeline: '3 months',
     status: 'pending',
-    submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
+    submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(), 
   },
   {
     id: 'q2',
-    professionalId: 'hdm_p2', // Updated to new ID
+    professionalId: 'hdm_p2', 
     professionalName: 'Daniel Manaye',
     userName: 'Frank Customer',
     userEmail: 'frank.customer@example.com',
@@ -146,6 +141,7 @@ export const mockQuoteRequests: QuoteRequest[] = [
     budget: '$1,000 - $2,500',
     timeline: '1 month',
     status: 'reviewed',
-    submittedAt: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+    submittedAt: new Date(Date.now() - 86400000).toISOString(), 
   },
 ];
+
