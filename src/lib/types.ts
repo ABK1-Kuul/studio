@@ -8,7 +8,7 @@ export interface Professional {
   experienceYears: number;
   portfolio: PortfolioItem[];
   location?: string;
-  hourlyRate?: number; // Kept optional for potential internal use, but removed from public forms/display
+  // hourlyRate?: number; // Removed as per request
   email: string; // Retained for admin/internal use
   phone?: string; // Retained for admin/internal use
   servicesOffered?: Service[];
@@ -51,4 +51,3 @@ export interface MockUser {
   email: string;
   role: UserRole;
 }
-

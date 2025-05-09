@@ -1,93 +1,132 @@
 import type { Professional, QuoteRequest, Service } from '@/lib/types';
 
+// New services based on "Title" fields from the provided text
 export const mockServices: Service[] = [
-  { id: 's1', name: 'Custom Web Application', description: 'Full-stack development of custom web applications tailored to your needs.', price: 'Project-based' },
-  { id: 's2', name: 'Mobile App Development', description: 'Native and cross-platform mobile app development.', price: 'Project-based' },
-  { id: 's3', name: 'UI/UX Design', description: 'User interface and user experience design services.', price: 'From $1500' }, // Example price change
-  { id: 's4', name: 'Branding & Identity', description: 'Logo design, brand guidelines, and visual identity.', price: '$1200 package' },
-  { id: 's5', name: 'Digital Marketing Strategy', description: 'Comprehensive digital marketing planning and execution.', price: ' retainer' },
-  { id: 's6', name: 'Content Creation', description: 'Blog posts, articles, and social media content.', price: 'From $100/piece' },
+  { 
+    id: 'hdm_s1', 
+    name: 'Project, Program, & Portfolio Management Consulting', 
+    description: 'Expert guidance in project, program, and portfolio management, and business analysis to optimize practices and drive business value.',
+    price: 'Contact for details' 
+  },
+  { 
+    id: 'hdm_s2', 
+    name: 'Cybersecurity & Anti-Financial Fraud Management Consulting', 
+    description: 'Specialized consulting in cybersecurity, information systems (IS) fraud management, particularly for digital banking, to mitigate risks and enhance security posture.',
+    price: 'Contact for details'
+  },
+  { 
+    id: 'hdm_s3', 
+    name: 'Cyber Security Analysis, Research & Forensics', 
+    description: 'Dedicated cybersecurity analysis, research, programming, digital forensics, VAPT, reverse engineering, and mobile application security analysis.',
+    price: 'Contact for details'
+  },
+  { 
+    id: 'hdm_s4', 
+    name: 'Digital Business Advisory', 
+    description: 'Expert advice and training in International Service Marketing and Management, E-commerce, and Digital Marketing to enhance digital presence and optimize operations.',
+    price: 'Contact for details'
+  },
+  { 
+    id: 'hdm_s5', 
+    name: 'Hotel & Tourism Management Consulting', 
+    description: 'Seasoned consulting for international development projects in education, trade competency, tourism, and international marketing for B2B/B2C in East Africa.',
+    price: 'Contact for details'
+  },
 ];
 
 export const mockProfessionals: Professional[] = [
   {
-    id: '1',
-    name: 'Alice Wonderland',
-    avatarUrl: 'https://picsum.photos/seed/alice/200/200',
-    industry: 'Web Development',
-    expertise: ['React', 'Node.js', 'TypeScript', 'GraphQL'],
-    bio: 'Experienced full-stack developer passionate about creating modern and performant web applications. Proven ability to lead projects from conception to deployment.',
-    experienceYears: 7,
-    location: 'San Francisco, CA',
-    // hourlyRate removed
-    email: 'alice.wonderland@example.com', // Kept for admin/internal use
-    phone: '555-0101', // Kept for admin/internal use
-    portfolio: [
-      { id: 'p1', title: 'E-commerce Platform', description: 'Developed a scalable e-commerce solution for a fashion retailer.', imageUrl: 'https://picsum.photos/seed/ecom/600/400', projectUrl: '#' },
-      { id: 'p2', title: 'SaaS Dashboard', description: 'Designed and built a user-friendly dashboard for a SaaS product.', imageUrl: 'https://picsum.photos/seed/saas/600/400', projectUrl: '#' },
-    ],
-    servicesOffered: [mockServices[0], mockServices[2]],
+    id: 'hdm_p1',
+    name: 'Henok Doni',
+    avatarUrl: 'https://picsum.photos/seed/henok_doni/200/200',
+    industry: 'Project Management Consulting',
+    expertise: [
+      'PMP®', 'ISO 27001:2022 Lead Auditor/Implementer', 'CEH', 'CAPC™', '(ISC)2-CC',
+      'Business analysis', 'Project Management', 'Risk Management', 'Program Management', 
+      'Portfolio Management', 'Business Requirement Document Development', 
+      'Cybersecurity Governance, Risk and Compliance (GRC)', 'Cybersecurity Awareness program'
+    ].map(e => e.trim()).filter(e => e),
+    bio: "Henok Doni is a highly skilled and certified consultant with 10+ years of experience providing expert guidance in project, program, and portfolio management, and business analysis. He excels at guiding clients in optimizing project management practices, implementing effective programs, and managing diverse portfolios; conducting thorough business analysis to understand client needs and drive business value; developing and implementing project management plans, program frameworks, and portfolio management processes; identifying and managing risks, issues, and changes in complex projects and programs; and ensuring alignment with client strategic objectives and delivering solutions that meet their specific needs.",
+    experienceYears: 10,
+    location: 'Remote',
+    email: 'henok.doni@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [mockServices[0]],
   },
   {
-    id: '2',
-    name: 'Bob The Builder',
-    avatarUrl: 'https://picsum.photos/seed/bob/200/200',
-    industry: 'Graphic Design',
-    expertise: ['Branding', 'Illustration', 'UI Design', 'Adobe Creative Suite'],
-    bio: 'Creative graphic designer with a knack for visual storytelling. Specializing in branding and UI design to help businesses stand out.',
-    experienceYears: 5,
-    location: 'New York, NY',
-    // hourlyRate removed
-    email: 'bob.builder@example.com', // Kept for admin/internal use
-    phone: '555-0102', // Kept for admin/internal use
-    portfolio: [
-      { id: 'p3', title: 'Startup Branding', description: 'Complete branding package for a tech startup.', imageUrl: 'https://picsum.photos/seed/branding/600/400', projectUrl: '#' },
-      { id: 'p4', title: 'Mobile App UI Kit', description: 'Designed a comprehensive UI kit for a mobile application.', imageUrl: 'https://picsum.photos/seed/uikit/600/400', projectUrl: '#' },
-    ],
-    servicesOffered: [mockServices[2], mockServices[3]],
-  },
-  {
-    id: '3',
-    name: 'Charlie MarketingPro',
-    avatarUrl: 'https://picsum.photos/seed/charlie/200/200',
-    industry: 'Digital Marketing',
-    expertise: ['SEO', 'PPC', 'Content Marketing', 'Social Media'],
-    bio: 'Results-driven digital marketing specialist focused on growing online presence and driving conversions. Expertise in SEO, PPC, and content strategy.',
-    experienceYears: 8,
-    location: 'Chicago, IL',
-    // hourlyRate removed
-    email: 'charlie.marketing@example.com', // Kept for admin/internal use
-    phone: '555-0103', // Kept for admin/internal use
-    portfolio: [
-      { id: 'p5', title: 'SEO Campaign Success', description: 'Increased organic traffic by 150% for a local business.', imageUrl: 'https://picsum.photos/seed/seo/600/400', projectUrl: '#' },
-    ],
-    servicesOffered: [mockServices[4], mockServices[5]],
-  },
-  {
-    id: '4',
-    name: 'Diana DevRel',
-    avatarUrl: 'https://picsum.photos/seed/diana/200/200',
-    industry: 'Mobile Development',
-    expertise: ['iOS', 'Swift', 'Android', 'Kotlin', 'React Native'],
-    bio: 'Passionate mobile developer crafting seamless user experiences on iOS and Android. Strong focus on performance and clean code.',
-    experienceYears: 6,
-    location: 'Austin, TX',
-    // hourlyRate removed
-    email: 'diana.devrel@example.com', // Kept for admin/internal use
-    phone: '555-0104', // Kept for admin/internal use
-    portfolio: [
-      { id: 'p6', title: 'Fitness Tracking App', description: 'Lead developer for a popular fitness tracking application on iOS.', imageUrl: 'https://picsum.photos/seed/fitnessapp/600/400', projectUrl: '#' },
-      { id: 'p7', title: 'Cross-Platform Utility App', description: 'Built a utility app using React Native for both iOS and Android.', imageUrl: 'https://picsum.photos/seed/utilityapp/600/400', projectUrl: '#' },
-    ],
+    id: 'hdm_p2',
+    name: 'Daniel Manaye',
+    avatarUrl: 'https://picsum.photos/seed/daniel_manaye/200/200',
+    industry: 'Cybersecurity Consulting',
+    expertise: [
+      'CISSP', 'CISM', 'CEHv8', 'ITIL', 'ISO27001 Lead Implementer', 
+      'Certified Cybersecurity Expert', 'Cisco CyberOps', 'CyberArk Trustee', 'M.Sc. Information Systems',
+      'Cybersecurity Controls and Implementation', 'Cybersecurity Training and Anti-Fraud Management'
+    ].map(e => e.trim()).filter(e => e),
+    bio: "Daniel Manaye is a highly accomplished and results-oriented consultant specializing in cybersecurity and information systems (IS) fraud management, with a proven track record of delivering impactful solutions, particularly within the digital banking sector. He leverages extensive technical expertise, strategic problem-solving abilities, and leadership skills to mitigate risks, enhance security posture, and drive operational excellence. His core competencies encompass IS fraud management through data-driven initiatives, cybersecurity strategy and implementation, proactive risk management, securing digital banking platforms, and designing effective security awareness programs.",
+    experienceYears: 10, // Assumed based on "proven track record"
+    location: 'Remote',
+    email: 'daniel.manaye@hdmxperts.com',
+    portfolio: [],
     servicesOffered: [mockServices[1]],
+  },
+  {
+    id: 'hdm_p3',
+    name: 'Yohannes Yemane',
+    avatarUrl: 'https://picsum.photos/seed/yohannes_yemane/200/200',
+    industry: 'Cybersecurity Analysis',
+    expertise: [
+      'CISSP', 'CISM', 'CRISC', 'CEH', 'ISO 27001:2022 Lead Auditor/Implementer',
+      'Cybersecurity Analysis and Research', 'Programming', 'Digital Forensic', 
+      'VAPT', 'Mobile Application Development and Security Analysis'
+    ].map(e => e.trim()).filter(e => e),
+    bio: "Yohannes is a dedicated and versatile professional with over 12 years of experience in cybersecurity analysis and research, programming, and digital forensics. His expertise encompasses a wide range of areas, including vulnerability assessment and penetration testing (VAPT), reverse engineering, and security research. He possesses hands-on expertise in various programming languages, such as C, C++, Java, C#, and Python, with a keen interest in mobile application development and security analysis.",
+    experienceYears: 12,
+    location: 'Remote',
+    email: 'yohannes.yemane@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [mockServices[2]],
+  },
+  {
+    id: 'hdm_p4',
+    name: 'Maedot Assefa',
+    avatarUrl: 'https://picsum.photos/seed/maedot_assefa/200/200',
+    industry: 'Digital Business Advisory',
+    expertise: [
+      'Executive Diploma In Digital Business', 'MA in International Service Management',
+      'Digital Business Advisor', 'International Service Marketing and Management', 
+      'E-commerce and Digital Marketing Training'
+    ].map(e => e.trim()).filter(e => e),
+    bio: "Maedot is a Digital Business Advisor and Consultant specializing in International Service Marketing and Management, E-commerce, and Digital Marketing Training. Maedot provides expert guidance and training to businesses seeking to enhance their digital presence and optimize e-commerce operations, develop and implement effective digital marketing strategies, and expand their reach and manage their services in international markets. With a focus on practical application and results-driven strategies, Maedot equips businesses with the knowledge and tools to thrive in the global digital landscape.",
+    experienceYears: 7, // Assumed
+    location: 'Remote',
+    email: 'maedot.assefa@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [mockServices[3]],
+  },
+  {
+    id: 'hdm_p5',
+    name: 'Henok Heruy Gizaw',
+    avatarUrl: 'https://picsum.photos/seed/henok_heruy/200/200',
+    industry: 'Hospitality & Tourism Consulting',
+    expertise: [
+      'MA in International Business and Tourism Management', // No direct certs, using degree as profile item
+      'International Business', 'Hotel and Tourism Management'
+    ].map(e => e.trim()).filter(e => e),
+    bio: "Henok Heruy is a seasoned professional with several years of experience in international development projects, specifically in education, trade competency, and tourism, with experience in international marketing for B2B and B2C in the East Africa region. He has a proven track record of working across governmental, non-governmental, and private organizations. Qualified as a coordinator for international project management in development cooperation, his expertise encompasses project planning, financing, and quality management. Henok's educational background includes International Business/Tourism Management, pedagogy, and leadership.",
+    experienceYears: 7, // Assumed "several years"
+    location: 'Remote',
+    email: 'henok.heruy@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [mockServices[4]],
   },
 ];
 
 export const mockQuoteRequests: QuoteRequest[] = [
   {
     id: 'q1',
-    professionalId: '1',
-    professionalName: 'Alice Wonderland',
+    professionalId: 'hdm_p1', // Updated to new ID
+    professionalName: 'Henok Doni',
     userName: 'Eve Client',
     userEmail: 'eve.client@example.com',
     companyName: 'Eve Corp',
@@ -99,8 +138,8 @@ export const mockQuoteRequests: QuoteRequest[] = [
   },
   {
     id: 'q2',
-    professionalId: '2',
-    professionalName: 'Bob The Builder',
+    professionalId: 'hdm_p2', // Updated to new ID
+    professionalName: 'Daniel Manaye',
     userName: 'Frank Customer',
     userEmail: 'frank.customer@example.com',
     projectDescription: 'Looking for a logo redesign and new brand guidelines for my small business.',
