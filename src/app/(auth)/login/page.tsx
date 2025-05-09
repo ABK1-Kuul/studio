@@ -2,6 +2,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AppLogo } from '@/components/layout/AppLogo';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button'; // Added import
 
 export default function LoginPage({ searchParams }: { searchParams?: { error?: string }}) {
   return (
@@ -32,3 +33,4 @@ export default function LoginPage({ searchParams }: { searchParams?: { error?: s
     </div>
   );
 }
+

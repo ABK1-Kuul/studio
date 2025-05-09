@@ -67,3 +67,4 @@ export async function logoutAction() {
   cookies().delete('mockUserRole');
   redirect('/');
 }
+
