@@ -4,7 +4,7 @@ import { UserNav } from './UserNav';
 import { DarkModeToggle } from './DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth';
-import { Briefcase, FileText } from 'lucide-react';
+import { Briefcase, LayoutGrid } from 'lucide-react'; // Added LayoutGrid
 
 export default async function Header() {
   const user = await getCurrentUser();
@@ -19,6 +19,12 @@ export default async function Header() {
               <Button variant="ghost" className="gap-1.5">
                 <Briefcase className="h-4 w-4" />
                 Professionals
+              </Button>
+            </Link>
+            <Link href="/services" className="text-foreground/70 hover:text-foreground transition-colors">
+              <Button variant="ghost" className="gap-1.5">
+                <LayoutGrid className="h-4 w-4" />
+                Services
               </Button>
             </Link>
             {/* Example: Add a Blog link or other relevant navigation items here */}
@@ -42,3 +48,4 @@ export default async function Header() {
     </header>
   );
 }
+
