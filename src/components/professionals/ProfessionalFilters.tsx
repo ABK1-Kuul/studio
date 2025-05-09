@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -11,6 +12,9 @@ interface ProfessionalFiltersProps {
   allProfessionals: Professional[]; // For deriving filter options
   onFilterChange: (filters: { searchTerm: string; industry: string; expertise: string }) => void;
 }
+
+const ALL_INDUSTRIES_ITEM_VALUE = "__ALL_INDUSTRIES_PLACEHOLDER__";
+const ALL_EXPERTISE_ITEM_VALUE = "__ALL_EXPERTISE_PLACEHOLDER__";
 
 export function ProfessionalFilters({ allProfessionals, onFilterChange }: ProfessionalFiltersProps) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -47,12 +51,17 @@ export function ProfessionalFilters({ allProfessionals, onFilterChange }: Profes
         </div>
         <div>
           <label htmlFor="industry-select" className="block text-sm font-medium text-foreground mb-1">Industry</label>
-          <Select value={industry} onValueChange={setIndustry}>
+          <Select
+            value={industry === "" ? ALL_INDUSTRIES_ITEM_VALUE : industry}
+            onValueChange={(selectedValue) => {
+              setIndustry(selectedValue === ALL_INDUSTRIES_ITEM_VALUE ? "" : selectedValue);
+            }}
+          >
             <SelectTrigger id="industry-select" className="h-10">
               <SelectValue placeholder="All Industries" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Industries</SelectItem>
+              <SelectItem value={ALL_INDUSTRIES_ITEM_VALUE}>All Industries</SelectItem>
               {industries.map((ind) => (
                 <SelectItem key={ind} value={ind}>{ind}</SelectItem>
               ))}
@@ -61,12 +70,17 @@ export function ProfessionalFilters({ allProfessionals, onFilterChange }: Profes
         </div>
         <div>
           <label htmlFor="expertise-select" className="block text-sm font-medium text-foreground mb-1">Expertise</label>
-          <Select value={expertise} onValueChange={setExpertise}>
+          <Select
+            value={expertise === "" ? ALL_EXPERTISE_ITEM_VALUE : expertise}
+            onValueChange={(selectedValue) => {
+              setExpertise(selectedValue === ALL_EXPERTISE_ITEM_VALUE ? "" : selectedValue);
+            }}
+          >
             <SelectTrigger id="expertise-select" className="h-10">
               <SelectValue placeholder="All Expertise" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Expertise</SelectItem>
+              <SelectItem value={ALL_EXPERTISE_ITEM_VALUE}>All Expertise</SelectItem>
               {allExpertise.map((exp) => (
                 <SelectItem key={exp} value={exp}>{exp}</SelectItem>
               ))}
