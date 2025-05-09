@@ -22,8 +22,8 @@
     --muted: 0 0% 96.1%; /* Light Gray */
     --muted-foreground: 0 0% 45.1%; /* Medium Gray */
 
-    --accent: 177 49% 45%; /* Sky/Teal Blue #3AAFA9 */
-    --accent-foreground: 0 0% 100%; /* White for good contrast on teal */
+    --accent: 145 58% 55%; /* Emerald Green #50C878 - Changed from Teal Blue */
+    --accent-foreground: 0 0% 100%; /* White for good contrast on green - Changed from white on teal */
 
     --destructive: 0 84.2% 60.2%; /* Default red */
     --destructive-foreground: 0 0% 98%; /* Default light color for red */
@@ -43,8 +43,8 @@
     --sidebar-foreground: 0 0% 17.6%;
     --sidebar-primary: 145 58% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 177 49% 45%;
-    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-accent: 145 58% 55%; /* Emerald Green - Changed from Teal Blue */
+    --sidebar-accent-foreground: 0 0% 100%; /* White - Changed from white on teal */
     --sidebar-border: 0 0% 89.8%;
     --sidebar-ring: 145 58% 55%;
   }
@@ -68,8 +68,8 @@
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
 
-    --accent: 177 49% 50%; /* Slightly lighter Teal Blue */
-    --accent-foreground: 0 0% 10%; /* Dark text on lighter teal */
+    --accent: 145 58% 60%; /* Slightly lighter Emerald Green - Changed from Lighter Teal Blue */
+    --accent-foreground: 0 0% 10%; /* Dark text on lighter green - Changed from dark text on lighter teal */
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
@@ -88,8 +88,8 @@
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 145 58% 60%;
     --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 177 49% 50%;
-    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-accent: 145 58% 60%; /* Lighter Emerald Green - Changed from Lighter Teal Blue */
+    --sidebar-accent-foreground: 0 0% 10%; /* Dark text - Changed from dark text on lighter teal */
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 145 58% 60%;
   }
