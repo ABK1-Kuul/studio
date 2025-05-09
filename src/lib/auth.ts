@@ -1,4 +1,6 @@
 // src/lib/auth.ts (mock)
+'use server';
+
 import type { MockUser, UserRole } from '@/lib/types';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -20,7 +22,6 @@ export async function getCurrentUser(): Promise<MockUser | null> {
 }
 
 export async function loginAction(formData: FormData) {
-  'use server';
   const email = formData.get('email') as string;
   // In a real app: validate credentials against a database
   
@@ -47,7 +48,6 @@ export async function loginAction(formData: FormData) {
 }
 
 export async function signupAction(formData: FormData) {
-  'use server';
   const email = formData.get('email') as string;
   const role = formData.get('role') as UserRole; // Assuming role is part of signup
   console.log('Signup attempt with:', Object.fromEntries(formData));
@@ -64,7 +64,6 @@ export async function signupAction(formData: FormData) {
 }
 
 export async function logoutAction() {
-  'use server';
   cookies().delete('mockUserRole');
   redirect('/');
 }

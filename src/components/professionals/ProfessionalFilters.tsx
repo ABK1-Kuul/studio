@@ -13,25 +13,30 @@ interface ProfessionalFiltersProps {
   onFilterChange: (filters: { searchTerm: string; industry: string; expertise: string }) => void;
 }
 
-const ALL_INDUSTRIES_ITEM_VALUE = "__ALL_INDUSTRIES_PLACEHOLDER__";
-const ALL_EXPERTISE_ITEM_VALUE = "__ALL_EXPERTISE_PLACEHOLDER__";
+// Using non-empty strings for placeholder values to satisfy SelectItem constraints
+const ALL_INDUSTRIES_ITEM_VALUE = "_all_industries_";
+const ALL_EXPERTISE_ITEM_VALUE = "_all_expertise_";
 
 export function ProfessionalFilters({ allProfessionals, onFilterChange }: ProfessionalFiltersProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [industry, setIndustry] = useState('');
-  const [expertise, setExpertise] = useState('');
+  const [industry, setIndustry] = useState(ALL_INDUSTRIES_ITEM_VALUE); // Default to placeholder value
+  const [expertise, setExpertise] = useState(ALL_EXPERTISE_ITEM_VALUE); // Default to placeholder value
 
   const industries = Array.from(new Set(allProfessionals.map(p => p.industry))).sort();
-  const allExpertise = Array.from(new Set(allProfessionals.flatMap(p => p.expertise))).sort();
+  const allExpertiseOptions = Array.from(new Set(allProfessionals.flatMap(p => p.expertise))).sort();
 
   const handleSearch = () => {
-    onFilterChange({ searchTerm, industry, expertise });
+    onFilterChange({ 
+      searchTerm, 
+      industry: industry === ALL_INDUSTRIES_ITEM_VALUE ? '' : industry, 
+      expertise: expertise === ALL_EXPERTISE_ITEM_VALUE ? '' : expertise 
+    });
   };
 
   const clearFilters = () => {
     setSearchTerm('');
-    setIndustry('');
-    setExpertise('');
+    setIndustry(ALL_INDUSTRIES_ITEM_VALUE);
+    setExpertise(ALL_EXPERTISE_ITEM_VALUE);
     onFilterChange({ searchTerm: '', industry: '', expertise: '' });
   };
 
@@ -52,10 +57,8 @@ export function ProfessionalFilters({ allProfessionals, onFilterChange }: Profes
         <div>
           <label htmlFor="industry-select" className="block text-sm font-medium text-foreground mb-1">Industry</label>
           <Select
-            value={industry === "" ? ALL_INDUSTRIES_ITEM_VALUE : industry}
-            onValueChange={(selectedValue) => {
-              setIndustry(selectedValue === ALL_INDUSTRIES_ITEM_VALUE ? "" : selectedValue);
-            }}
+            value={industry}
+            onValueChange={setIndustry}
           >
             <SelectTrigger id="industry-select" className="h-10">
               <SelectValue placeholder="All Industries" />
@@ -71,17 +74,15 @@ export function ProfessionalFilters({ allProfessionals, onFilterChange }: Profes
         <div>
           <label htmlFor="expertise-select" className="block text-sm font-medium text-foreground mb-1">Expertise</label>
           <Select
-            value={expertise === "" ? ALL_EXPERTISE_ITEM_VALUE : expertise}
-            onValueChange={(selectedValue) => {
-              setExpertise(selectedValue === ALL_EXPERTISE_ITEM_VALUE ? "" : selectedValue);
-            }}
+            value={expertise}
+            onValueChange={setExpertise}
           >
             <SelectTrigger id="expertise-select" className="h-10">
               <SelectValue placeholder="All Expertise" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value={ALL_EXPERTISE_ITEM_VALUE}>All Expertise</SelectItem>
-              {allExpertise.map((exp) => (
+              {allExpertiseOptions.map((exp) => (
                 <SelectItem key={exp} value={exp}>{exp}</SelectItem>
               ))}
             </SelectContent>
