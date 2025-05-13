@@ -17,22 +17,18 @@ export default async function Header() {
         <div className="flex items-center gap-6">
           <AppLogo />
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
-            <Link href="/professionals" passHref legacyBehavior>
-              <Button variant="ghost" asChild size="sm" className="text-foreground/70">
-                <a className="flex items-center gap-1.5">
-                  <Briefcase className="h-4 w-4" />
-                  Professionals
-                </a>
-              </Button>
-            </Link>
-            <Link href="/services" passHref legacyBehavior>
-              <Button variant="ghost" asChild size="sm" className="text-foreground/70">
-                <a className="flex items-center gap-1.5">
-                  <LayoutGrid className="h-4 w-4" />
-                  Services
-                </a>
-              </Button>
-            </Link>
+            <Button variant="ghost" asChild size="sm" className="text-foreground/70 hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-colors duration-150 ease-in-out group">
+              <Link href="/professionals" className="flex items-center gap-1.5">
+                <Briefcase className="h-4 w-4 text-primary group-hover:text-primary transition-colors duration-150 ease-in-out" />
+                Professionals
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild size="sm" className="text-foreground/70 hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-colors duration-150 ease-in-out group">
+              <Link href="/services" className="flex items-center gap-1.5">
+                <LayoutGrid className="h-4 w-4 text-primary group-hover:text-primary transition-colors duration-150 ease-in-out" />
+                Services
+              </Link>
+            </Button>
           </nav>
         </div>
         
@@ -47,8 +43,16 @@ export default async function Header() {
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[340px] p-0 flex flex-col">
                 <SheetHeader className="p-4 border-b">
-                  <AppLogo />
-                  {/* <SheetTitle className="sr-only">Navigation Menu</SheetTitle> */}
+                  <div className="flex justify-between items-center">
+                    <AppLogo />
+                    <SheetClose asChild>
+                       <Button variant="ghost" size="icon" className="md:hidden">
+                          <Menu className="h-6 w-6 rotate-90" /> {/* Using Menu rotated as a close icon */}
+                          <span className="sr-only">Close navigation menu</span>
+                       </Button>
+                    </SheetClose>
+                  </div>
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 </SheetHeader>
                 <nav className="flex-grow p-4 space-y-2">
                   <SheetClose asChild>
@@ -96,4 +100,3 @@ export default async function Header() {
     </header>
   );
 }
-
