@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Palette, Moon, Sun } from "lucide-react" // Changed to Palette icon
+import { Palette, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -15,29 +15,31 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function DarkModeToggle() {
-  const { setTheme, theme, resolvedTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
 
-  // Determine which icon to show based on the resolved system theme for the toggle button
-  const ShowIcon = () => {
-    if (resolvedTheme === 'dark') {
-      return <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />;
-    }
-    return <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />;
-  };
-
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          {/* Conditionally render Sun or Moon based on resolvedTheme if current theme is 'system' */}
-          {/* Otherwise, show a generic Palette icon if a specific theme is chosen */}
-          {theme === "system" ? (
+        <Button variant="outline" size="icon" disabled={!mounted}>
+          {!mounted ? (
+            // Placeholder icon for SSR and initial client render to prevent hydration mismatch.
+            // Using Sun as a generic placeholder. Button is disabled until mounted.
+            <Sun className="h-[1.2rem] w-[1.2rem]" />
+          ) : theme === "system" ? (
             <>
               <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </>
           ) : (
+            // For non-system themes (e.g., 'corporate-blue', 'eco-green', 'innovation-orange', or explicit 'light'/'dark')
+            // The original logic showed Palette. We maintain this.
+            // If a specific theme (light/dark) should show Sun/Moon, that logic would go here.
+            // However, current custom themes are better represented by Palette.
             <Palette className="h-[1.2rem] w-[1.2rem]" />
           )}
           <span className="sr-only">Toggle theme</span>
