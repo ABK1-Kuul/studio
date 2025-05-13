@@ -1,5 +1,4 @@
 
-
 import { SignupForm } from '@/components/auth/SignupForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AppLogo } from '@/components/layout/AppLogo';
@@ -16,7 +15,7 @@ export default function SignupPage({ searchParams }: { searchParams?: { error?: 
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Create Your Professional Profile</CardTitle>
           <CardDescription>
-            Join HDM consultation by providing your details to showcase your expertise and connect with opportunities.
+            Join HDM Xperts by providing your details to showcase your expertise and connect with opportunities.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -42,4 +41,3 @@ export default function SignupPage({ searchParams }: { searchParams?: { error?: 
     </div>
   );
 }
-

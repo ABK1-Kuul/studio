@@ -14,7 +14,7 @@ export default function LoginPage({ searchParams }: { searchParams?: { error?: s
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Welcome Back!</CardTitle>
-          <CardDescription>Log in to access your HDM consultation account.</CardDescription>
+          <CardDescription>Log in to access your HDM Xperts account.</CardDescription>
         </CardHeader>
         <CardContent>
           {searchParams?.error && (
@@ -34,5 +34,3 @@ export default function LoginPage({ searchParams }: { searchParams?: { error?: s
     </div>
   );
 }
-
-

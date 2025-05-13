@@ -81,7 +81,7 @@ export function SignupForm() {
         await signupAction(formData);
         toast({
           title: "Signup Successful!",
-          description: "Welcome to HDM consultation. You are being redirected...",
+          description: "Welcome to HDM Xperts. You are being redirected...",
         });
       } catch (error) {
          toast({
@@ -237,4 +237,3 @@ export function SignupForm() {
     </Form>
   );
 }
-

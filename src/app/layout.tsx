@@ -14,7 +14,7 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: 'HDM consultation',
+  title: 'HDM Xperts',
   description: 'Connect with top industry professionals.',
 };
 
@@ -49,4 +49,3 @@ export default function RootLayout({
     </html>
   );
 }
-
