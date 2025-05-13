@@ -4,9 +4,10 @@ import { UserNav } from './UserNav';
 import { DarkModeToggle } from './DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth';
-import { Briefcase, LayoutGrid, Menu, LogIn, UserPlus } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Briefcase, LayoutGrid, Menu, LogIn, UserPlus, Palette } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
+import { X } from 'lucide-react';
 
 export default async function Header() {
   const user = await getCurrentUser();
@@ -47,12 +48,14 @@ export default async function Header() {
                     <AppLogo />
                     <SheetClose asChild>
                        <Button variant="ghost" size="icon" className="md:hidden">
-                          <Menu className="h-6 w-6 rotate-90" /> {/* Using Menu rotated as a close icon */}
+                          {/* Using a different icon for close for better UX, X is common */}
+                          <X className="h-6 w-6" /> 
                           <span className="sr-only">Close navigation menu</span>
                        </Button>
                     </SheetClose>
                   </div>
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <SheetDescription className="sr-only">Main navigation links and theme settings.</SheetDescription>
                 </SheetHeader>
                 <nav className="flex-grow p-4 space-y-2">
                   <SheetClose asChild>
@@ -86,6 +89,9 @@ export default async function Header() {
                   )}
                 </nav>
                 <div className="p-4 border-t mt-auto">
+                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                     <Palette className="h-5 w-5" /> <span>Select Theme</span>
+                   </div>
                   <DarkModeToggle />
                 </div>
               </SheetContent>
