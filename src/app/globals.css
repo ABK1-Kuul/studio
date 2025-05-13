@@ -97,7 +97,7 @@
   }
 
   /* Theme 1: Corporate Blue */
-  .theme-corporate-blue {
+  .corporate-blue {
     --background: 0 0% 100%; /* White */
     --foreground: 0 0% 17.6%; /* Charcoal for text */
 
@@ -143,7 +143,7 @@
   }
 
   /* Theme 2: Eco Green */
-  .theme-eco-green {
+  .eco-green {
     --background: 0 0% 100%; /* White */
     --foreground: 0 0% 20%; /* Charcoal #333333 for text */
 
@@ -189,7 +189,7 @@
   }
 
   /* Theme 3: Innovation Orange */
-  .theme-innovation-orange {
+  .innovation-orange {
     --background: 0 0% 100%; /* White */
     --foreground: 0 0% 17.6%; /* Charcoal for text */
 
