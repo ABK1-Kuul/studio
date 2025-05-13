@@ -30,30 +30,19 @@ export default function ProfessionalsPage() {
   // Effect to load all professionals initially
   useEffect(() => {
     async function loadData() {
-      setIsLoading(true); // Ensure loading is true while fetching
+      setIsLoading(true); 
       const pros = await fetchProfessionals();
       setAllProfessionals(pros);
-      // setIsLoading(false); // Filtering effect will handle setting this to false
+      setIsLoading(false); // Ensure isLoading is set to false after initial fetch
     }
     loadData();
-  }, []);
+  }, []); // Empty dependency array ensures this runs once on mount
 
   // Effect to apply all filters when data or filter criteria change
   useEffect(() => {
-    // Wait until allProfessionals is populated by loadData
-    // The initial isLoading state is true. loadData fetches and sets allProfessionals.
-    // This effect then runs.
-    if (allProfessionals.length === 0 && !serviceIdQuery) { // if no professionals loaded yet and no specific service query from start
-        const wasInitialLoadAttempted = !isLoading; // if isLoading was turned false it means fetchProfessionals likely returned empty
-        if(wasInitialLoadAttempted){
-             setFilteredProfessionals([]);
-             setIsLoading(false); // Explicitly set loading to false if fetch returned empty
-        }
-        // If isLoading is true, it means fetchProfessionals is still running or hasn't started.
-        return;
-    }
-
-
+    // This effect handles filtering. It should show a loading state if filtering is slow.
+    // The initial page load's loading state is handled by the first useEffect.
+    
     setIsLoading(true); // Indicate filtering is in progress
     
     let result = [...allProfessionals];
@@ -82,10 +71,12 @@ export default function ProfessionalsPage() {
     }
 
     // Simulate filtering delay for UX
-    setTimeout(() => {
+    const filterTimeout = setTimeout(() => {
       setFilteredProfessionals(result);
       setIsLoading(false); // Filtering done
     }, 300);
+
+    return () => clearTimeout(filterTimeout); // Cleanup timeout
 
   }, [allProfessionals, serviceIdQuery, currentSearchFilters]);
 
@@ -112,13 +103,15 @@ export default function ProfessionalsPage() {
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-full rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
+            <div key={i} className="flex flex-col space-y-3 p-4 border rounded-lg shadow-sm bg-card">
+              <Skeleton className="h-24 w-24 rounded-full mx-auto" />
+              <div className="space-y-2 mt-3">
+                <Skeleton className="h-6 w-3/4 mx-auto" />
+                <Skeleton className="h-4 w-1/2 mx-auto" />
+                <Skeleton className="h-4 w-5/6 mx-auto mt-2" />
+                <Skeleton className="h-4 w-5/6 mx-auto" />
               </div>
-              <Skeleton className="h-10 w-1/2 self-end" />
+              <Skeleton className="h-10 w-1/2 mt-4 mx-auto" />
             </div>
           ))}
         </div>
@@ -139,3 +132,4 @@ export default function ProfessionalsPage() {
     </div>
   );
 }
+
