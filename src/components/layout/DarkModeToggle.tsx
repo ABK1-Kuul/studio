@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { Palette, Moon, Sun } from "lucide-react"
+import { Palette, Moon, Sun, Leaf } from "lucide-react" // Added Leaf for green themes
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -26,8 +26,8 @@ export function DarkModeToggle() {
   // Placeholder for SSR and initial client render to prevent hydration mismatch
   const placeholderButton = (
     <Button variant="outline" size="icon" disabled={true} aria-label="Loading theme switcher">
-      {/* Using Sun as a consistent placeholder icon when not mounted */}
-      <Sun className="h-[1.2rem] w-[1.2rem]" />
+      {/* Using Palette as a consistent placeholder icon when not mounted or for custom themes */}
+      <Palette className="h-[1.2rem] w-[1.2rem]" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
@@ -35,26 +35,29 @@ export function DarkModeToggle() {
   if (!mounted) {
     return placeholderButton;
   }
+  
+  const CurrentThemeIcon = () => {
+    if (theme === "system") {
+        return (
+            <>
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </>
+        );
+    }
+    if (theme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
+    if (theme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
+    if (theme === "eco-green" || theme === "lemon-green") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
+    return <Palette className="h-[1.2rem] w-[1.2rem]" />; // Default for other custom themes
+  }
+
 
   // Actual component content when mounted
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" aria-label="Toggle theme">
-          {/* Icons based on current theme, only rendered when mounted */}
-          {theme === "system" ? (
-            <>
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </>
-          ) : theme === "light" ? (
-            <Sun className="h-[1.2rem] w-[1.2rem]" />
-          ) : theme === "dark" ? (
-            <Moon className="h-[1.2rem] w-[1.2rem]" />
-          ) : ( 
-            // For custom themes like 'corporate-blue', default to Palette
-            <Palette className="h-[1.2rem] w-[1.2rem]" />
-          )}
+          <CurrentThemeIcon />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
@@ -78,6 +81,9 @@ export function DarkModeToggle() {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("innovation-orange")}>
           Innovation (Orange/Navy)
+        </DropdownMenuItem>
+         <DropdownMenuItem onClick={() => setTheme("lemon-green")}>
+          Modern (Lemon Green)
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
