@@ -16,28 +16,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function DarkModeToggle() {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, theme: activeTheme } = useTheme() // Renamed theme to activeTheme to avoid conflict
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
     setMounted(true)
   }, [])
 
-  // Placeholder for SSR and initial client render to prevent hydration mismatch
-  const placeholderButton = (
-    <Button variant="outline" size="icon" disabled={true} aria-label="Loading theme switcher">
-      {/* Using Palette as a consistent placeholder icon when not mounted or for custom themes */}
-      <Palette className="h-[1.2rem] w-[1.2rem]" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
-
-  if (!mounted) {
-    return placeholderButton;
-  }
-  
-  const CurrentThemeIcon = () => {
-    if (theme === "system") {
+  const CurrentThemeIcon = React.useCallback(() => {
+    if (activeTheme === "system") {
         return (
             <>
               <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -45,13 +32,24 @@ export function DarkModeToggle() {
             </>
         );
     }
-    if (theme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
-    if (theme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-    if (theme === "eco-green" || theme === "lemon-green") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
+    if (activeTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
+    if (activeTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
+    if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
     return <Palette className="h-[1.2rem] w-[1.2rem]" />; // Default for other custom themes
+  }, [activeTheme]);
+
+
+  // Placeholder for SSR and initial client render to prevent hydration mismatch
+   if (!mounted) {
+    return (
+      <Button variant="outline" size="icon" disabled={true} aria-label="Loading theme switcher">
+         {/* Use a static icon for placeholder to avoid hydration issues */}
+        <Palette className="h-[1.2rem] w-[1.2rem]" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    );
   }
-
-
+  
   // Actual component content when mounted
   return (
     <DropdownMenu>
@@ -84,6 +82,9 @@ export function DarkModeToggle() {
         </DropdownMenuItem>
          <DropdownMenuItem onClick={() => setTheme("lemon-green")}>
           Modern (Lemon Green)
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("lemon-navy")}>
+          Bold (Lemon/Navy)
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

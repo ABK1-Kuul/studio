@@ -234,7 +234,7 @@
     --sidebar-ring: 26 95% 53%;
   }
 
-  /* Theme 4: Lemon Green (New) */
+  /* Theme 4: Lemon Green (Modern) */
   .lemon-green {
     --background: 0 0% 100%; /* White #FFFFFF */
     --foreground: 0 0% 18%; /* Charcoal #2E2E2E */
@@ -278,6 +278,52 @@
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 89.8%;
     --sidebar-ring: 73 79% 60%;
+  }
+
+  /* Theme 5: Lemon Green (Bold) */
+  .lemon-navy {
+    --background: 220 20% 97%;    /* Light Grey #f2f4f8 */
+    --foreground: 220 27% 10%;    /* Off-Black #111827 for text */
+
+    --card: 0 0% 100%;            /* White for cards */
+    --card-foreground: 220 27% 10%; /* Off-Black text on cards */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 27% 10%;
+
+    --primary: 71 100% 50%;       /* Lemon Green #D4FF00 */
+    --primary-foreground: 220 27% 10%; /* Off-Black for contrast on Lemon Green */
+
+    --secondary: 220 59% 29%;     /* Navy #1F3B73 */
+    --secondary-foreground: 0 0% 100%; /* White text on Navy */
+    
+    --muted: 220 14% 90%;         /* Lighter Grey */
+    --muted-foreground: 220 10% 40%; /* Medium Grey */
+
+    --accent: 220 27% 10%;        /* Off-Black #111827 (CTA) */
+    --accent-foreground: 0 0% 100%;   /* White text on Off-Black */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 10% 85%;        /* Grey border */
+    --input: 220 10% 85%;
+    --ring: 71 100% 50%;          /* Lemon Green for focus rings */
+
+    --chart-1: 12 76% 61%; 
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    --sidebar-background: 220 20% 95%; /* Slightly darker Light Grey for sidebar */
+    --sidebar-foreground: 220 27% 10%;
+    --sidebar-primary: 71 100% 50%;
+    --sidebar-primary-foreground: 220 27% 10%;
+    --sidebar-accent: 220 59% 29%;    /* Navy as accent in sidebar */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 10% 85%;
+    --sidebar-ring: 71 100% 50%;
   }
 }
 
