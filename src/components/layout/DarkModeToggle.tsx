@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { Palette, Moon, Sun, Leaf } from "lucide-react" // Added Leaf for green themes
+import { Palette, Moon, Sun, Leaf } from "lucide-react" 
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function DarkModeToggle() {
-  const { setTheme, theme: activeTheme } = useTheme() // Renamed theme to activeTheme to avoid conflict
+  const { setTheme, theme: activeTheme } = useTheme() 
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -24,6 +24,12 @@ export function DarkModeToggle() {
   }, [])
 
   const CurrentThemeIcon = React.useCallback(() => {
+    // This component might render on the server before theme is available,
+    // or on client before activeTheme is determined.
+    // The `mounted` state helps, but `activeTheme` can still be undefined initially.
+    if (!activeTheme) { // Handles undefined activeTheme gracefully
+        return <Sun className="h-[1.2rem] w-[1.2rem]" />; // Default icon
+    }
     if (activeTheme === "system") {
         return (
             <>
@@ -34,23 +40,20 @@ export function DarkModeToggle() {
     }
     if (activeTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
     if (activeTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-    if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy" || activeTheme === "lemon-grey-minimalist") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
-    return <Palette className="h-[1.2rem] w-[1.2rem]" />; // Default for other custom themes
+    if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy" || activeTheme === "lemon-grey-minimalist" || activeTheme === "green-authority") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
+    return <Palette className="h-[1.2rem] w-[1.2rem]" />; 
   }, [activeTheme]);
 
 
-  // Placeholder for SSR and initial client render to prevent hydration mismatch
    if (!mounted) {
     return (
       <Button variant="outline" size="icon" disabled={true} aria-label="Loading theme switcher">
-         {/* Use a static icon for placeholder to avoid hydration issues */}
         <Sun className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">Toggle theme</span>
       </Button>
     );
   }
   
-  // Actual component content when mounted
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -89,7 +92,11 @@ export function DarkModeToggle() {
         <DropdownMenuItem onClick={() => setTheme("lemon-grey-minimalist")}>
           Minimalist (Lemon/Grey)
         </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("green-authority")}>
+          Green Authority
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
+
