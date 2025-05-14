@@ -34,7 +34,7 @@ export function DarkModeToggle() {
     }
     if (activeTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
     if (activeTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-    if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
+    if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy" || activeTheme === "lemon-grey-minimalist") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
     return <Palette className="h-[1.2rem] w-[1.2rem]" />; // Default for other custom themes
   }, [activeTheme]);
 
@@ -44,7 +44,7 @@ export function DarkModeToggle() {
     return (
       <Button variant="outline" size="icon" disabled={true} aria-label="Loading theme switcher">
          {/* Use a static icon for placeholder to avoid hydration issues */}
-        <Palette className="h-[1.2rem] w-[1.2rem]" />
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">Toggle theme</span>
       </Button>
     );
@@ -85,6 +85,9 @@ export function DarkModeToggle() {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("lemon-navy")}>
           Bold (Lemon/Navy)
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("lemon-grey-minimalist")}>
+          Minimalist (Lemon/Grey)
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
