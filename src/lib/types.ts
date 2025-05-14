@@ -1,3 +1,4 @@
+
 export interface Professional {
   id: string;
   name: string;
@@ -8,9 +9,8 @@ export interface Professional {
   experienceYears: number;
   portfolio: PortfolioItem[];
   location?: string;
-  // hourlyRate?: number; // Removed as per request
-  email: string; // Retained for admin/internal use
-  phone?: string; // Retained for admin/internal use
+  email: string; 
+  phone?: string; 
   servicesOffered?: Service[];
 }
 
@@ -30,7 +30,7 @@ export interface QuoteRequest {
   userEmail: string;
   companyName?: string;
   projectDescription: string;
-  budget?: string;
+  companySize?: string; // Added
   timeline?: string;
   status: 'pending' | 'reviewed' | 'contacted';
   submittedAt: string; // ISO date string
@@ -40,10 +40,10 @@ export interface Service {
   id: string;
   name: string;
   description: string;
-  price?: string; // e.g., "$50/hr" or "$500 project"
+  price?: string; 
 }
 
-export type UserRole = 'admin' | 'professional'; // Removed 'guest'
+export type UserRole = 'admin' | 'professional';
 
 export interface MockUser {
   id: string;

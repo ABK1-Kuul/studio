@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { QuoteRequest } from "@/lib/types";
@@ -72,8 +73,8 @@ export function QuoteList({ initialQuotes }: QuoteListProps) {
             <p className="font-semibold mb-1">Project Description:</p>
             <p className="text-sm text-muted-foreground mb-3 whitespace-pre-wrap">{quote.projectDescription}</p>
             
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              {quote.budget && <div><strong>Budget:</strong> {quote.budget}</div>}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              {quote.companySize && <div><strong>Company Size:</strong> {quote.companySize}</div>}
               {quote.timeline && <div><strong>Timeline:</strong> {quote.timeline}</div>}
             </div>
             <p className="text-xs text-muted-foreground mt-3">

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid } from "lucide-react";
 import { mockServices } from '@/data/mock'; 
 import type { Service } from "@/lib/types"; 
+import { StyledXperts } from "@/components/layout/StyledXperts";
 
 export default function HomePage() {
   return (
@@ -14,7 +15,7 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24 lg:py-32 text-center">
         <div className="container px-4 md:px-6">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-            Connect with Top Professionals
+            Connect with Top <StyledXperts />
           </h1>
           <p className="mx-auto max-w-[700px] text-foreground/80 md:text-xl mt-6">
             HDM Xperts is your premier platform to find skilled experts for your projects or showcase your expertise to the world.
@@ -22,7 +23,7 @@ export default function HomePage() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center">
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/50 transition-shadow">
               <Link href="/professionals">
-                Find a Professional <ArrowRight className="ml-2 h-5 w-5" />
+                Find an Xpert <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="shadow-lg hover:shadow-accent/50 transition-shadow">
@@ -50,7 +51,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Easily search and filter through a diverse range of professionals. Find the perfect match for your project based on industry and expertise.
+                  Easily search and filter through a diverse range of Xperts. Find the perfect match for your project based on industry and expertise.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -63,7 +64,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Professionals can create detailed profiles, highlight their experience, and build impressive portfolios to attract project opportunities.
+                  Xperts can create detailed profiles, highlight their experience, and build impressive portfolios to attract project opportunities.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -76,7 +77,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Request quotes directly from professionals for specific services. A simple, admin-mediated process to get your project started.
+                  Request quotes directly from Xperts for specific services. A simple, admin-mediated process to get your project started.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -112,7 +113,7 @@ export default function HomePage() {
                 <CardFooter className="p-6 bg-secondary/30 dark:bg-secondary/10 border-t border-border">
                   <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow" variant="default">
                     <Link href={`/professionals?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}`}>
-                      Find Experts <ArrowRight className="ml-2 h-4 w-4" />
+                      Find Xperts <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardFooter>
@@ -143,14 +144,14 @@ export default function HomePage() {
                 <UserPlus className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">1. Sign Up</h3>
-              <p className="text-foreground/70">Professionals create an account to showcase their skills.</p>
+              <p className="text-foreground/70">Xperts create an account to showcase their skills.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <Search className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">2. Discover/Showcase</h3>
-              <p className="text-foreground/70">Users discover experts. Professionals build detailed profiles.</p>
+              <p className="text-foreground/70">Users discover Xperts. Xperts build detailed profiles.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
@@ -174,10 +175,10 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24">
         <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
           <Image
-            alt="Team collaborating in a conference meeting"
+            alt="Team collaborating in a modern conference meeting setting"
             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last shadow-2xl"
             height="310"
-            src="https://picsum.photos/seed/conference-meeting/550/310"
+            src="https://placehold.co/550x310.png"
             data-ai-hint="conference meeting"
             width="550"
           />
@@ -190,7 +191,7 @@ export default function HomePage() {
                 Build Your Next Big Thing, Together.
               </h2>
               <p className="max-w-[600px] text-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Whether you're looking for talent for your next project or a seasoned professional seeking new opportunities, HDM Xperts provides the tools and network you need to succeed.
+                Whether you're looking for talent for your next project or a seasoned Xpert seeking new opportunities, HDM Xperts provides the tools and network you need to succeed.
               </p>
             </div>
             <Button asChild size="lg" className="w-fit shadow-lg hover:shadow-primary/50 transition-shadow">

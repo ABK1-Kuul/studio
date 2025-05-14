@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -13,15 +14,13 @@ import {
 import { getCurrentUser, logoutAction } from '@/lib/auth';
 import type { MockUser } from '@/lib/types';
 import { LogOut, User, LayoutDashboard, Briefcase, FolderKanban } from 'lucide-react';
+import { StyledXperts } from '@/components/layout/StyledXperts';
 
 export async function UserNav() {
   const user = await getCurrentUser();
 
   if (!user) {
     return (
-      // These buttons are hidden on mobile (screens smaller than md)
-      // because they are accessible via the hamburger menu.
-      // They are shown on md screens and larger.
       <div className="hidden md:flex items-center gap-2">
         <Button asChild variant="outline">
           <Link href="/login">Login</Link>
@@ -38,8 +37,7 @@ export async function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10">
-            {/* In a real app, user.avatarUrl would be used */}
-            <AvatarImage src={`https://picsum.photos/seed/${user.id}/40/40`} alt={user.name} data-ai-hint="user avatar" />
+            <AvatarImage src={`https://placehold.co/40x40.png`} alt={user.name} data-ai-hint="user avatar" />
             <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
         </Button>
@@ -90,7 +88,7 @@ export async function UserNav() {
            <DropdownMenuItem asChild>
               <Link href="/professionals">
                 <Briefcase className="mr-2 h-4 w-4" />
-                <span>Find Professionals</span>
+                <span>Find <StyledXperts /></span>
               </Link>
             </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -107,4 +105,3 @@ export async function UserNav() {
     </DropdownMenu>
   );
 }
-

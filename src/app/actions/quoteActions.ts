@@ -1,3 +1,4 @@
+
 "use server";
 
 import { z } from "zod";
@@ -12,7 +13,7 @@ const quoteRequestSchema = z.object({
   userEmail: z.string().email("A valid email is required."),
   companyName: z.string().optional(),
   projectDescription: z.string().min(10, "Project description must be at least 10 characters."),
-  budget: z.string().optional(),
+  companySize: z.string().min(1, "Company size is required."), // Added
   timeline: z.string().optional(),
 });
 
@@ -26,7 +27,7 @@ export async function submitQuoteRequestAction(prevState: any, formData: FormDat
     userEmail: formData.get("userEmail"),
     companyName: formData.get("companyName"),
     projectDescription: formData.get("projectDescription"),
-    budget: formData.get("budget"),
+    companySize: formData.get("companySize"), // Changed from budget
     timeline: formData.get("timeline"),
   });
 

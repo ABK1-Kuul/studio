@@ -1,9 +1,11 @@
+
 import { getCurrentUser } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Users, FileText, Settings, BarChart3 } from 'lucide-react';
+import { StyledXperts } from '@/components/layout/StyledXperts';
 
 export default async function AdminDashboardPage() {
   const user = await getCurrentUser();
@@ -14,7 +16,7 @@ export default async function AdminDashboardPage() {
 
   // Mock data for dashboard
   const stats = {
-    totalProfessionals: 150,
+    totalXperts: 150, // Changed from totalProfessionals
     pendingQuotes: 12,
     totalUsers: 500,
   };
@@ -26,11 +28,11 @@ export default async function AdminDashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card className="shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Professionals</CardTitle>
+            <CardTitle className="text-sm font-medium">Total <StyledXperts /></CardTitle>
             <Users className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.totalProfessionals}</div>
+            <div className="text-2xl font-bold">{stats.totalXperts}</div>
             <p className="text-xs text-muted-foreground">+20 since last month</p>
           </CardContent>
         </Card>
@@ -65,9 +67,9 @@ export default async function AdminDashboardPage() {
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> {/* Placeholder for manage professionals page */}
+            <Link href="#"> {/* Placeholder for manage Xperts page */}
               <Users className="h-5 w-5" />
-              Manage Professionals
+              Manage <StyledXperts />
             </Link>
           </Button>
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
@@ -101,7 +103,7 @@ export default async function AdminDashboardPage() {
           <p className="text-muted-foreground">Recent activity feed will be displayed here.</p>
           {/* Example item:
           <div className="border-b py-2">
-            <p className="text-sm">New professional 'John Dev' signed up.</p>
+            <p className="text-sm">New Xpert 'John Dev' signed up.</p>
             <p className="text-xs text-muted-foreground">2 hours ago</p>
           </div> 
           */}

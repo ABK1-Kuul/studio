@@ -3,8 +3,9 @@ import { mockServices } from '@/data/mock';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Briefcase } from 'lucide-react'; // Example Icon
+import { ArrowRight, Briefcase } from 'lucide-react'; 
 import type { Service } from '@/lib/types';
+import { StyledXperts } from '@/components/layout/StyledXperts';
 
 export default function ServicesPage() {
   return (
@@ -12,7 +13,7 @@ export default function ServicesPage() {
       <div>
         <h1 className="text-4xl font-bold tracking-tight mb-2">Our Services</h1>
         <p className="text-lg text-muted-foreground">
-          Explore the range of expert services offered by HDM consultation professionals.
+          Explore the range of expert services offered by HDM Xperts <StyledXperts />.
         </p>
       </div>
 
@@ -20,7 +21,6 @@ export default function ServicesPage() {
         {mockServices.map((service: Service) => (
           <Card key={service.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
             <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
-               {/* Placeholder for a dynamic icon, or a default one */}
               <div className="p-3 bg-primary/20 rounded-md w-fit mb-3">
                 <Briefcase className="h-8 w-8 text-primary" /> 
               </div>
@@ -37,7 +37,7 @@ export default function ServicesPage() {
             <CardFooter className="p-6 bg-secondary/30 dark:bg-secondary/10 border-t border-border">
               <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow">
                 <Link href={`/professionals?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}`}>
-                  Find Experts <ArrowRight className="ml-2 h-4 w-4" />
+                  Find <StyledXperts /> <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </CardFooter>
@@ -47,4 +47,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,6 +21,17 @@ import { Loader2 } from "lucide-react";
 import { useActionState, useEffect } from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import type { MockUser } from "@/lib/types";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const companySizeIntervals = [
+  "1-10 employees",
+  "11-50 employees",
+  "51-200 employees",
+  "201-500 employees",
+  "500+ employees",
+  "Just Me (Solopreneur)",
+  "Not Applicable"
+];
 
 const formSchema = z.object({
   professionalId: z.string(),
@@ -28,7 +40,7 @@ const formSchema = z.object({
   userEmail: z.string().email({ message: "Please enter a valid email address." }),
   companyName: z.string().optional(),
   projectDescription: z.string().min(20, { message: "Project description must be at least 20 characters." }),
-  budget: z.string().optional(),
+  companySize: z.string().min(1, { message: "Please select your company size." }), // Added
   timeline: z.string().optional(),
 });
 
@@ -57,7 +69,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
       userEmail: currentUser?.email || "",
       companyName: "",
       projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
-      budget: "",
+      companySize: "", // Default to empty
       timeline: "",
     },
   });
@@ -114,8 +126,9 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
             )}
           />
         </div>
-
-        <FormField control={form.control} name="companyName" render={({ field }) => (
+        
+        <div className="grid md:grid-cols-2 gap-6">
+          <FormField control={form.control} name="companyName" render={({ field }) => (
             <FormItem>
               <FormLabel>Company Name (Optional)</FormLabel>
               <FormControl><Input placeholder="Your Company Inc." {...field} /></FormControl>
@@ -123,6 +136,32 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
             </FormItem>
           )}
         />
+         <FormField
+            control={form.control}
+            name="companySize"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Company Size</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select company size" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {companySizeIntervals.map(interval => (
+                      <SelectItem key={interval} value={interval}>
+                        {interval}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
 
         <FormField control={form.control} name="projectDescription" render={({ field }) => (
             <FormItem>
@@ -136,24 +175,14 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
           )}
         />
         
-        <div className="grid md:grid-cols-2 gap-6">
-          <FormField control={form.control} name="budget" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Estimated Budget (Optional)</FormLabel>
-                <FormControl><Input placeholder="e.g., $1000 - $5000, or Not Sure" {...field} /></FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField control={form.control} name="timeline" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Expected Timeline (Optional)</FormLabel>
-                <FormControl><Input placeholder="e.g., 2 weeks, 3 months, Flexible" {...field} /></FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField control={form.control} name="timeline" render={({ field }) => (
+            <FormItem>
+              <FormLabel>Expected Timeline (Optional)</FormLabel>
+              <FormControl><Input placeholder="e.g., 2 weeks, 3 months, Flexible" {...field} /></FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <Button type="submit" className="w-full md:w-auto" disabled={isPending}>
           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
