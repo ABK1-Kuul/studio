@@ -63,9 +63,9 @@ export async function UserNav() {
           )}
           {user.role === 'admin' && (
             <DropdownMenuItem asChild>
-              <Link href="/admin/quotes">
+              <Link href="/admin/service-requests">
                 <FolderKanban className="mr-2 h-4 w-4" />
-                <span>View Quotes</span>
+                <span>View Service Requests</span>
               </Link>
             </DropdownMenuItem>
           )}

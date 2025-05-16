@@ -73,11 +73,11 @@ export default function HomePage() {
                 <div className="p-3 bg-primary/10 rounded-md w-fit mb-3">
                   <FileText className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle>Streamlined Quoting</CardTitle>
+                <CardTitle>Streamlined Service Requests</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Request quotes directly from Xperts for specific services. A simple, admin-mediated process to get your project started.
+                  Request services directly from Xperts. A simple, admin-mediated process to get your project started.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -103,8 +103,6 @@ export default function HomePage() {
             {mockServices.slice(0,3).map((service: Service) => ( 
               <Card key={service.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
-                  {/* You can add an icon related to the service here if you have them */}
-                  {/* <Briefcase className="w-10 h-10 text-primary mb-3" />  Example Icon */}
                   <CardTitle className="text-xl leading-snug text-foreground">{service.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow p-6">
@@ -157,8 +155,8 @@ export default function HomePage() {
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <FileText className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">3. Request Quote</h3>
-              <p className="text-foreground/70">Request quotes for projects or services via an admin-mediated process.</p>
+              <h3 className="text-xl font-semibold mb-2">3. Request Service</h3>
+              <p className="text-foreground/70">Request services for projects or specific needs via an admin-mediated process.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">

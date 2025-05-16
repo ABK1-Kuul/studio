@@ -1,9 +1,10 @@
+
 "use client";
 
 import type { Professional } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { FileText } from 'lucide-react'; // Removed MessageSquare
+import { FileText } from 'lucide-react'; 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ProfessionalDetailsClientProps {
@@ -12,18 +13,17 @@ interface ProfessionalDetailsClientProps {
 
 export function ProfessionalDetailsClient({ professional }: ProfessionalDetailsClientProps) {
   return (
-    <div className="space-y-6 lg:col-span-1 lg:sticky lg:top-24"> {/* Sticky for desktop */}
+    <div className="space-y-6 lg:col-span-1 lg:sticky lg:top-24"> 
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Interested?</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <Button asChild size="lg" className="w-full">
-            <Link href={`/quote?professionalId=${professional.id}&professionalName=${encodeURIComponent(professional.name)}`}>
-              <FileText className="mr-2 h-5 w-5" /> Get a Quote
+            <Link href={`/service-request?professionalId=${professional.id}&professionalName=${encodeURIComponent(professional.name)}`}>
+              <FileText className="mr-2 h-5 w-5" /> Request Service
             </Link>
           </Button>
-          {/* Direct messaging button removed */}
         </CardContent>
       </Card>
 
@@ -39,7 +39,7 @@ export function ProfessionalDetailsClient({ professional }: ProfessionalDetailsC
                 {service.price && <p className="text-sm text-primary font-medium">{service.price}</p>}
                 <p className="text-xs text-muted-foreground mt-1">{service.description}</p>
                 <Button asChild size="sm" variant="link" className="p-0 h-auto mt-2">
-                  <Link href={`/quote?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}&professionalId=${professional.id}&professionalName=${encodeURIComponent(professional.name)}`}>
+                  <Link href={`/service-request?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}&professionalId=${professional.id}&professionalName=${encodeURIComponent(professional.name)}`}>
                     Request this service
                   </Link>
                 </Button>

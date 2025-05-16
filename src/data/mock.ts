@@ -1,5 +1,5 @@
 
-import type { Professional, QuoteRequest, Service } from '@/lib/types';
+import type { Professional, ServiceRequest, Service } from '@/lib/types';
 
 // Services based on "Title" fields from the provided text
 export const mockServices: Service[] = [
@@ -122,28 +122,28 @@ export const mockProfessionals: Professional[] = [
   },
 ];
 
-export const mockQuoteRequests: QuoteRequest[] = [
+export const mockServiceRequests: ServiceRequest[] = [
   {
-    id: 'q1',
+    id: 'q1', // Keeping ID for now, could be sr1
     professionalId: 'hdm_p1', 
     professionalName: 'Henok Doni',
     userName: 'Eve Client',
     userEmail: 'eve.client@example.com',
     companyName: 'Eve Corp',
     projectDescription: 'Need a new e-commerce website for selling handmade crafts.',
-    companySize: '11-50 employees', // Updated
+    companySize: '11-50 employees',
     timeline: '3 months',
     status: 'pending',
     submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(), 
   },
   {
-    id: 'q2',
+    id: 'q2', // Keeping ID for now, could be sr2
     professionalId: 'hdm_p2', 
     professionalName: 'Daniel Manaye',
     userName: 'Frank Customer',
     userEmail: 'frank.customer@example.com',
     projectDescription: 'Looking for a logo redesign and new brand guidelines for my small business.',
-    companySize: '1-10 employees', // Updated
+    companySize: '1-10 employees',
     timeline: '1 month',
     status: 'reviewed',
     submittedAt: new Date(Date.now() - 86400000).toISOString(), 

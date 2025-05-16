@@ -16,8 +16,8 @@ export default async function AdminDashboardPage() {
 
   // Mock data for dashboard
   const stats = {
-    totalXperts: 150, // Changed from totalProfessionals
-    pendingQuotes: 12,
+    totalXperts: 150, 
+    pendingServiceRequests: 12, // Changed from pendingQuotes
     totalUsers: 500,
   };
 
@@ -38,13 +38,13 @@ export default async function AdminDashboardPage() {
         </Card>
         <Card className="shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Quote Requests</CardTitle>
+            <CardTitle className="text-sm font-medium">Pending Service Requests</CardTitle>
             <FileText className="h-5 w-5 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.pendingQuotes}</div>
+            <div className="text-2xl font-bold">{stats.pendingServiceRequests}</div>
             <Button variant="link" asChild className="p-0 h-auto text-xs">
-              <Link href="/admin/quotes">View all</Link>
+              <Link href="/admin/service-requests">View all</Link>
             </Button>
           </CardContent>
         </Card>
@@ -67,25 +67,25 @@ export default async function AdminDashboardPage() {
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> {/* Placeholder for manage Xperts page */}
+            <Link href="#"> 
               <Users className="h-5 w-5" />
               Manage <StyledXperts />
             </Link>
           </Button>
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="/admin/quotes">
+            <Link href="/admin/service-requests">
               <FileText className="h-5 w-5" />
-              Review Quote Requests
+              Review Service Requests
             </Link>
           </Button>
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> {/* Placeholder for content management page */}
+            <Link href="#"> 
               <Settings className="h-5 w-5" />
               Platform Settings
             </Link>
           </Button>
            <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> {/* Placeholder for analytics page */}
+            <Link href="#"> 
               <BarChart3 className="h-5 w-5" />
               View Analytics
             </Link>
@@ -93,7 +93,6 @@ export default async function AdminDashboardPage() {
         </CardContent>
       </Card>
 
-      {/* Placeholder for recent activity or reports */}
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Recent Activity</CardTitle>
@@ -101,12 +100,6 @@ export default async function AdminDashboardPage() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">Recent activity feed will be displayed here.</p>
-          {/* Example item:
-          <div className="border-b py-2">
-            <p className="text-sm">New Xpert 'John Dev' signed up.</p>
-            <p className="text-xs text-muted-foreground">2 hours ago</p>
-          </div> 
-          */}
         </CardContent>
       </Card>
     </div>

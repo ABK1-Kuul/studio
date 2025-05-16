@@ -22,7 +22,7 @@ export interface PortfolioItem {
   projectUrl?: string;
 }
 
-export interface QuoteRequest {
+export interface ServiceRequest {
   id:string;
   professionalId: string;
   professionalName: string;
@@ -30,7 +30,7 @@ export interface QuoteRequest {
   userEmail: string;
   companyName?: string;
   projectDescription: string;
-  companySize?: string; // Added
+  companySize?: string; 
   timeline?: string;
   status: 'pending' | 'reviewed' | 'contacted';
   submittedAt: string; // ISO date string

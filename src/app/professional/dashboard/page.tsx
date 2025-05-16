@@ -1,10 +1,11 @@
+
 import { getCurrentUser } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Edit3, Eye, BarChart2, MessageSquare } from 'lucide-react';
-import { mockProfessionals } from '@/data/mock'; // Assuming professional user is one of these
+import { mockProfessionals } from '@/data/mock'; 
 
 export default async function ProfessionalDashboardPage() {
   const user = await getCurrentUser();
@@ -13,13 +14,11 @@ export default async function ProfessionalDashboardPage() {
     redirect('/login');
   }
 
-  // Find the professional's data from mock data (if exists)
   const professionalData = mockProfessionals.find(p => p.email === user.email);
 
-  // Mock stats
   const stats = {
-    profileViews: professionalData ? (professionalData.id.charCodeAt(0) * 37) % 300 + 50 : 128, // Some mock views
-    quoteRequests: professionalData ? (professionalData.id.charCodeAt(0) * 3) % 10 + 2 : 5, // Mock quote requests for this professional
+    profileViews: professionalData ? (professionalData.id.charCodeAt(0) * 37) % 300 + 50 : 128, 
+    serviceRequests: professionalData ? (professionalData.id.charCodeAt(0) * 3) % 10 + 2 : 5, // Changed from quoteRequests
     completedProjects: professionalData ? professionalData.portfolio.length : 3,
   };
 
@@ -41,15 +40,14 @@ export default async function ProfessionalDashboardPage() {
         </Card>
         <Card className="shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Quote Requests</CardTitle>
+            <CardTitle className="text-sm font-medium">Active Service Requests</CardTitle>
             <MessageSquare className="h-5 w-5 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.quoteRequests}</div>
-            {/* <p className="text-xs text-muted-foreground">2 new today</p> */}
+            <div className="text-2xl font-bold">{stats.serviceRequests}</div>
             <Button variant="link" asChild className="p-0 h-auto text-xs">
               <span>
-                <Link href="#">View Requests</Link> {/* Placeholder link */}
+                <Link href="#">View Requests</Link> 
               </span>
             </Button>
           </CardContent>
@@ -82,7 +80,7 @@ export default async function ProfessionalDashboardPage() {
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild className="justify-start gap-3 p-6 text-left h-auto shadow-md hover:shadow-lg transition-shadow">
-            <Link href={`/professionals/${user.id}`}> {/* Assuming user.id matches professional.id */}
+            <Link href={`/professionals/${user.id}`}> 
               <Eye className="h-6 w-6" />
               <div>
                 <p className="font-semibold">View Public Profile</p>
@@ -93,7 +91,6 @@ export default async function ProfessionalDashboardPage() {
         </CardContent>
       </Card>
       
-      {/* Placeholder for messages or project updates */}
        <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Recent Messages</CardTitle>
@@ -101,16 +98,6 @@ export default async function ProfessionalDashboardPage() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">Your recent messages will appear here.</p>
-           {/* Example message:
-          <div className="border-b py-3">
-            <div className="flex justify-between items-center">
-              <p className="font-medium">Client Inquiry: Project X</p>
-              <Badge variant="outline">New</Badge>
-            </div>
-            <p className="text-sm text-muted-foreground mt-1">John Doe is interested in your services for...</p>
-            <Button variant="link" size="sm" className="p-0 h-auto mt-1">Reply</Button>
-          </div>
-          */}
         </CardContent>
       </Card>
     </div>
