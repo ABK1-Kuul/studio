@@ -27,7 +27,7 @@ export function DarkModeToggle() {
     if (!activeTheme || !mounted) { 
         return <Sun className="h-[1.2rem] w-[1.2rem]" />; 
     }
-    // Determine system theme if activeTheme is 'system'
+    
     const systemIsDark = typeof window !== 'undefined' && window.matchMedia("(prefers-color-scheme: dark)").matches;
     const currentEffectiveTheme = activeTheme === 'system' ? (systemIsDark ? 'dark' : 'light') : activeTheme;
 
@@ -36,13 +36,11 @@ export function DarkModeToggle() {
     if (currentEffectiveTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
     if (["eco-green", "lemon-green", "lemon-navy", "lemon-grey-minimalist", "green-authority"].includes(currentEffectiveTheme)) return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
     
-    // For orange themes and other custom themes, use Palette
     if (currentEffectiveTheme.startsWith("orange-") || ["corporate-blue", "innovation-orange"].includes(currentEffectiveTheme) ) return <Palette className="h-[1.2rem] w-[1.2rem]" />;
     
-    // Fallback for system theme before mount or other unhandled themes
     if (activeTheme === 'system') return systemIsDark ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />;
 
-    return <Sun className="h-[1.2rem] w-[1.2rem]" />; // Default fallback
+    return <Sun className="h-[1.2rem] w-[1.2rem]" />; 
   }, [activeTheme, mounted]);
 
 
@@ -63,7 +61,7 @@ export function DarkModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56 max-h-96 overflow-y-auto"> {/* Increased max-h and kept w-56 */}
+      <DropdownMenuContent align="end" className="w-56 max-h-96 overflow-y-auto"> 
         <DropdownMenuLabel>Select Theme</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => setTheme("system")}>
@@ -102,7 +100,7 @@ export function DarkModeToggle() {
           Orange + Emerald
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("orange-sage")}>
-          Orange + Sage
+          Orange + #C7EA46
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("orange-dark-teal")}>
           Orange + Dark Teal

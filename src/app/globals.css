@@ -444,7 +444,7 @@
     --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 158 91% 31%; --sidebar-accent-foreground: 0 0% 100%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
   }
 
-  /* Theme 9: Orange + Sage */
+  /* Theme 9: Orange + #C7EA46 (was Orange + Sage) */
   .orange-sage {
     --background: 0 0% 100%; /* White #ffffff */
     --foreground: 0 0% 17.6%; /* Charcoal #2D2D2D */
@@ -454,19 +454,19 @@
     --popover-foreground: 0 0% 17.6%;
     --primary: 26 95% 53%; /* Deep Orange #f97316 */
     --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 76 16% 61%; /* Sage Green variant #a3b18a */
-    --secondary-foreground: 0 0% 17.6%; /* Charcoal */
+    --secondary: 73 79% 60%; /* Lemon Green #C7EA46 */
+    --secondary-foreground: 0 0% 10%; /* Dark text for contrast */
     --muted: 0 0% 96.1%; /* Light Gray */
     --muted-foreground: 0 0% 45.1%; /* Medium Gray */
-    --accent: 76 16% 61%; /* Using secondary as accent */
-    --accent-foreground: 0 0% 17.6%; /* Charcoal */
+    --accent: 73 79% 60%; /* Using secondary (Lemon Green) as accent */
+    --accent-foreground: 0 0% 10%; /* Dark text for contrast */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 26 95% 53%; /* Primary Deep Orange */
     --chart-1: 12 76% 61%; --chart-2: 173 58% 39%; --chart-3: 197 37% 24%; --chart-4: 43 74% 66%; --chart-5: 27 87% 67%;
-    --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 76 16% 61%; --sidebar-accent-foreground: 0 0% 17.6%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
+    --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 73 79% 60%; --sidebar-accent-foreground: 0 0% 10%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
   }
 
   /* Theme 10: Orange + Dark Teal */
