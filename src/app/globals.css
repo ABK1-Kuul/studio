@@ -469,7 +469,7 @@
     --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 73 79% 60%; --sidebar-accent-foreground: 0 0% 10%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
   }
 
-  /* Theme 10: Orange + Dark Teal */
+  /* Theme 10: Orange + Dark Forest Green (was Orange + Dark Teal) */
   .orange-dark-teal {
     --background: 0 0% 100%; /* White #ffffff */
     --foreground: 0 0% 17.6%; /* Charcoal #2D2D2D */
@@ -479,11 +479,11 @@
     --popover-foreground: 0 0% 17.6%;
     --primary: 26 95% 53%; /* Deep Orange #f97316 */
     --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 197 37% 24%; /* Dark Teal/Blue variant #264653 */
+    --secondary: 140 80% 22%; /* Dark Forest Green #0B6623 */
     --secondary-foreground: 0 0% 100%; /* White */
     --muted: 0 0% 96.1%; /* Light Gray */
     --muted-foreground: 0 0% 45.1%; /* Medium Gray */
-    --accent: 197 37% 24%; /* Using secondary as accent */
+    --accent: 140 80% 22%; /* Using secondary as accent */
     --accent-foreground: 0 0% 100%; /* White */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -491,10 +491,10 @@
     --input: 0 0% 89.8%;
     --ring: 26 95% 53%; /* Primary Deep Orange */
     --chart-1: 12 76% 61%; --chart-2: 173 58% 39%; --chart-3: 197 37% 24%; --chart-4: 43 74% 66%; --chart-5: 27 87% 67%;
-    --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 197 37% 24%; --sidebar-accent-foreground: 0 0% 100%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
+    --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 140 80% 22%; --sidebar-accent-foreground: 0 0% 100%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
   }
 
-  /* Theme 11: Orange + Teal */
+  /* Theme 11: Orange + Teal Green (was Orange + Teal) */
   .orange-teal {
     --background: 0 0% 100%; /* White #ffffff */
     --foreground: 0 0% 17.6%; /* Charcoal #2D2D2D */
@@ -504,11 +504,11 @@
     --popover-foreground: 0 0% 17.6%;
     --primary: 26 95% 53%; /* Deep Orange #f97316 */
     --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 175 75% 26%; /* Teal variant #0f766e */
+    --secondary: 175 84% 31%; /* Teal Green #0D9488 */
     --secondary-foreground: 0 0% 100%; /* White */
     --muted: 0 0% 96.1%; /* Light Gray */
     --muted-foreground: 0 0% 45.1%; /* Medium Gray */
-    --accent: 175 75% 26%; /* Using secondary as accent */
+    --accent: 175 84% 31%; /* Using secondary as accent */
     --accent-foreground: 0 0% 100%; /* White */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -516,7 +516,7 @@
     --input: 0 0% 89.8%;
     --ring: 26 95% 53%; /* Primary Deep Orange */
     --chart-1: 12 76% 61%; --chart-2: 173 58% 39%; --chart-3: 197 37% 24%; --chart-4: 43 74% 66%; --chart-5: 27 87% 67%;
-    --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 175 75% 26%; --sidebar-accent-foreground: 0 0% 100%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
+    --sidebar-background: 0 0% 98%; --sidebar-foreground: 0 0% 17.6%; --sidebar-primary: 26 95% 53%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 175 84% 31%; --sidebar-accent-foreground: 0 0% 100%; --sidebar-border: 0 0% 89.8%; --sidebar-ring: 26 95% 53%;
   }
 }
 
