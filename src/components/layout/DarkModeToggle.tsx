@@ -103,10 +103,10 @@ export function DarkModeToggle() {
           Orange + #C7EA46
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("orange-dark-teal")}>
-          Orange + Dark Teal
+          Orange + Dark Forest Green
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("orange-teal")}>
-          Orange + Teal
+          Orange + Teal Green
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
