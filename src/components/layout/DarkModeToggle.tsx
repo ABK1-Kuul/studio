@@ -27,16 +27,21 @@ export function DarkModeToggle() {
     if (!activeTheme || !mounted) { 
         return <Sun className="h-[1.2rem] w-[1.2rem]" />; 
     }
-    if (activeTheme === "system") {
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        if (systemTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-        return <Sun className="h-[1.2rem] w-[1.2rem]" />;
-    }
-    if (activeTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
-    if (activeTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-    if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy" || activeTheme === "lemon-grey-minimalist" || activeTheme === "green-authority") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
+    // Determine system theme if activeTheme is 'system'
+    const systemIsDark = typeof window !== 'undefined' && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const currentEffectiveTheme = activeTheme === 'system' ? (systemIsDark ? 'dark' : 'light') : activeTheme;
+
+
+    if (currentEffectiveTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
+    if (currentEffectiveTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
+    if (["eco-green", "lemon-green", "lemon-navy", "lemon-grey-minimalist", "green-authority"].includes(currentEffectiveTheme)) return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
+    
     // For orange themes and other custom themes, use Palette
-    if (activeTheme.startsWith("orange-") || activeTheme === "corporate-blue" || activeTheme === "innovation-orange") return <Palette className="h-[1.2rem] w-[1.2rem]" />;
+    if (currentEffectiveTheme.startsWith("orange-") || ["corporate-blue", "innovation-orange"].includes(currentEffectiveTheme) ) return <Palette className="h-[1.2rem] w-[1.2rem]" />;
+    
+    // Fallback for system theme before mount or other unhandled themes
+    if (activeTheme === 'system') return systemIsDark ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />;
+
     return <Sun className="h-[1.2rem] w-[1.2rem]" />; // Default fallback
   }, [activeTheme, mounted]);
 
@@ -58,7 +63,7 @@ export function DarkModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="w-56 max-h-96 overflow-y-auto"> {/* Increased max-h and kept w-56 */}
         <DropdownMenuLabel>Select Theme</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => setTheme("system")}>
