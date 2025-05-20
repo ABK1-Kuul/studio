@@ -24,25 +24,21 @@ export function DarkModeToggle() {
   }, [])
 
   const CurrentThemeIcon = React.useCallback(() => {
-    // This component might render on the server before theme is available,
-    // or on client before activeTheme is determined.
-    // The `mounted` state helps, but `activeTheme` can still be undefined initially.
-    if (!activeTheme) { // Handles undefined activeTheme gracefully
-        return <Sun className="h-[1.2rem] w-[1.2rem]" />; // Default icon
+    if (!activeTheme || !mounted) { 
+        return <Sun className="h-[1.2rem] w-[1.2rem]" />; 
     }
     if (activeTheme === "system") {
-        return (
-            <>
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </>
-        );
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (systemTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
+        return <Sun className="h-[1.2rem] w-[1.2rem]" />;
     }
     if (activeTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
     if (activeTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
     if (activeTheme === "eco-green" || activeTheme === "lemon-green" || activeTheme === "lemon-navy" || activeTheme === "lemon-grey-minimalist" || activeTheme === "green-authority") return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
-    return <Palette className="h-[1.2rem] w-[1.2rem]" />; 
-  }, [activeTheme]);
+    // For orange themes and other custom themes, use Palette
+    if (activeTheme.startsWith("orange-") || activeTheme === "corporate-blue" || activeTheme === "innovation-orange") return <Palette className="h-[1.2rem] w-[1.2rem]" />;
+    return <Sun className="h-[1.2rem] w-[1.2rem]" />; // Default fallback
+  }, [activeTheme, mounted]);
 
 
    if (!mounted) {
@@ -95,8 +91,23 @@ export function DarkModeToggle() {
         <DropdownMenuItem onClick={() => setTheme("green-authority")}>
           Green Authority
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>Orange Series</DropdownMenuLabel>
+        <DropdownMenuItem onClick={() => setTheme("orange-emerald")}>
+          Orange + Emerald
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("orange-sage")}>
+          Orange + Sage
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("orange-dark-teal")}>
+          Orange + Dark Teal
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("orange-teal")}>
+          Orange + Teal
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
 
+    
