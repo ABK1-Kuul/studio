@@ -8,18 +8,17 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
           {/* Get In Touch Section - Far Left */}
           <div className="text-left">
-            <h3 className="text-lg font-semibold text-foreground mb-3">Get In Touch</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-3">Address</h3>
             <address className="not-italic space-y-1 text-sm text-muted-foreground">
-              <p>Arada Sub city, Distrct 08 #600</p>
-              <p>Addis Ababa, Ethiopia</p>
+              <p>Location: Arada Sub city, Distrct 08 #600</p>
               <p>Tel: +251 911 44 97 76</p>
               <p>PoBox: 19451</p>
               <p>
-                Email:
-                <Link href="mailto:info@hdmxperts.com" className="hover:text-primary transition-colors ml-1">
+                <Link href="mailto:info@hdmxperts.com" className="hover:text-primary transition-colors">
                   info@hdmxperts.com
                 </Link>
               </p>
+              <p>Addis Ababa, Ethiopia</p>
             </address>
           </div>
 
@@ -38,4 +37,3 @@ export default function Footer() {
     </footer>
   );
 }
-
