@@ -1,5 +1,5 @@
 
-import type { Professional, ServiceRequest, Service } from '@/lib/types';
+import type { Professional, ServiceRequest, Service, Topic, TrainingTopic } from '@/lib/types';
 
 // Services based on "Title" fields from the provided text
 export const mockServices: Service[] = [
@@ -101,6 +101,75 @@ export const mockServices: Service[] = [
   }
 ];
 
+export const researchAreasList: Topic[] = [
+    { id: 'ra_1', name: 'New business feasibility studies' },
+    { id: 'ra_2', name: 'IT infrastructure assessments (including maturity and capacity)' },
+    { id: 'ra_3', name: 'Cybersecurity Posture assessment' },
+    { id: 'ra_4', name: 'Cybersecurity strategy and implementation' },
+    { id: 'ra_5', name: 'Corporate/business/function-level strategic development' },
+    { id: 'ra_6', name: 'IT roadmap design' },
+    { id: 'ra_7', name: 'Employee/customer satisfaction surveys' },
+    { id: 'ra_8', name: 'Organizational culture/behavior/structure analysis' },
+    { id: 'ra_9', name: 'Risk maturity level assessments' },
+];
+
+export const businessTrainingAreasList: TrainingTopic[] = [
+    {
+      id: 'bt_1',
+      name: "Leadership Development", // name instead of title for consistency with Topic
+      description: "Cultivate effective leaders at all levels with programs focused on strategic thinking, communication, decision-making, and team management."
+    },
+    {
+      id: 'bt_2',
+      name: "Project Management",
+      description: "Equip your teams with the tools and techniques to plan, execute, and deliver projects successfully, on time and within budget."
+    },
+    {
+      id: 'bt_3',
+      name: "Business Communication",
+      description: "Enhance communication skills across your organization, including written, verbal, and presentation skills, to foster collaboration and improve client relations."
+    },
+    {
+      id: 'bt_4',
+      name: "Sales and Marketing",
+      description: "Drive revenue growth with training programs focused on sales strategies, customer relationship management, digital marketing, and market analysis."
+    },
+    {
+      id: 'bt_5',
+      name: "Operational Excellence",
+      description: "Improve efficiency and productivity with training in process improvement methodologies, change management, and quality control."
+    }
+];
+
+export const itTrainingAreasList: TrainingTopic[] = [
+    {
+      id: 'it_1',
+      name: "IT Infrastructure Management",
+      description: "Ensure your IT teams have the expertise to manage and optimize your IT infrastructure, including network administration, cloud computing, and cybersecurity."
+    },
+    {
+      id: 'it_2',
+      name: "Cybersecurity Training",
+      description: "Equip staff to identify and address potential security threats."
+    },
+    {
+      id: 'it_3',
+      name: "IT Service Management",
+      description: "Enhance IT service delivery with training in ITIL frameworks and best practices."
+    },
+    {
+      id: 'it_4',
+      name: "Data Analytics",
+      description: "Empower your employees to leverage data for strategic decision-making with training in data analysis tools, techniques, and visualization."
+    },
+    {
+      id: 'it_5',
+      name: "Software Development",
+      description: "Keep your development teams up-to-date with the latest programming languages, frameworks, and methodologies."
+    }
+];
+
+
 export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p1',
@@ -118,13 +187,33 @@ export const mockProfessionals: Professional[] = [
     email: 'henok.doni@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s1')!, // Project, Program, & Portfolio Management Consulting
-        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
-        mockServices.find(s => s.id === 'hdm_s6')!, // Strategic Planning and Execution
-        mockServices.find(s => s.id === 'hdm_s13')!, // Risk Management and Compliance
-        mockServices.find(s => s.id === 'hdm_s11')!, // Organizational Transformation and Change Management
-        mockServices.find(s => s.id === 'hdm_s12')!, // Process Optimization and Improvement
-      ],
+        mockServices.find(s => s.id === 'hdm_s1')!, 
+        mockServices.find(s => s.id === 'hdm_s7')!, 
+        mockServices.find(s => s.id === 'hdm_s6')!, 
+        mockServices.find(s => s.id === 'hdm_s13')!, 
+        mockServices.find(s => s.id === 'hdm_s11')!, 
+        mockServices.find(s => s.id === 'hdm_s12')!, 
+    ],
+    researchSpecialties: [
+        'New business feasibility studies',
+        'IT infrastructure assessments (including maturity and capacity)',
+        'Cybersecurity strategy and implementation',
+        'Corporate/business/function-level strategic development',
+        'IT roadmap design',
+        'Organizational culture/behavior/structure analysis',
+        'Risk maturity level assessments',
+        'IT Project and Program Management', // From services
+        'Strategic Planning and Execution', // From services
+        'Risk Management and Compliance', // From services
+    ],
+    trainingSpecialties: [
+        'Leadership Development',
+        'Project Management',
+        'Business Communication',
+        'Operational Excellence',
+        'Cybersecurity Training',
+        'IT Service Management',
+    ],
   },
   {
     id: 'hdm_p2',
@@ -140,11 +229,21 @@ export const mockProfessionals: Professional[] = [
     email: 'daniel.manaye@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s2')!, // Cybersecurity & Anti-Financial Fraud Management Consulting
-        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy and Implementation
-        mockServices.find(s => s.id === 'hdm_s10')!, // Fraud Management – Finance sector
-        mockServices.find(s => s.id === 'hdm_s8')!, // IT Governance and Management
-      ],
+        mockServices.find(s => s.id === 'hdm_s2')!, 
+        mockServices.find(s => s.id === 'hdm_s9')!, 
+        mockServices.find(s => s.id === 'hdm_s10')!, 
+        mockServices.find(s => s.id === 'hdm_s8')!, 
+    ],
+    researchSpecialties: [
+        'Cybersecurity Posture assessment',
+        'Cybersecurity strategy and implementation',
+        'Risk maturity level assessments',
+        // 'Fraud Management – Finance sector' // Already a service
+    ],
+    trainingSpecialties: [
+        'Cybersecurity Training',
+        'IT Infrastructure Management',
+    ],
   },
   {
     id: 'hdm_p3',
@@ -161,9 +260,18 @@ export const mockProfessionals: Professional[] = [
     email: 'yohannes.yemane@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s3')!, // Cyber Security Analysis, Research & Forensics
-        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy and Implementation
-      ],
+        mockServices.find(s => s.id === 'hdm_s3')!, 
+        mockServices.find(s => s.id === 'hdm_s9')!, 
+    ],
+    researchSpecialties: [
+        'Cybersecurity Posture assessment',
+        'Cybersecurity strategy and implementation',
+        'IT infrastructure assessments (including maturity and capacity)',
+    ],
+    trainingSpecialties: [
+        'Cybersecurity Training',
+        'Software Development',
+    ],
   },
   {
     id: 'hdm_p4',
@@ -180,10 +288,20 @@ export const mockProfessionals: Professional[] = [
     email: 'maedot.assefa@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s4')!, // Digital Business Advisory
-        mockServices.find(s => s.id === 'hdm_s15')!, // Digital Marketing
-        mockServices.find(s => s.id === 'hdm_s14')!, // Market Analysis and Business Development
-      ],
+        mockServices.find(s => s.id === 'hdm_s4')!,
+        mockServices.find(s => s.id === 'hdm_s15')!,
+        mockServices.find(s => s.id === 'hdm_s14')!,
+    ],
+    researchSpecialties: [
+        'New business feasibility studies',
+        'Market Analysis and Business Development',
+        'Employee/customer satisfaction surveys',
+    ],
+    trainingSpecialties: [
+        'Sales and Marketing',
+        'Business Communication',
+        'Data Analytics', // Added based on digital marketing
+    ],
   },
   {
     id: 'hdm_p5',
@@ -199,10 +317,20 @@ export const mockProfessionals: Professional[] = [
     email: 'henok.heruy@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s5')!, // Hotel & Tourism Management Consulting
-        mockServices.find(s => s.id === 'hdm_s14')!, // Market Analysis and Business Development
-        mockServices.find(s => s.id === 'hdm_s16')!, // Human Capital Management and Organizational Design
-      ],
+        mockServices.find(s => s.id === 'hdm_s5')!,
+        mockServices.find(s => s.id === 'hdm_s14')!, 
+        mockServices.find(s => s.id === 'hdm_s16')!, 
+    ],
+    researchSpecialties: [
+        'New business feasibility studies',
+        'Market Analysis and Business Development',
+        'Organizational culture/behavior/structure analysis',
+    ],
+    trainingSpecialties: [
+        'Leadership Development',
+        'Sales and Marketing',
+        // 'Human Capital Management and Organizational Design' // Covered by service
+    ],
   },
 ];
 

@@ -12,6 +12,8 @@ export interface Professional {
   email: string; 
   phone?: string; 
   servicesOffered?: Service[];
+  researchSpecialties?: string[];
+  trainingSpecialties?: string[];
 }
 
 export interface PortfolioItem {
@@ -50,4 +52,14 @@ export interface MockUser {
   name: string;
   email: string;
   role: UserRole;
+}
+
+// Added for clarity on Research and Training pages
+export interface Topic {
+  id: string;
+  name: string;
+}
+
+export interface TrainingTopic extends Topic {
+  description: string;
 }

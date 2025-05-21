@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { StyledXperts } from '@/components/layout/StyledXperts';
 
 // Simulate API call for fetching Xperts
-async function fetchXperts(): Promise<Professional[]> { // Renamed function
+async function fetchXperts(): Promise<Professional[]> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(mockProfessionals);
@@ -20,21 +20,26 @@ async function fetchXperts(): Promise<Professional[]> { // Renamed function
 }
 
 export default function ProfessionalsPage() {
-  const [allXperts, setAllXperts] = useState<Professional[]>([]); // Renamed state variable
-  const [filteredXperts, setFilteredXperts] = useState<Professional[]>([]); // Renamed state variable
+  const [allXperts, setAllXperts] = useState<Professional[]>([]);
+  const [filteredXperts, setFilteredXperts] = useState<Professional[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentSearchFilters, setCurrentSearchFilters] = useState({ searchTerm: '', industry: '', expertise: '' });
+  const [activeFilterTopic, setActiveFilterTopic] = useState<string | null>(null);
+
 
   const searchParams = useSearchParams();
   const serviceIdQuery = searchParams.get('serviceId');
   const serviceNameQuery = searchParams.get('serviceName');
+  const researchTopicQuery = searchParams.get('researchTopic');
+  const trainingTopicQuery = searchParams.get('trainingTopic');
+
 
   // Effect to load all Xperts initially
   useEffect(() => {
     async function loadData() {
       setIsLoading(true); 
-      const pros = await fetchXperts(); // Use renamed function
-      setAllXperts(pros); // Use renamed state setter
+      const pros = await fetchXperts();
+      setAllXperts(pros);
       setIsLoading(false); 
     }
     loadData();
@@ -43,14 +48,29 @@ export default function ProfessionalsPage() {
   // Effect to apply all filters when data or filter criteria change
   useEffect(() => {
     setIsLoading(true); 
+    setActiveFilterTopic(null); // Reset active topic display
     
-    let result = [...allXperts]; // Use renamed state variable
+    let result = [...allXperts];
 
     if (serviceIdQuery) {
       result = result.filter(p =>
         p.servicesOffered?.some(s => s.id === serviceIdQuery)
       );
+      if (serviceNameQuery) setActiveFilterTopic(decodeURIComponent(serviceNameQuery));
+    } else if (researchTopicQuery) {
+       const decodedResearchTopic = decodeURIComponent(researchTopicQuery);
+       result = result.filter(p =>
+        p.researchSpecialties?.includes(decodedResearchTopic)
+      );
+      setActiveFilterTopic(decodedResearchTopic);
+    } else if (trainingTopicQuery) {
+      const decodedTrainingTopic = decodeURIComponent(trainingTopicQuery);
+      result = result.filter(p =>
+        p.trainingSpecialties?.includes(decodedTrainingTopic)
+      );
+      setActiveFilterTopic(decodedTrainingTopic);
     }
+
 
     if (currentSearchFilters.searchTerm) {
       const term = currentSearchFilters.searchTerm.toLowerCase();
@@ -68,13 +88,13 @@ export default function ProfessionalsPage() {
     }
 
     const filterTimeout = setTimeout(() => {
-      setFilteredXperts(result); // Use renamed state setter
+      setFilteredXperts(result);
       setIsLoading(false); 
     }, 300);
 
     return () => clearTimeout(filterTimeout);
 
-  }, [allXperts, serviceIdQuery, currentSearchFilters]); // Dependency on renamed state variable
+  }, [allXperts, serviceIdQuery, serviceNameQuery, researchTopicQuery, trainingTopicQuery, currentSearchFilters]);
 
   const handleFilterChange = (filters: { searchTerm: string; industry: string; expertise: string }) => {
     setCurrentSearchFilters(filters);
@@ -84,9 +104,9 @@ export default function ProfessionalsPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-4xl font-bold tracking-tight mb-2">Meet Our <StyledXperts /></h1>
-        {serviceNameQuery && !isLoading && (
+        {activeFilterTopic && !isLoading && (
           <h2 className="text-2xl font-semibold text-accent mb-1">
-            Displaying <StyledXperts /> for: {serviceNameQuery}
+            Displaying <StyledXperts /> for: {activeFilterTopic}
           </h2>
         )}
         <p className="text-lg text-muted-foreground">
@@ -94,7 +114,7 @@ export default function ProfessionalsPage() {
         </p>
       </div>
 
-      <ProfessionalFilters allProfessionals={allXperts} onFilterChange={handleFilterChange} /> {/* Prop name remains allProfessionals as it refers to the data structure */}
+      <ProfessionalFilters allProfessionals={allXperts} onFilterChange={handleFilterChange} />
 
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -111,9 +131,9 @@ export default function ProfessionalsPage() {
             </div>
           ))}
         </div>
-      ) : filteredXperts.length > 0 ? ( // Use renamed state variable
+      ) : filteredXperts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredXperts.map((professional) => ( // Loop variable can remain professional
+          {filteredXperts.map((professional) => (
             <ProfessionalCard key={professional.id} professional={professional} />
           ))}
         </div>
@@ -121,7 +141,7 @@ export default function ProfessionalsPage() {
         <div className="text-center py-12">
           <h2 className="text-2xl font-semibold mb-2">No <StyledXperts /> Found</h2>
           <p className="text-muted-foreground">
-            {serviceIdQuery ? "No Xperts match this service and your current filters." : "Try adjusting your search filters or check back later."}
+            {activeFilterTopic ? `No Xperts match the topic "${activeFilterTopic}" and your current filters.` : "Try adjusting your search filters or check back later."}
           </p>
         </div>
       )}

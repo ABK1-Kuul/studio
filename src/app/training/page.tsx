@@ -1,61 +1,21 @@
 
-import { GraduationCap, CheckCircle } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'; // Added Card components
+import { GraduationCap, CheckCircle, ArrowRight } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { businessTrainingAreasList, itTrainingAreasList } from '@/data/mock';
+import type { TrainingTopic } from '@/lib/types';
+import { StyledXperts } from '@/components/layout/StyledXperts';
 
-export default function TrainingPage() {
-  const businessTrainingAreas = [
-    {
-      title: "Leadership Development",
-      description: "Cultivate effective leaders at all levels with programs focused on strategic thinking, communication, decision-making, and team management."
-    },
-    {
-      title: "Project Management",
-      description: "Equip your teams with the tools and techniques to plan, execute, and deliver projects successfully, on time and within budget."
-    },
-    {
-      title: "Business Communication",
-      description: "Enhance communication skills across your organization, including written, verbal, and presentation skills, to foster collaboration and improve client relations."
-    },
-    {
-      title: "Sales and Marketing",
-      description: "Drive revenue growth with training programs focused on sales strategies, customer relationship management, digital marketing, and market analysis."
-    },
-    {
-      title: "Operational Excellence",
-      description: "Improve efficiency and productivity with training in process improvement methodologies, change management, and quality control."
-    }
-  ];
 
-  const itTrainingAreas = [
-    {
-      title: "IT Infrastructure Management",
-      description: "Ensure your IT teams have the expertise to manage and optimize your IT infrastructure, including network administration, cloud computing, and cybersecurity."
-    },
-    {
-      title: "Cybersecurity Training",
-      description: "Equip staff to identify and address potential security threats."
-    },
-    {
-      title: "IT Service Management",
-      description: "Enhance IT service delivery with training in ITIL frameworks and best practices."
-    },
-    {
-      title: "Data Analytics",
-      description: "Empower your employees to leverage data for strategic decision-making with training in data analysis tools, techniques, and visualization."
-    },
-    {
-      title: "Software Development",
-      description: "Keep your development teams up-to-date with the latest programming languages, frameworks, and methodologies."
-    }
-  ];
-
-  const trainingApproachPoints = [
+const trainingApproachPoints = [
     "Customized Solutions: We work closely with you to understand your specific training needs and develop tailored programs that align with your business objectives.",
     "Expert Instructors: Our training is delivered by experienced industry professionals with a proven track record of success.",
     "Interactive Learning: We utilize a variety of engaging training methods, including workshops, simulations, case studies, and hands-on exercises.",
     "Continuous Support: We provide ongoing support and resources to ensure that your teams can effectively apply their new knowledge and skills."
-  ];
+];
 
+export default function TrainingPage() {
   return (
     <div className="space-y-12 py-8">
       <div className="text-center md:text-left">
@@ -72,17 +32,24 @@ export default function TrainingPage() {
         <section>
           <h2 className="text-2xl font-semibold text-primary mb-6">Business Training Areas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {businessTrainingAreas.map((area, index) => (
-              <Card key={index} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
+            {businessTrainingAreasList.map((area: TrainingTopic) => (
+              <Card key={area.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
                   <div className="p-3 bg-primary/20 rounded-md w-fit mb-3">
                     <GraduationCap className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-xl text-foreground">{area.title}</CardTitle>
+                  <CardTitle className="text-xl text-foreground">{area.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow p-6">
                   <CardDescription className="text-foreground/80">{area.description}</CardDescription>
                 </CardContent>
+                <CardFooter className="p-4 bg-secondary/30 dark:bg-secondary/10 border-t">
+                   <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow">
+                    <Link href={`/professionals?trainingTopic=${encodeURIComponent(area.name)}`}>
+                       Find <StyledXperts /> <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardFooter>
               </Card>
             ))}
           </div>
@@ -91,17 +58,24 @@ export default function TrainingPage() {
         <section>
           <h2 className="text-2xl font-semibold text-primary mb-6">IT Training Areas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {itTrainingAreas.map((area, index) => (
-              <Card key={index} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
+            {itTrainingAreasList.map((area: TrainingTopic) => (
+              <Card key={area.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
                   <div className="p-3 bg-primary/20 rounded-md w-fit mb-3">
                     <GraduationCap className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-xl text-foreground">{area.title}</CardTitle>
+                  <CardTitle className="text-xl text-foreground">{area.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow p-6">
                   <CardDescription className="text-foreground/80">{area.description}</CardDescription>
                 </CardContent>
+                 <CardFooter className="p-4 bg-secondary/30 dark:bg-secondary/10 border-t">
+                   <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow">
+                    <Link href={`/professionals?trainingTopic=${encodeURIComponent(area.name)}`}>
+                       Find <StyledXperts /> <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardFooter>
               </Card>
             ))}
           </div>
