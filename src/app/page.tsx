@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid } from "lucide-react";
+import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid, BookOpen, GraduationCap } from "lucide-react";
 import { mockServices } from '@/data/mock'; 
 import type { Service } from "@/lib/types"; 
 import { StyledXperts } from "@/components/layout/StyledXperts";
@@ -51,7 +51,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Easily search and filter through a diverse range of Xperts. Find the perfect match for your project based on industry and expertise.
+                  Easily search and filter through a diverse range of <StyledXperts />. Find the perfect match for your project based on industry and expertise.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -64,7 +64,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Xperts can create detailed profiles, highlight their experience, and build impressive portfolios to attract project opportunities.
+                  <StyledXperts /> can create detailed profiles, highlight their experience, and build impressive portfolios to attract project opportunities.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -77,7 +77,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Request services directly from Xperts. A simple, admin-mediated process to get your project started.
+                  Request services directly from <StyledXperts />. A simple, admin-mediated process to get your project started.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -111,7 +111,7 @@ export default function HomePage() {
                 <CardFooter className="p-6 bg-secondary/30 dark:bg-secondary/10 border-t border-border">
                   <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow" variant="default">
                     <Link href={`/professionals?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}`}>
-                      Find Xperts <ArrowRight className="ml-2 h-4 w-4" />
+                      Find <StyledXperts /> <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardFooter>
@@ -130,8 +130,64 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Unlock Potential: Research & Training Section */}
+      <section className="w-full py-12 md:py-24 bg-secondary/50 dark:bg-secondary/20">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center text-center mb-12">
+             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Unlock Potential: Research & Training
+            </h2>
+            <p className="mt-4 max-w-[700px] text-foreground/70 md:text-lg">
+              Gain strategic insights and empower your teams with our specialized research and training programs.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <CardHeader className="items-center text-center">
+                <div className="p-4 bg-primary/10 rounded-full w-fit mb-3">
+                  <BookOpen className="h-10 w-10 text-primary" />
+                </div>
+                <CardTitle className="text-2xl">Strategic Research & Analysis</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow text-center">
+                <CardDescription>
+                  Leverage our in-depth research capabilities, from new business feasibility studies to cybersecurity posture assessments, to make informed decisions and drive growth.
+                </CardDescription>
+              </CardContent>
+              <CardFooter className="justify-center">
+                <Button asChild className="shadow-md hover:shadow-lg transition-shadow">
+                  <Link href="/research">
+                    Explore Research Areas <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+              <CardHeader className="items-center text-center">
+                <div className="p-4 bg-accent/10 rounded-full w-fit mb-3">
+                  <GraduationCap className="h-10 w-10 text-accent" />
+                </div>
+                <CardTitle className="text-2xl">Customized Training Programs</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow text-center">
+                <CardDescription>
+                  Enhance your team's capabilities with our comprehensive Business and IT training. We tailor programs to meet your specific needs and foster continuous improvement.
+                </CardDescription>
+              </CardContent>
+              <CardFooter className="justify-center">
+                <Button asChild className="shadow-md hover:shadow-lg transition-shadow">
+                  <Link href="/training">
+                    Discover Training Programs <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* How it works section */}
-      <section className="w-full py-12 md:py-24  bg-secondary/50 dark:bg-secondary/20">
+      <section className="w-full py-12 md:py-24">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl mb-12">
             How It Works
@@ -142,14 +198,14 @@ export default function HomePage() {
                 <UserPlus className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">1. Sign Up</h3>
-              <p className="text-foreground/70">Xperts create an account to showcase their skills.</p>
+              <p className="text-foreground/70"><StyledXperts /> create an account to showcase their skills.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <Search className="h-10 w-10 text-accent" />
               </div>
               <h3 className="text-xl font-semibold mb-2">2. Discover/Showcase</h3>
-              <p className="text-foreground/70">Users discover Xperts. Xperts build detailed profiles.</p>
+              <p className="text-foreground/70">Users discover <StyledXperts />. <StyledXperts /> build detailed profiles.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
@@ -203,3 +259,4 @@ export default function HomePage() {
     </div>
   );
 }
+
