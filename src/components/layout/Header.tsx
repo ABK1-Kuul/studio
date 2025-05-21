@@ -5,10 +5,9 @@ import { UserNav } from './UserNav';
 import { DarkModeToggle } from './DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth';
-import { Briefcase, LayoutGrid, Menu, LogIn, UserPlus, Palette } from 'lucide-react';
+import { Briefcase, LayoutGrid, Menu, LogIn, UserPlus, Palette, BookOpen, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
-import { X } from 'lucide-react';
 import { StyledXperts } from '@/components/layout/StyledXperts';
 
 export default async function Header() {
@@ -30,6 +29,12 @@ export default async function Header() {
               <Link href="/services" className="flex items-center gap-1.5">
                 <LayoutGrid className="h-4 w-4 text-primary group-hover:text-primary transition-colors duration-150 ease-in-out" />
                 Services
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild size="sm" className="text-foreground/70 hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-colors duration-150 ease-in-out group">
+              <Link href="/research" className="flex items-center gap-1.5">
+                <BookOpen className="h-4 w-4 text-primary group-hover:text-primary transition-colors duration-150 ease-in-out" />
+                Research
               </Link>
             </Button>
           </nav>
@@ -55,8 +60,8 @@ export default async function Header() {
                        </Button>
                     </SheetClose>
                   </div>
-                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-                  <SheetDescription className="sr-only">Main navigation links and theme settings.</SheetDescription>
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle> {/* Added for accessibility */}
+                  <SheetDescription className="sr-only">Main navigation links and theme settings.</SheetDescription> {/* Added for accessibility */}
                 </SheetHeader>
                 <nav className="flex-grow p-4 space-y-2">
                   <SheetClose asChild>
@@ -69,6 +74,12 @@ export default async function Header() {
                     <Link href="/services" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-foreground/90">
                       <LayoutGrid className="h-5 w-5 text-primary" />
                       Services
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link href="/research" className="flex items-center gap-3 p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-foreground/90">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      Research
                     </Link>
                   </SheetClose>
                   {!user && (
