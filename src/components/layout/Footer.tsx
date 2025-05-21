@@ -10,12 +10,14 @@ export default function Footer() {
           <div className="text-left">
             <h3 className="text-lg font-semibold text-foreground mb-3">Get In Touch</h3>
             <address className="not-italic space-y-1 text-sm text-muted-foreground">
+              <p>Arada Sub city, Distrct 08 #600</p>
               <p>Addis Ababa, Ethiopia</p>
-              <p>Phone: +251 91 144 9776</p>
+              <p>Tel: +251 911 44 97 76</p>
+              <p>PoBox: 19451</p>
               <p>
                 Email:
-                <Link href="mailto:henokdoni@email.com" className="hover:text-primary transition-colors ml-1">
-                  henokdoni@email.com
+                <Link href="mailto:info@hdmxperts.com" className="hover:text-primary transition-colors ml-1">
+                  info@hdmxperts.com
                 </Link>
               </p>
             </address>
@@ -36,3 +38,4 @@ export default function Footer() {
     </footer>
   );
 }
+
