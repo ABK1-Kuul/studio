@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export function StyledXperts() {
@@ -9,8 +8,7 @@ export function StyledXperts() {
         style={{ top: '-0.05em' }}
       >
         X
-      </span>
-      perts
+      </span>perts
     </>
   );
 }
