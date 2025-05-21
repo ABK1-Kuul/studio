@@ -1,5 +1,6 @@
 
-import { BookOpen, CheckCircle } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'; // Added Card components
 
 export default function ResearchPage() {
   const researchAreas = [
@@ -27,15 +28,19 @@ export default function ResearchPage() {
       </div>
 
       <div className="bg-card p-6 sm:p-8 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-semibold text-primary mb-4">Our Expertise Includes:</h2>
-        <ul className="space-y-3 text-foreground/90">
+        <h2 className="text-2xl font-semibold text-primary mb-6">Our Expertise Includes:</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {researchAreas.map((area, index) => (
-            <li key={index} className="flex items-start">
-              <CheckCircle className="h-5 w-5 text-accent mr-3 mt-1 shrink-0" />
-              <span>{area}</span>
-            </li>
+            <Card key={index} className="flex flex-col shadow-md hover:shadow-lg transition-shadow duration-300 bg-secondary/30 dark:bg-secondary/20 rounded-lg overflow-hidden">
+              <CardHeader className="p-4">
+                <div className="p-2 bg-primary/20 rounded-md w-fit mb-2">
+                  <BookOpen className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-md font-medium text-foreground">{area}</CardTitle>
+              </CardHeader>
+            </Card>
           ))}
-        </ul>
+        </div>
         <p className="mt-8 text-foreground/80 leading-relaxed">
           HDM provide rigorous, data-driven, and actionable insights with a client-centric approach, enabling organizations to optimize operations, enhance efficiency, mitigate risks, and achieve sustainable growth.
         </p>

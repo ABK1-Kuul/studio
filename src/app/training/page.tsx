@@ -1,5 +1,6 @@
 
 import { GraduationCap, CheckCircle } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'; // Added Card components
 
 export default function TrainingPage() {
   const businessTrainingAreas = [
@@ -67,35 +68,43 @@ export default function TrainingPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <section className="bg-card p-6 sm:p-8 rounded-xl shadow-lg">
+      <div className="space-y-10">
+        <section>
           <h2 className="text-2xl font-semibold text-primary mb-6">Business Training Areas</h2>
-          <ul className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {businessTrainingAreas.map((area, index) => (
-              <li key={index} className="space-y-1">
-                <h3 className="text-lg font-medium text-foreground/90 flex items-start">
-                   <CheckCircle className="h-5 w-5 text-accent mr-2 mt-1 shrink-0" />
-                  {area.title}
-                </h3>
-                <p className="text-sm text-muted-foreground pl-7">{area.description}</p>
-              </li>
+              <Card key={index} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
+                <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
+                  <div className="p-3 bg-primary/20 rounded-md w-fit mb-3">
+                    <GraduationCap className="h-8 w-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl text-foreground">{area.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow p-6">
+                  <CardDescription className="text-foreground/80">{area.description}</CardDescription>
+                </CardContent>
+              </Card>
             ))}
-          </ul>
+          </div>
         </section>
 
-        <section className="bg-card p-6 sm:p-8 rounded-xl shadow-lg">
+        <section>
           <h2 className="text-2xl font-semibold text-primary mb-6">IT Training Areas</h2>
-          <ul className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {itTrainingAreas.map((area, index) => (
-              <li key={index} className="space-y-1">
-                <h3 className="text-lg font-medium text-foreground/90 flex items-start">
-                   <CheckCircle className="h-5 w-5 text-accent mr-2 mt-1 shrink-0" />
-                  {area.title}
-                </h3>
-                <p className="text-sm text-muted-foreground pl-7">{area.description}</p>
-              </li>
+              <Card key={index} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
+                <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
+                  <div className="p-3 bg-primary/20 rounded-md w-fit mb-3">
+                    <GraduationCap className="h-8 w-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl text-foreground">{area.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow p-6">
+                  <CardDescription className="text-foreground/80">{area.description}</CardDescription>
+                </CardContent>
+              </Card>
             ))}
-          </ul>
+          </div>
         </section>
       </div>
 
