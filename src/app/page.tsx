@@ -222,29 +222,29 @@ export default function HomePage() {
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <UserPlus className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">1. Sign Up</h3>
-              <p className="text-foreground/70"><StyledXperts /> create an account to showcase their skills.</p>
+              <h3 className="text-xl font-semibold mb-2">1. Xperts: Join & Showcase</h3>
+              <p className="text-foreground/70">Are you an expert? Sign up, create a comprehensive profile, detail your services, and highlight your unique skills to reach potential clients.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <Search className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">2. Discover/Showcase</h3>
-              <p className="text-foreground/70">Users discover <StyledXperts />. <StyledXperts /> build detailed profiles.</p>
+              <h3 className="text-xl font-semibold mb-2">2. Clients: Discover Talent</h3>
+              <p className="text-foreground/70">Looking for expertise? Browse our directory of skilled <StyledXperts />, filter by industry or specialty, and find the perfect match for your project needs.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <FileText className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">3. Request Service</h3>
-              <p className="text-foreground/70">Request services for projects or specific needs via an admin-mediated process.</p>
+              <h3 className="text-xl font-semibold mb-2">3. Connect: Request Services</h3>
+              <p className="text-foreground/70">Found an <StyledXperts /> or a service you need? Easily submit a service request. Our admin team will facilitate the connection to get your project moving.</p>
             </div>
             <div className="flex flex-col items-center p-4">
               <div className="p-4 bg-accent/10 rounded-full mb-4">
                 <CheckCircle className="h-10 w-10 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">4. Collaborate</h3>
-              <p className="text-foreground/70">Connect and start working on your projects.</p>
+              <h3 className="text-xl font-semibold mb-2">4. Collaborate & Achieve</h3>
+              <p className="text-foreground/70">Collaborate with top-tier <StyledXperts />, leverage their knowledge, and successfully complete your projects. For <StyledXperts />, this is where you deliver value and build your reputation.</p>
             </div>
           </div>
         </div>
