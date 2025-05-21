@@ -119,9 +119,9 @@ export const mockProfessionals: Professional[] = [
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s1')!,
-        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
-        mockServices.find(s => s.id === 'hdm_s6')!, // Strategic Planning and Execution
-        mockServices.find(s => s.id === 'hdm_s13')!, // Risk Management and Compliance
+        mockServices.find(s => s.id === 'hdm_s7')!, 
+        mockServices.find(s => s.id === 'hdm_s6')!, 
+        mockServices.find(s => s.id === 'hdm_s13')!, 
       ], 
   },
   {
@@ -139,8 +139,8 @@ export const mockProfessionals: Professional[] = [
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s2')!,
-        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy and Implementation
-        mockServices.find(s => s.id === 'hdm_s10')!, // Fraud Management – Finance sector
+        mockServices.find(s => s.id === 'hdm_s9')!, 
+        mockServices.find(s => s.id === 'hdm_s10')!,
       ],
   },
   {
@@ -157,7 +157,10 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'yohannes.yemane@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices.find(s => s.id === 'hdm_s3')!],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s3')!,
+        mockServices.find(s => s.id === 'hdm_s9')!,
+      ],
   },
   {
     id: 'hdm_p4',
@@ -175,8 +178,8 @@ export const mockProfessionals: Professional[] = [
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s4')!,
-        mockServices.find(s => s.id === 'hdm_s15')!, // Digital Marketing
-        mockServices.find(s => s.id === 'hdm_s14')!, // Market Analysis and Business Development
+        mockServices.find(s => s.id === 'hdm_s15')!, 
+        mockServices.find(s => s.id === 'hdm_s14')!, 
       ],
   },
   {
@@ -192,7 +195,10 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'henok.heruy@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices.find(s => s.id === 'hdm_s5')!],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s5')!,
+        mockServices.find(s => s.id === 'hdm_s14')!,
+      ],
   },
 ];
 
@@ -223,3 +229,4 @@ export const mockServiceRequests: ServiceRequest[] = [
     submittedAt: new Date(Date.now() - 86400000).toISOString(), 
   },
 ];
+
