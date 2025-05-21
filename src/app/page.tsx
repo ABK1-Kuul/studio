@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid, BookOpen, GraduationCap, Users, TrendingUp, Brain } from "lucide-react";
+import { ArrowRight, CheckCircle, Search, UserPlus, FileText, BookOpen, GraduationCap, Brain, Briefcase } from "lucide-react"; // Added Briefcase
 import { mockServices } from '@/data/mock'; 
 import type { Service } from "@/lib/types"; 
 import { StyledXperts } from "@/components/layout/StyledXperts";
@@ -85,18 +85,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section - Now links to /services (overview) */}
       <section className="w-full py-12 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center text-center mb-12">
             <div className="p-3 bg-accent/10 rounded-full w-fit mb-4">
-              <LayoutGrid className="h-10 w-10 text-accent" />
+              <Briefcase className="h-10 w-10 text-accent" /> {/* Changed icon */}
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Explore Our Core Services
+              Explore Our Offerings
             </h2>
             <p className="mt-4 max-w-[700px] text-foreground/70 md:text-lg">
-              Discover specialized consulting services tailored to elevate your business.
+              Discover specialized consultations, in-depth research, and tailored training programs.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -110,19 +110,20 @@ export default function HomePage() {
                 </CardContent>
                 <CardFooter className="p-6 bg-secondary/30 dark:bg-secondary/10 border-t border-border">
                   <Button asChild className="w-full shadow-md hover:shadow-lg transition-shadow" variant="default">
-                    <Link href={`/professionals?serviceId=${service.id}&serviceName=${encodeURIComponent(service.name)}`}>
-                      Find <StyledXperts /> <ArrowRight className="ml-2 h-4 w-4" />
+                    {/* This button now links to the specific consultation service page */}
+                    <Link href={`/services/consultation#${service.id}`}>
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
-          {mockServices.length > 3 && (
+          {mockServices.length > 0 && ( // Check if any services exist to show the button
             <div className="mt-12 text-center">
               <Button asChild size="lg" variant="default" className="shadow-lg hover:shadow-primary/50 transition-shadow">
                 <Link href="/services">
-                  View All Services <ArrowRight className="ml-2 h-5 w-5" />
+                  View All Offerings <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>
@@ -130,7 +131,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Unlock Potential: Research & Training Section */}
+      {/* Unlock Potential: Research & Training Section - Now links to specific category pages */}
       <section className="w-full py-12 md:py-24 bg-secondary/50 dark:bg-secondary/20">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center text-center mb-12">
@@ -156,7 +157,7 @@ export default function HomePage() {
               </CardContent>
               <CardFooter className="justify-center">
                 <Button asChild className="shadow-md hover:shadow-lg transition-shadow">
-                  <Link href="/research">
+                  <Link href="/services/research">
                     Explore Research Areas <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -176,7 +177,7 @@ export default function HomePage() {
               </CardContent>
               <CardFooter className="justify-center">
                 <Button asChild className="shadow-md hover:shadow-lg transition-shadow">
-                  <Link href="/training">
+                  <Link href="/services/training">
                     Discover Training Programs <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -284,4 +285,3 @@ export default function HomePage() {
     </div>
   );
 }
-
