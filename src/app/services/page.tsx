@@ -1,11 +1,11 @@
 
 import Link from 'next/link';
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Briefcase, BookOpen, GraduationCap, ArrowRight } from 'lucide-react';
 import { StyledXperts } from '@/components/layout/StyledXperts';
 
-interface ServiceCategory {
+interface ServiceCategoryLink {
   id: string;
   title: string;
   icon: React.ElementType;
@@ -14,7 +14,7 @@ interface ServiceCategory {
   link: string;
 }
 
-const serviceCategories: ServiceCategory[] = [
+const serviceCategoryLinks: ServiceCategoryLink[] = [
   {
     id: 'consultation',
     title: 'Consultation Services',
@@ -55,7 +55,7 @@ export default function ServicesOverviewPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {serviceCategories.map((category) => (
+        {serviceCategoryLinks.map((category) => (
           <Card key={category.id} className="flex flex-col shadow-xl hover:shadow-2xl transition-shadow duration-300 bg-card rounded-xl overflow-hidden">
             <CardHeader className="bg-gradient-to-br from-primary/10 to-accent/10 p-6">
               <div className="p-3 bg-primary/20 rounded-md w-fit mb-4">
