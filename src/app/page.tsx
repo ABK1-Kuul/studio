@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid, BookOpen, GraduationCap } from "lucide-react";
+import { ArrowRight, CheckCircle, Search, UserPlus, FileText, LayoutGrid, BookOpen, GraduationCap, Users, TrendingUp, Brain } from "lucide-react";
 import { mockServices } from '@/data/mock'; 
 import type { Service } from "@/lib/types"; 
 import { StyledXperts } from "@/components/layout/StyledXperts";
@@ -186,8 +186,33 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Why Partner With Us Section */}
+      <section className="w-full py-12 md:py-24 bg-background">
+        <div className="container px-4 md:px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="p-3 bg-primary/10 rounded-full w-fit mb-4 inline-block">
+                <Brain className="h-10 w-10 text-primary" />
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+              Why Partner With HDM Xperts?
+            </h2>
+            <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
+              Clients choose HDM Business Consulting for our unique combination of deep industry expertise and rigorous research methodologies. Our diverse team of business and IT <StyledXperts /> leverages extensive industry experience to deliver actionable results. We partner with our clients to understand their specific challenges and opportunities, providing tailored solutions that drive sustainable growth and competitive advantage.
+            </p>
+            <div className="mt-8 p-6 border-l-4 border-accent bg-accent/10 text-accent-foreground rounded-r-lg shadow-lg">
+              <p className="text-xl font-semibold italic">
+                &ldquo;Diverse minds, single solution.&rdquo;
+              </p>
+              <p className="mt-2 text-sm text-accent-foreground/80">
+                &mdash; Our Commitment to Integrated Excellence
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How it works section */}
-      <section className="w-full py-12 md:py-24">
+      <section className="w-full py-12 md:py-24 bg-secondary/50 dark:bg-secondary/20">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl mb-12">
             How It Works
