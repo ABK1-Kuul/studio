@@ -18,7 +18,7 @@ export default function HomePage() {
             Connect with Top <StyledXperts />
           </h1>
           <p className="mx-auto max-w-[700px] text-foreground/80 md:text-xl mt-6">
-            HDM Xperts is your premier platform to find skilled experts for your projects or showcase your expertise to the world.
+            HDM <StyledXperts /> is your premier platform to find skilled experts for your projects or showcase your expertise to the world.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center">
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/50 transition-shadow">
@@ -39,7 +39,7 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24 bg-secondary/50 dark:bg-secondary/20">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl mb-12">
-            Why Choose HDM Xperts?
+            Why Choose HDM <StyledXperts />?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -194,16 +194,16 @@ export default function HomePage() {
                 <Brain className="h-10 w-10 text-primary" />
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-              Why Partner With HDM Xperts?
+              Why Partner With HDM <StyledXperts />?
             </h2>
             <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
               Clients choose HDM Business Consulting for our unique combination of deep industry expertise and rigorous research methodologies. Our diverse team of business and IT <StyledXperts /> leverages extensive industry experience to deliver actionable results. We partner with our clients to understand their specific challenges and opportunities, providing tailored solutions that drive sustainable growth and competitive advantage.
             </p>
-            <div className="mt-8 p-6 border-l-4 border-accent bg-accent/10 text-accent-foreground rounded-r-lg shadow-lg">
-              <p className="text-xl font-semibold italic">
+            <div className="mt-8 p-6 border-l-4 border-primary bg-primary/10 rounded-r-lg shadow-lg">
+              <p className="text-xl font-semibold italic text-primary">
                 &ldquo;Diverse minds, single solution.&rdquo;
               </p>
-              <p className="mt-2 text-sm text-accent-foreground/80">
+              <p className="mt-2 text-sm text-primary/80">
                 &mdash; Our Commitment to Integrated Excellence
               </p>
             </div>
@@ -270,7 +270,7 @@ export default function HomePage() {
                 Build Your Next Big Thing, Together.
               </h2>
               <p className="max-w-[600px] text-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Whether you're looking for talent for your next project or a seasoned Xpert seeking new opportunities, HDM Xperts provides the tools and network you need to succeed.
+                Whether you're looking for talent for your next project or a seasoned Xpert seeking new opportunities, HDM <StyledXperts /> provides the tools and network you need to succeed.
               </p>
             </div>
             <Button asChild size="lg" className="w-fit shadow-lg hover:shadow-primary/50 transition-shadow">
