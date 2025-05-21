@@ -6,9 +6,7 @@ export function StyledXperts() {
       <span
         className="text-accent font-extrabold text-[1.1em] relative"
         style={{ top: '-0.05em' }}
-      >
-        X
-      </span>perts
+      >X</span>perts
     </>
   );
 }
