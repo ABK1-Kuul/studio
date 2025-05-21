@@ -33,6 +33,72 @@ export const mockServices: Service[] = [
     description: 'Seasoned consulting for international development projects in education, trade competency, tourism, and international marketing for B2B/B2C in East Africa.',
     price: 'Contact for details'
   },
+  {
+    id: 'hdm_s6',
+    name: 'Strategic Planning and Execution',
+    description: 'Comprehensive services for strategic planning and effective execution to achieve business goals.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s7',
+    name: 'IT Project and Program Management',
+    description: 'Expert management of IT projects and programs from initiation to completion.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s8',
+    name: 'IT Governance and Management',
+    description: 'Consulting services for establishing robust IT governance and management frameworks.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s9',
+    name: 'Cybersecurity Strategy and Implementation',
+    description: 'Developing and implementing comprehensive cybersecurity strategies to protect assets.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s10',
+    name: 'Fraud Management – Finance sector',
+    description: 'Specialized fraud management solutions tailored for the finance sector.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s11',
+    name: 'Organizational Transformation and Change Management',
+    description: 'Guiding organizations through successful transformation and change management processes.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s12',
+    name: 'Process Optimization and Improvement',
+    description: 'Identifying inefficiencies and optimizing business processes for enhanced performance.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s13',
+    name: 'Risk Management and Compliance',
+    description: 'Comprehensive risk management and compliance services to meet regulatory requirements.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s14',
+    name: 'Market Analysis and Business Development',
+    description: 'In-depth market analysis and strategic business development services.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s15',
+    name: 'Digital Marketing',
+    description: 'Effective digital marketing strategies to enhance online presence and engagement.',
+    price: 'Contact for details'
+  },
+  {
+    id: 'hdm_s16',
+    name: 'Human Capital Management and Organizational Design',
+    description: 'Services for optimizing human capital and designing effective organizational structures.',
+    price: 'Contact for details'
+  }
 ];
 
 export const mockProfessionals: Professional[] = [
@@ -40,7 +106,6 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p1',
     name: 'Henok Doni',
     avatarUrl: 'https://placehold.co/200x200.png',
-    dataAihint: 'professional portrait',
     industry: 'Project, Program, & Portfolio Management Consulting', 
     expertise: [ 
       'Business analysis', 'Project Management', 'Risk Management', 'Program Management', 
@@ -52,13 +117,17 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'henok.doni@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices[0]], 
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s1')!,
+        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
+        mockServices.find(s => s.id === 'hdm_s6')!, // Strategic Planning and Execution
+        mockServices.find(s => s.id === 'hdm_s13')!, // Risk Management and Compliance
+      ], 
   },
   {
     id: 'hdm_p2',
     name: 'Daniel Manaye',
     avatarUrl: 'https://placehold.co/200x200.png',
-    dataAihint: 'professional portrait',
     industry: 'Cybersecurity & Anti-Financial Fraud Management Consulting',
     expertise: [ 
       'Cybersecurity Controls and Implementation', 'Cybersecurity Training and Anti-Fraud Management'
@@ -68,13 +137,16 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'daniel.manaye@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices[1]],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s2')!,
+        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy and Implementation
+        mockServices.find(s => s.id === 'hdm_s10')!, // Fraud Management – Finance sector
+      ],
   },
   {
     id: 'hdm_p3',
     name: 'Yohannes Yemane',
     avatarUrl: 'https://placehold.co/200x200.png',
-    dataAihint: 'professional portrait',
     industry: 'Cyber Security Analysis, Research & Forensics', 
     expertise: [ 
       'Cybersecurity Analysis and Research', 'Programming', 'Digital Forensic', 'VAPT', 
@@ -85,13 +157,12 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'yohannes.yemane@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices[2]],
+    servicesOffered: [mockServices.find(s => s.id === 'hdm_s3')!],
   },
   {
     id: 'hdm_p4',
     name: 'Maedot Assefa',
     avatarUrl: 'https://placehold.co/200x200.png',
-    dataAihint: 'professional portrait',
     industry: 'Digital Business Advisory', 
     expertise: [ 
       'Digital Business Advisor', 'International Service Marketing and Management', 
@@ -102,13 +173,16 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'maedot.assefa@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices[3]],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s4')!,
+        mockServices.find(s => s.id === 'hdm_s15')!, // Digital Marketing
+        mockServices.find(s => s.id === 'hdm_s14')!, // Market Analysis and Business Development
+      ],
   },
   {
     id: 'hdm_p5',
     name: 'Henok Heruy Gizaw',
     avatarUrl: 'https://placehold.co/200x200.png',
-    dataAihint: 'professional portrait',
     industry: 'Hotel & Tourism Management Consulting', 
     expertise: [ 
       'International Business', 'Hotel and Tourism Management'
@@ -118,13 +192,13 @@ export const mockProfessionals: Professional[] = [
     location: 'Remote',
     email: 'henok.heruy@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [mockServices[4]],
+    servicesOffered: [mockServices.find(s => s.id === 'hdm_s5')!],
   },
 ];
 
 export const mockServiceRequests: ServiceRequest[] = [
   {
-    id: 'q1', // Keeping ID for now, could be sr1
+    id: 'sr1', 
     professionalId: 'hdm_p1', 
     professionalName: 'Henok Doni',
     userName: 'Eve Client',
@@ -137,7 +211,7 @@ export const mockServiceRequests: ServiceRequest[] = [
     submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(), 
   },
   {
-    id: 'q2', // Keeping ID for now, could be sr2
+    id: 'sr2', 
     professionalId: 'hdm_p2', 
     professionalName: 'Daniel Manaye',
     userName: 'Frank Customer',
