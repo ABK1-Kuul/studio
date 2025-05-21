@@ -111,12 +111,15 @@ export const researchAreasList: Topic[] = [
     { id: 'ra_7', name: 'Employee/customer satisfaction surveys' },
     { id: 'ra_8', name: 'Organizational culture/behavior/structure analysis' },
     { id: 'ra_9', name: 'Risk maturity level assessments' },
+    { id: 'ra_10', name: 'Automated software analysis' },
+    { id: 'ra_11', name: 'Malware analysis' },
+    { id: 'ra_12', name: 'Reverse engineering' },
 ];
 
 export const businessTrainingAreasList: TrainingTopic[] = [
     {
       id: 'bt_1',
-      name: "Leadership Development", // name instead of title for consistency with Topic
+      name: "Leadership Development",
       description: "Cultivate effective leaders at all levels with programs focused on strategic thinking, communication, decision-making, and team management."
     },
     {
@@ -138,6 +141,16 @@ export const businessTrainingAreasList: TrainingTopic[] = [
       id: 'bt_5',
       name: "Operational Excellence",
       description: "Improve efficiency and productivity with training in process improvement methodologies, change management, and quality control."
+    },
+    {
+      id: 'bt_6',
+      name: "Agile",
+      description: "Master Agile principles and practices for flexible and responsive project delivery."
+    },
+    {
+      id: 'bt_7',
+      name: "Scrum Master",
+      description: "Develop skilled Scrum Masters to guide teams in Agile development."
     }
 ];
 
@@ -175,98 +188,83 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p1',
     name: 'Henok Doni',
     avatarUrl: 'https://placehold.co/200x200.png',
-    industry: 'Project, Program, & Portfolio Management Consulting',
+    industry: 'Lead Consultant – Information System Project and Program Management',
     expertise: [
-      'Business analysis', 'Project Management', 'Risk Management', 'Program Management',
-      'Portfolio Management', 'Business Requirement Document Development',
+      'Business analysis', 'Project Management', 'Project Risk Management', 'Program Management',
       'Cybersecurity Governance, Risk and Compliance (GRC)', 'Cybersecurity Awareness program'
     ],
-    bio: "PMP®| ISO 27001:2022 Lead Auditor/Implementer | CEH | CAPC™ | and (ISC)2-CC certifications. Henok Doni is a highly skilled and certified consultant with 10+ years of experience providing expert guidance in project, program, and portfolio management, and business analysis. He excels at guiding clients in optimizing project management practices, implementing effective programs, and managing diverse portfolios; conducting thorough business analysis to understand client needs and drive business value; developing and implementing project management plans, program frameworks, and portfolio management processes; identifying and managing risks, issues, and changes in complex projects and programs; and ensuring alignment with client strategic objectives and delivering solutions that meet their specific needs.",
-    experienceYears: 10,
+    bio: "Credentials: PMP®| ISO 27001:2022 Lead Auditor/Implementer | CEH | CAPC™ | CC\n\nHenok Doni is a highly skilled and certified consultant with over 15 years of expertise in project, program, and portfolio management, and business analysis. He excels at guiding clients to optimize their project management practices, implement effective programs, and manage diverse portfolios. His deep understanding of business analysis allows him to effectively identify client needs and drive significant business value.",
+    experienceYears: 15,
     location: 'Remote',
-    email: 'henok.doni@hdmxperts.com',
+    email: 'henok.doni@hdmxperts.com', // Assuming consistency, or use henok.doni@hdmconsultation.com if that's the auth email
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s1')!, 
-        mockServices.find(s => s.id === 'hdm_s7')!, 
+        mockServices.find(s => s.id === 'hdm_s7')!,
         mockServices.find(s => s.id === 'hdm_s6')!, 
-        mockServices.find(s => s.id === 'hdm_s13')!, 
-        mockServices.find(s => s.id === 'hdm_s11')!, 
-        mockServices.find(s => s.id === 'hdm_s12')!, 
+        mockServices.find(s => s.id === 'hdm_s13')!,
     ],
     researchSpecialties: [
         'New business feasibility studies',
         'IT infrastructure assessments (including maturity and capacity)',
         'Cybersecurity strategy and implementation',
         'Corporate/business/function-level strategic development',
-        'IT roadmap design',
-        'Organizational culture/behavior/structure analysis',
         'Risk maturity level assessments',
-        'IT Project and Program Management', // From services
-        'Strategic Planning and Execution', // From services
-        'Risk Management and Compliance', // From services
     ],
     trainingSpecialties: [
-        'Leadership Development',
         'Project Management',
-        'Business Communication',
-        'Operational Excellence',
         'Cybersecurity Training',
-        'IT Service Management',
     ],
   },
   {
     id: 'hdm_p2',
     name: 'Daniel Manaye',
     avatarUrl: 'https://placehold.co/200x200.png',
-    industry: 'Cybersecurity & Anti-Financial Fraud Management Consulting',
+    industry: 'Lead Consultant – Fraud Management',
     expertise: [
-      'Cybersecurity Controls and Implementation', 'Cybersecurity Training and Anti-Fraud Management'
+      'Fraud Management', 'Cybersecurity Controls and Implementation', 'Cybersecurity Training', 'Anti-Fraud Management'
     ],
-    bio: "CISSP | CISM| CEHv8 | ITIL | ISO27001 Lead Implementer | Certified Cybersecurity Expert | Cisco CyberOps | CyberArk Trustee | M.Sc. Information Systems. Daniel Manaye is a highly accomplished and results-oriented consultant specializing in cybersecurity and information systems (IS) fraud management, with a proven track record of delivering impactful solutions, particularly within the digital banking sector. He leverages extensive technical expertise, strategic problem-solving abilities, and leadership skills to mitigate risks, enhance security posture, and drive operational excellence. His core competencies encompass IS fraud management through data-driven initiatives, cybersecurity strategy and implementation, proactive risk management, securing digital banking platforms, and designing effective security awareness programs.",
-    experienceYears: 10,
+    bio: "Credentials: CISSP | CISM| CEHv8 | ITIL | ISO27001 Lead Implementer | Certified Cybersecurity Expert | Cisco CyberOps | CyberArk Trustee.\n\nDaniel Manaye is a highly accomplished and results-oriented consultant specializing in cybersecurity and information systems (IS) fraud management, with a focus on delivering impactful solutions for the digital banking sector. He leverages extensive technical expertise and strategic problem-solving abilities to mitigate fraud risks, enhance security posture, and drive operational excellence. His core competencies include IS fraud management through data-driven initiatives, securing digital banking platforms, proactive risk management, and designing effective security awareness programs.",
+    experienceYears: 10, // Kept previous value, can be updated if new info available
     location: 'Remote',
     email: 'daniel.manaye@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s2')!, 
         mockServices.find(s => s.id === 'hdm_s9')!, 
-        mockServices.find(s => s.id === 'hdm_s10')!, 
-        mockServices.find(s => s.id === 'hdm_s8')!, 
+        mockServices.find(s => s.id === 'hdm_s10')!,
     ],
     researchSpecialties: [
         'Cybersecurity Posture assessment',
         'Cybersecurity strategy and implementation',
         'Risk maturity level assessments',
-        // 'Fraud Management – Finance sector' // Already a service
     ],
     trainingSpecialties: [
         'Cybersecurity Training',
-        'IT Infrastructure Management',
     ],
   },
   {
     id: 'hdm_p3',
     name: 'Yohannes Yemane',
     avatarUrl: 'https://placehold.co/200x200.png',
-    industry: 'Cyber Security Analysis, Research & Forensics',
+    industry: 'Lead Consultant – Cyber Security Analyst and Digital Forensic.',
     expertise: [
-      'Cybersecurity Analysis and Research', 'Programming', 'Digital Forensic', 'VAPT',
-      'Mobile Application Development and Security Analysis'
+      'Cybersecurity Analysis and Research', 'Digital Forensic', 'VAPT', 'Mobile Application Development'
     ],
-    bio: "CISSP | CISM| CRISC | CEH | ISO 27001:2022 Lead Auditor/Implementer. Yohannes is a dedicated and versatile professional with over 12 years of experience in cybersecurity analysis and research, programming, and digital forensics. His expertise encompasses a wide range of areas, including vulnerability assessment and penetration testing (VAPT), reverse engineering, and security research. He possesses hands-on expertise in various programming languages, such as C, C++, Java, C#, and Python, with a keen interest in mobile application development and security analysis.",
+    bio: "Credentials: CISSP | CISM| CRISC | CEH | ISO 27001:2022 Lead Auditor/ Implementer\n\nYohannes is a dedicated and versatile professional with over 12 years of experience in cybersecurity analysis and research, programming, and digital forensics. His expertise encompasses a wide range of areas, including vulnerability assessment and penetration testing (VAPT), reverse engineering, and security research. He possesses hands-on expertise in various programming languages with a keen interest in mobile application development and security analysis.",
     experienceYears: 12,
     location: 'Remote',
     email: 'yohannes.yemane@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s3')!, 
-        mockServices.find(s => s.id === 'hdm_s9')!, 
+        mockServices.find(s => s.id === 'hdm_s9')!,
     ],
     researchSpecialties: [
         'Cybersecurity Posture assessment',
         'Cybersecurity strategy and implementation',
-        'IT infrastructure assessments (including maturity and capacity)',
+        'Reverse engineering',
+        'Malware analysis'
     ],
     trainingSpecialties: [
         'Cybersecurity Training',
@@ -277,12 +275,12 @@ export const mockProfessionals: Professional[] = [
     id: 'hdm_p4',
     name: 'Maedot Assefa',
     avatarUrl: 'https://placehold.co/200x200.png',
-    industry: 'Digital Business Advisory',
+    industry: 'Lead Consultant – Digital Business',
     expertise: [
       'Digital Business Advisor', 'International Service Marketing and Management',
-      'E-commerce and Digital Marketing Training'
+      'E-commerce', 'Digital Marketing Training'
     ],
-    bio: "Executive Diploma In Digital Business and MA in International Service Management. Maedot is a Digital Business Advisor and Consultant specializing in International Service Marketing and Management, E-commerce, and Digital Marketing Training. Maedot provides expert guidance and training to businesses seeking to enhance their digital presence and optimize e-commerce operations, develop and implement effective digital marketing strategies, and expand their reach and manage their services in international markets. With a focus on practical application and results-driven strategies, Maedot equips businesses with the knowledge and tools to thrive in the global digital landscape.",
+    bio: "Credentials: Executive Diploma in Digital Business and MA in International Service Management\n\nMaedot is a Digital Business Advisor and Consultant specializing in International Service Marketing and Management, E-commerce, and Digital Marketing Training. Maedot provides expert guidance and training to businesses seeking to enhance their digital presence and optimize ecommerce operations, develop and implement effective digital marketing strategies, and expand their reach and manage their services in international markets. With a focus on practical application and resultsdriven strategies, Maedot equips businesses with the knowledge and tools to thrive in the global digital landscape.",
     experienceYears: 7,
     location: 'Remote',
     email: 'maedot.assefa@hdmxperts.com',
@@ -300,18 +298,18 @@ export const mockProfessionals: Professional[] = [
     trainingSpecialties: [
         'Sales and Marketing',
         'Business Communication',
-        'Data Analytics', // Added based on digital marketing
+        'Digital Marketing', // Added from expertise
     ],
   },
   {
     id: 'hdm_p5',
     name: 'Henok Heruy Gizaw',
     avatarUrl: 'https://placehold.co/200x200.png',
-    industry: 'Hotel & Tourism Management Consulting',
+    industry: 'Lead Consultant – Hotel and Tourism Management',
     expertise: [
       'International Business', 'Hotel and Tourism Management'
     ],
-    bio: "MA in International Business and Tourism Management from Hochschule Heilbronn - Hochschule für Technik, Wirtschaft und Informatik (Germany). Henok Heruy is a seasoned professional with several years of experience in international development projects, specifically in education, trade competency, and tourism, with experience in international marketing for B2B and B2C in the East Africa region. He has a proven track record of working across governmental, non-governmental, and private organizations. Qualified as a coordinator for international project management in development cooperation, his expertise encompasses project planning, financing, and quality management. Henok's educational background includes International Business/Tourism Management, pedagogy, and leadership.",
+    bio: "Credentials: MA in International Business and Tourism Management from Hochschule Heilbronn - Hochschule für Technik, Wirtschaft und Informatik (Germany)\n\nHenok Heruy is a seasoned professional with several years of experience in international development projects, specifically in education, trade competency, and tourism, with experience in international marketing for B2B and B2C in the East Africa region. He has a proven track record of working across governmental, non-governmental, and private organizations. Qualified as a coordinator for international project management in development cooperation, his expertise encompasses project planning, financing, and quality management.",
     experienceYears: 7,
     location: 'Remote',
     email: 'henok.heruy@hdmxperts.com',
@@ -319,19 +317,84 @@ export const mockProfessionals: Professional[] = [
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s5')!,
         mockServices.find(s => s.id === 'hdm_s14')!, 
-        mockServices.find(s => s.id === 'hdm_s16')!, 
     ],
     researchSpecialties: [
-        'New business feasibility studies',
         'Market Analysis and Business Development',
         'Organizational culture/behavior/structure analysis',
     ],
     trainingSpecialties: [
         'Leadership Development',
         'Sales and Marketing',
-        // 'Human Capital Management and Organizational Design' // Covered by service
     ],
   },
+  {
+    id: 'hdm_p6',
+    name: 'Leoul Zewelde',
+    avatarUrl: 'https://placehold.co/200x200.png',
+    industry: 'Lead Trainer – Agile and Project management',
+    expertise: ['Agile', 'Scrum Master', 'Project Management', 'Lean', 'Digital Transformation', 'Quality Frameworks'],
+    bio: "Credentials: PMP® - PRINCE2® - ICAgile ICP - ITIL®4 Leader: Digital and IT Strategy - PMI ACP - MBA - Certified scrum product owner - Diplôme d'études en française - Published Author.\n\nLeoul is a Project and Digital Transformation professional with a focus on driving organizational effectiveness. Skilled in Lean, Project Management, Quality and Scaled Agile frameworks.",
+    experienceYears: 10, // Assumed
+    location: 'Remote',
+    email: 'leoul.zewelde@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s1')!, // Project Management
+        mockServices.find(s => s.id === 'hdm_s11')!, // Org Transformation
+    ],
+    researchSpecialties: [
+        'Organizational culture/behavior/structure analysis',
+    ],
+    trainingSpecialties: [
+        'Agile', 'Scrum Master', 'Project Management'
+    ],
+  },
+  {
+    id: 'hdm_p7',
+    name: 'Ashenafi Mezgebe',
+    avatarUrl: 'https://placehold.co/200x200.png',
+    industry: 'Lead Business Analyst',
+    expertise: ['Business Analysis and Requirement Development', 'Oracle ERP/EPM', 'Database Administration', 'Performance Optimization'],
+    bio: "Credentials: MA in Project management\n\nAshenafi Mezgebe is a results-driven IT professional with 12+ years of experience specializing in enterprise-level Oracle ERP/EPM systems, database administration, and performance optimization. He combines deep technical expertise in managing cross-platform solutions with proven project leadership in large-scale IT implementations. Ashenafi also excels as a business and system requirements analyst in the financial and information technology sectors, driving efficient and robust Oracle solutions.",
+    experienceYears: 12,
+    location: 'Remote',
+    email: 'ashenafi.mezgebe@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s1')!, // Business Analysis is part of this
+        mockServices.find(s => s.id === 'hdm_s12')!, // Process Optimization
+    ],
+    researchSpecialties: [
+        'IT infrastructure assessments (including maturity and capacity)',
+        'New business feasibility studies',
+    ],
+    trainingSpecialties: [
+         'Data Analytics', // Related to EPM systems
+    ],
+  },
+  {
+    id: 'hdm_p8',
+    name: 'Biniam F. Demissie, PhD',
+    avatarUrl: 'https://placehold.co/200x200.png',
+    industry: 'Lead Security Researcher',
+    expertise: ['Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cyber threat intelligence', 'Binary analysis', 'Software security testing'],
+    bio: "Credentials: PhD in Computer Science\n\nHighly skilled and experienced Computer Security professional with a strong background in automated software analysis (static & dynamic), binary analysis, software security testing, malware analysis, reverse engineering, and cyber threat intelligence. Proven ability to analyze complex systems and extract critical IOCs. Dedicated to fostering cybersecurity talent, having taught security courses at UniTN.",
+    experienceYears: 10, // Assumed
+    location: 'Remote',
+    email: 'biniam.demissie@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s3')!, // Cyber Security Analysis, Research & Forensics
+        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy
+    ],
+    researchSpecialties: [
+        'Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cybersecurity Posture assessment'
+    ],
+    trainingSpecialties: [
+        'Cybersecurity Training',
+        'Software Development', // related to software analysis
+    ],
+  }
 ];
 
 export const mockServiceRequests: ServiceRequest[] = [
@@ -361,3 +424,11 @@ export const mockServiceRequests: ServiceRequest[] = [
     submittedAt: new Date(Date.now() - 86400000).toISOString(),
   },
 ];
+
+// Ensure all services are included in the exported mockServices array
+const allServices = [
+  ...mockServices // This already contains the 16 services
+];
+// If you had other service arrays, you'd merge them here.
+// export { allServices as mockServices }; // No, mockServices is already the full list.
+

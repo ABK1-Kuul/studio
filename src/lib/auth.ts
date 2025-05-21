@@ -9,11 +9,14 @@ import { mockProfessionals } from '@/data/mock'; // Import mockProfessionals
 
 const MOCK_USERS: Record<string, MockUser> = {
   admin: { id: 'admin1', name: 'Admin User', email: 'admin@example.com', role: 'admin' },
-  prof1: { id: 'hdm_p1', name: 'Henok Doni', email: 'henok.doni@hdmconsultation.com', role: 'professional' },
-  prof2: { id: 'hdm_p2', name: 'Daniel Manaye', email: 'daniel.manaye@hdmconsultation.com', role: 'professional' },
-  prof3: { id: 'hdm_p3', name: 'Yohannes Yemane', email: 'yohannes.yemane@hdmconsultation.com', role: 'professional' },
-  prof4: { id: 'hdm_p4', name: 'Maedot Assefa', email: 'maedot.assefa@hdmconsultation.com', role: 'professional' },
-  prof5: { id: 'hdm_p5', name: 'Henok Heruy Gizaw', email: 'henok.heruy@hdmconsultation.com', role: 'professional' },
+  prof1: { id: 'hdm_p1', name: 'Henok Doni', email: 'henok.doni@hdmxperts.com', role: 'professional' },
+  prof2: { id: 'hdm_p2', name: 'Daniel Manaye', email: 'daniel.manaye@hdmxperts.com', role: 'professional' },
+  prof3: { id: 'hdm_p3', name: 'Yohannes Yemane', email: 'yohannes.yemane@hdmxperts.com', role: 'professional' },
+  prof4: { id: 'hdm_p4', name: 'Maedot Assefa', email: 'maedot.assefa@hdmxperts.com', role: 'professional' },
+  prof5: { id: 'hdm_p5', name: 'Henok Heruy Gizaw', email: 'henok.heruy@hdmxperts.com', role: 'professional' },
+  prof6: { id: 'hdm_p6', name: 'Leoul Zewelde', email: 'leoul.zewelde@hdmxperts.com', role: 'professional' },
+  prof7: { id: 'hdm_p7', name: 'Ashenafi Mezgebe', email: 'ashenafi.mezgebe@hdmxperts.com', role: 'professional' },
+  prof8: { id: 'hdm_p8', name: 'Biniam F. Demissie, PhD', email: 'biniam.demissie@hdmxperts.com', role: 'professional' },
 };
 
 // This is a SERVER-SIDE function.
@@ -32,7 +35,6 @@ export async function getCurrentUser(): Promise<MockUser | null> {
 }
 
 export async function loginAction(formData: FormData) {
-  'use server';
   const email = formData.get('email') as string;
   
   let userToLogin: MockUser | undefined;
@@ -54,11 +56,9 @@ export async function loginAction(formData: FormData) {
 }
 
 export async function signupAction(formData: FormData) {
-  'use server';
-
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
-  // const password = formData.get('password') as string; // Password not actively used in this mock beyond collection
+  // const password = formData.get('password') as string; 
   const role = formData.get('role') as UserRole; 
 
   const industry = formData.get('industry') as string;
@@ -70,27 +70,25 @@ export async function signupAction(formData: FormData) {
 
   console.log('Signup attempt with:', Object.fromEntries(formData));
 
-  // Server-side validation for required fields (though Zod handles client-side)
   if (!name || !email || role !== 'professional' || !industry || !expertiseRaw || !bio || !experienceYearsRaw) {
-    // Throwing an error that can be caught by the form's error handling
-    // Or, redirect with a more specific error if needed, but client-side validation should catch this.
-    // For now, relying on client-side Zod. If it gets here, it's an issue.
     console.error("Signup failed due to missing required fields on server.");
     redirect('/signup?error=missing_fields_server');
     return;
   }
   
-  // Check if user already exists in MOCK_USERS
   const existingUser = Object.values(MOCK_USERS).find(u => u.email === email);
   if (existingUser) {
-    console.warn(`User with email ${email} already exists in MOCK_USERS.`);
-    redirect(`/signup?error=email_exists`); 
+    console.warn(\`User with email \${email} already exists in MOCK_USERS.\`);
+    redirect(\`/signup?error=email_exists\`); 
     return;
   }
 
-  const newProfId = `prof_${Date.now()}`;
+  // Find the next available ID for the new professional
+  const existingProfIds = mockProfessionals.map(p => parseInt(p.id.split('_p')[1]));
+  const maxId = existingProfIds.length > 0 ? Math.max(...existingProfIds) : 0;
+  const newProfIdNumber = maxId + 1;
+  const newProfId = \`hdm_p\${newProfIdNumber}\`;
   
-  // Add to MOCK_USERS for auth state
   MOCK_USERS[newProfId] = { id: newProfId, name, email, role: 'professional' };
 
   const newProfessionalEntry: Professional = {
@@ -103,18 +101,16 @@ export async function signupAction(formData: FormData) {
     experienceYears: parseInt(experienceYearsRaw, 10) || 0,
     location: location || undefined,
     phone: phone || undefined,
-    portfolio: [],
-    servicesOffered: [],
-    // avatarUrl will be undefined by default, can be added via profile edit
+    portfolio: [], // Start with empty portfolio
+    servicesOffered: [], // Start with empty services
+    // researchSpecialties and trainingSpecialties will be populated via profile edit or default.
+    // avatarUrl will be undefined by default
   };
 
-  // Add to mockProfessionals (profile data store)
   const existingProfIndexInProfiles = mockProfessionals.findIndex(p => p.email === email);
   if (existingProfIndexInProfiles > -1) {
-    // This case should ideally not be hit if MOCK_USERS check is done first,
-    // but as a safeguard for mockProfessionals consistency:
-    console.warn(`Professional with email ${email} already exists in mockProfessionals. Overwriting.`);
-    mockProfessionals[existingProfIndexInProfiles] = { ...newProfessionalEntry, id: mockProfessionals[existingProfIndexInProfiles].id }; // Keep original ID if somehow IDs differ
+    console.warn(\`Professional with email \${email} already exists in mockProfessionals. Overwriting.\`);
+    mockProfessionals[existingProfIndexInProfiles] = { ...newProfessionalEntry, id: mockProfessionals[existingProfIndexInProfiles].id };
   } else {
     mockProfessionals.push(newProfessionalEntry);
   }
@@ -126,9 +122,7 @@ export async function signupAction(formData: FormData) {
 }
 
 export async function logoutAction() {
-  'use server';
   cookies().delete('mockUserRole');
   cookies().delete('mockUserEmail');
   redirect('/');
 }
-
