@@ -78,8 +78,8 @@ export async function signupAction(formData: FormData) {
   
   const existingUser = Object.values(MOCK_USERS).find(u => u.email === email);
   if (existingUser) {
-    console.warn(\`User with email \${email} already exists in MOCK_USERS.\`);
-    redirect(\`/signup?error=email_exists\`); 
+    console.warn('User with email ' + email + ' already exists in MOCK_USERS.');
+    redirect('/signup?error=email_exists'); 
     return;
   }
 
@@ -87,7 +87,7 @@ export async function signupAction(formData: FormData) {
   const existingProfIds = mockProfessionals.map(p => parseInt(p.id.split('_p')[1]));
   const maxId = existingProfIds.length > 0 ? Math.max(...existingProfIds) : 0;
   const newProfIdNumber = maxId + 1;
-  const newProfId = \`hdm_p\${newProfIdNumber}\`;
+  const newProfId = `hdm_p${newProfIdNumber}`;
   
   MOCK_USERS[newProfId] = { id: newProfId, name, email, role: 'professional' };
 
@@ -109,7 +109,7 @@ export async function signupAction(formData: FormData) {
 
   const existingProfIndexInProfiles = mockProfessionals.findIndex(p => p.email === email);
   if (existingProfIndexInProfiles > -1) {
-    console.warn(\`Professional with email \${email} already exists in mockProfessionals. Overwriting.\`);
+    console.warn('Professional with email ' + email + ' already exists in mockProfessionals. Overwriting.');
     mockProfessionals[existingProfIndexInProfiles] = { ...newProfessionalEntry, id: mockProfessionals[existingProfIndexInProfiles].id };
   } else {
     mockProfessionals.push(newProfessionalEntry);
@@ -126,3 +126,4 @@ export async function logoutAction() {
   cookies().delete('mockUserEmail');
   redirect('/');
 }
+
