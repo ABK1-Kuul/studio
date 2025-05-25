@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { Palette, Moon, Sun, Leaf } from "lucide-react" 
+import { Moon, Sun } from "lucide-react" 
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -24,23 +24,20 @@ export function DarkModeToggle() {
   }, [])
 
   const CurrentThemeIcon = React.useCallback(() => {
-    if (!activeTheme || !mounted) { 
+    if (!mounted) { 
         return <Sun className="h-[1.2rem] w-[1.2rem]" />; 
     }
     
-    const systemIsDark = typeof window !== 'undefined' && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const currentEffectiveTheme = activeTheme === 'system' ? (systemIsDark ? 'dark' : 'light') : activeTheme;
+    let effectiveTheme = activeTheme;
+    if (activeTheme === 'system') {
+      const systemIsDark = typeof window !== 'undefined' && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      effectiveTheme = systemIsDark ? 'dark' : 'light';
+    }
 
-
-    if (currentEffectiveTheme === "light") return <Sun className="h-[1.2rem] w-[1.2rem]" />;
-    if (currentEffectiveTheme === "dark") return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-    if (["eco-green", "lemon-green", "lemon-navy", "lemon-grey-minimalist", "green-authority"].includes(currentEffectiveTheme)) return <Leaf className="h-[1.2rem] w-[1.2rem]" />;
-    
-    if (currentEffectiveTheme.startsWith("orange-") || ["corporate-blue", "innovation-orange"].includes(currentEffectiveTheme) ) return <Palette className="h-[1.2rem] w-[1.2rem]" />;
-    
-    if (activeTheme === 'system') return systemIsDark ? <Moon className="h-[1.2rem] w-[1.2rem]" /> : <Sun className="h-[1.2rem] w-[1.2rem]" />;
-
-    return <Sun className="h-[1.2rem] w-[1.2rem]" />; 
+    if (effectiveTheme === "dark") {
+        return <Moon className="h-[1.2rem] w-[1.2rem]" />;
+    }
+    return <Sun className="h-[1.2rem] w-[1.2rem]" />;
   }, [activeTheme, mounted]);
 
 
@@ -61,56 +58,19 @@ export function DarkModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56 max-h-96 overflow-y-auto"> 
-        <DropdownMenuLabel>Select Theme</DropdownMenuLabel>
+      <DropdownMenuContent align="end" className="w-40 max-h-96 overflow-y-auto"> 
+        <DropdownMenuLabel>Appearance</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System Default (Emerald)
-        </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light (Emerald)
+          Light
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark (Emerald)
+          Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("corporate-blue")}>
-          Corporate (Blue/Grey)
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("eco-green")}>
-          Sustainability (Green/Charcoal)
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("innovation-orange")}>
-          Innovation (Orange/Navy)
-        </DropdownMenuItem>
-         <DropdownMenuItem onClick={() => setTheme("lemon-green")}>
-          Modern (Lemon Green)
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("lemon-navy")}>
-          Bold (Lemon/Navy)
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("lemon-grey-minimalist")}>
-          Minimalist (Lemon/Grey)
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("green-authority")}>
-          Green Authority
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuLabel>Orange Series</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => setTheme("orange-emerald")}>
-          Orange + Emerald
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("orange-sage")}>
-          Orange + #C7EA46
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("orange-dark-teal")}>
-          Orange + Dark Forest Green
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("orange-teal")}>
-          Orange + Teal Green
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
-
-    

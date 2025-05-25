@@ -37,14 +37,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-          themes={[
-            'light', 'dark', 
-            'corporate-blue', 'eco-green', 'innovation-orange', 
-            'lemon-green', 'lemon-navy', 'lemon-grey-minimalist', 
-            'green-authority', 
-            'orange-emerald', 'orange-sage', 'orange-dark-teal', 'orange-teal',
-            'system'
-          ]}
+          themes={['light', 'dark', 'system']}
         >
           <div className="relative flex min-h-screen flex-col">
             <Header />
