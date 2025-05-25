@@ -81,9 +81,9 @@ export default function ServiceCategoryPage({ params }: { params: { category: st
               <CardTitle className="text-xl text-foreground">{item.name}</CardTitle>
             </CardHeader>
             <CardContent className="flex-grow p-6">
-              {(item as Service).description && (
+              {item.description && (
                 <CardDescription className="text-foreground/80 line-clamp-4">
-                  {(item as Service).description}
+                  {item.description}
                 </CardDescription>
               )}
               {(item as Service).price && category.itemType === 'service' && (

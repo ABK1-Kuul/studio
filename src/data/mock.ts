@@ -102,18 +102,18 @@ export const mockServices: Service[] = [
 ];
 
 export const researchAreasList: Topic[] = [
-    { id: 'ra_1', name: 'New business feasibility studies' },
-    { id: 'ra_2', name: 'IT infrastructure assessments (including maturity and capacity)' },
-    { id: 'ra_3', name: 'Cybersecurity Posture assessment' },
-    { id: 'ra_4', name: 'Cybersecurity strategy and implementation' },
-    { id: 'ra_5', name: 'Corporate/business/function-level strategic development' },
-    { id: 'ra_6', name: 'IT roadmap design' },
-    { id: 'ra_7', name: 'Employee/customer satisfaction surveys' },
-    { id: 'ra_8', name: 'Organizational culture/behavior/structure analysis' },
-    { id: 'ra_9', name: 'Risk maturity level assessments' },
-    { id: 'ra_10', name: 'Automated software analysis' },
-    { id: 'ra_11', name: 'Malware analysis' },
-    { id: 'ra_12', name: 'Reverse engineering' },
+    { id: 'ra_1', name: 'New business feasibility studies', description: "Evaluate the viability of new business ventures, assessing market potential, financial projections, and operational requirements." },
+    { id: 'ra_2', name: 'IT infrastructure assessments (including maturity and capacity)', description: "Analyze current IT infrastructure to identify strengths, weaknesses, and opportunities for optimization in terms of performance, scalability, and maturity." },
+    { id: 'ra_3', name: 'Cybersecurity Posture assessment', description: "Comprehensive review of your organization's cybersecurity defenses to identify vulnerabilities, assess risks, and recommend improvements." },
+    { id: 'ra_4', name: 'Cybersecurity strategy and implementation', description: "Develop and execute tailored cybersecurity strategies to protect critical assets, ensure compliance, and build cyber resilience." },
+    { id: 'ra_5', name: 'Corporate/business/function-level strategic development', description: "Facilitate the creation of robust strategies at all organizational levels to achieve long-term goals and competitive advantage." },
+    { id: 'ra_6', name: 'IT roadmap design', description: "Create a strategic plan for IT initiatives, aligning technology investments with business objectives and future growth." },
+    { id: 'ra_7', name: 'Employee/customer satisfaction surveys', description: "Design and conduct surveys to gather valuable feedback, measure satisfaction levels, and identify areas for improvement in employee and customer experiences." },
+    { id: 'ra_8', name: 'Organizational culture/behavior/structure analysis', description: "Assess organizational dynamics, including culture, behaviors, and structures, to enhance efficiency, collaboration, and overall performance." },
+    { id: 'ra_9', name: 'Risk maturity level assessments', description: "Evaluate the maturity of your organization's risk management practices and provide actionable recommendations for enhancement." },
+    { id: 'ra_10', name: 'Automated software analysis', description: "Utilize advanced tools and techniques for automated analysis of software code to identify defects, vulnerabilities, and ensure quality." },
+    { id: 'ra_11', name: 'Malware analysis', description: "In-depth examination of malicious software to understand its behavior, origin, and impact, aiding in threat mitigation and defense." },
+    { id: 'ra_12', name: 'Reverse engineering', description: "Deconstruct software or hardware to understand its design, functionality, and identify potential vulnerabilities or areas for improvement." },
 ];
 
 export const businessTrainingAreasList: TrainingTopic[] = [
@@ -196,7 +196,7 @@ export const mockProfessionals: Professional[] = [
     bio: "Credentials: PMP®| ISO 27001:2022 Lead Auditor/Implementer | CEH | CAPC™ | CC\n\nHenok Doni is a highly skilled and certified consultant with over 15 years of expertise in project, program, and portfolio management, and business analysis. He excels at guiding clients to optimize their project management practices, implement effective programs, and manage diverse portfolios. His deep understanding of business analysis allows him to effectively identify client needs and drive significant business value.",
     experienceYears: 15,
     location: 'Remote',
-    email: 'henok.doni@hdmxperts.com', // Assuming consistency, or use henok.doni@hdmconsultation.com if that's the auth email
+    email: 'henok.doni@hdmxperts.com', 
     portfolio: [],
     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s1')!, 
@@ -225,7 +225,7 @@ export const mockProfessionals: Professional[] = [
       'Fraud Management', 'Cybersecurity Controls and Implementation', 'Cybersecurity Training', 'Anti-Fraud Management'
     ],
     bio: "Credentials: CISSP | CISM| CEHv8 | ITIL | ISO27001 Lead Implementer | Certified Cybersecurity Expert | Cisco CyberOps | CyberArk Trustee.\n\nDaniel Manaye is a highly accomplished and results-oriented consultant specializing in cybersecurity and information systems (IS) fraud management, with a focus on delivering impactful solutions for the digital banking sector. He leverages extensive technical expertise and strategic problem-solving abilities to mitigate fraud risks, enhance security posture, and drive operational excellence. His core competencies include IS fraud management through data-driven initiatives, securing digital banking platforms, proactive risk management, and designing effective security awareness programs.",
-    experienceYears: 10, // Kept previous value, can be updated if new info available
+    experienceYears: 10, 
     location: 'Remote',
     email: 'daniel.manaye@hdmxperts.com',
     portfolio: [],
@@ -298,7 +298,6 @@ export const mockProfessionals: Professional[] = [
     trainingSpecialties: [
         'Sales and Marketing',
         'Business Communication',
-        'Digital Marketing', // Added from expertise
     ],
   },
   {
@@ -334,13 +333,13 @@ export const mockProfessionals: Professional[] = [
     industry: 'Lead Trainer – Agile and Project management',
     expertise: ['Agile', 'Scrum Master', 'Project Management', 'Lean', 'Digital Transformation', 'Quality Frameworks'],
     bio: "Credentials: PMP® - PRINCE2® - ICAgile ICP - ITIL®4 Leader: Digital and IT Strategy - PMI ACP - MBA - Certified scrum product owner - Diplôme d'études en française - Published Author.\n\nLeoul is a Project and Digital Transformation professional with a focus on driving organizational effectiveness. Skilled in Lean, Project Management, Quality and Scaled Agile frameworks.",
-    experienceYears: 10, // Assumed
+    experienceYears: 10, 
     location: 'Remote',
     email: 'leoul.zewelde@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s1')!, // Project Management
-        mockServices.find(s => s.id === 'hdm_s11')!, // Org Transformation
+        mockServices.find(s => s.id === 'hdm_s1')!, 
+        mockServices.find(s => s.id === 'hdm_s11')!, 
     ],
     researchSpecialties: [
         'Organizational culture/behavior/structure analysis',
@@ -361,15 +360,15 @@ export const mockProfessionals: Professional[] = [
     email: 'ashenafi.mezgebe@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s1')!, // Business Analysis is part of this
-        mockServices.find(s => s.id === 'hdm_s12')!, // Process Optimization
+        mockServices.find(s => s.name === 'Business analysis') || mockServices.find(s => s.id === 'hdm_s1')!, 
+        mockServices.find(s => s.id === 'hdm_s12')!, 
     ],
     researchSpecialties: [
         'IT infrastructure assessments (including maturity and capacity)',
         'New business feasibility studies',
     ],
     trainingSpecialties: [
-         'Data Analytics', // Related to EPM systems
+         'Data Analytics', 
     ],
   },
   {
@@ -379,20 +378,20 @@ export const mockProfessionals: Professional[] = [
     industry: 'Lead Security Researcher',
     expertise: ['Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cyber threat intelligence', 'Binary analysis', 'Software security testing'],
     bio: "Credentials: PhD in Computer Science\n\nHighly skilled and experienced Computer Security professional with a strong background in automated software analysis (static & dynamic), binary analysis, software security testing, malware analysis, reverse engineering, and cyber threat intelligence. Proven ability to analyze complex systems and extract critical IOCs. Dedicated to fostering cybersecurity talent, having taught security courses at UniTN.",
-    experienceYears: 10, // Assumed
+    experienceYears: 10, 
     location: 'Remote',
     email: 'biniam.demissie@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s3')!, // Cyber Security Analysis, Research & Forensics
-        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy
+        mockServices.find(s => s.id === 'hdm_s3')!, 
+        mockServices.find(s => s.id === 'hdm_s9')!, 
     ],
     researchSpecialties: [
         'Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cybersecurity Posture assessment'
     ],
     trainingSpecialties: [
         'Cybersecurity Training',
-        'Software Development', // related to software analysis
+        'Software Development', 
     ],
   }
 ];
@@ -424,11 +423,3 @@ export const mockServiceRequests: ServiceRequest[] = [
     submittedAt: new Date(Date.now() - 86400000).toISOString(),
   },
 ];
-
-// Ensure all services are included in the exported mockServices array
-const allServices = [
-  ...mockServices // This already contains the 16 services
-];
-// If you had other service arrays, you'd merge them here.
-// export { allServices as mockServices }; // No, mockServices is already the full list.
-

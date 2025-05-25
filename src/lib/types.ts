@@ -58,8 +58,10 @@ export interface MockUser {
 export interface Topic {
   id: string;
   name: string;
+  description?: string; // Added description for research topics
 }
 
 export interface TrainingTopic extends Topic {
-  description: string;
+  description: string; // Training topics already had description
 }
+
