@@ -10,9 +10,9 @@ export default function Footer() {
           <div className="text-left">
             <h3 className="text-lg font-semibold text-foreground mb-3">Address</h3>
             <address className="not-italic space-y-1 text-sm text-muted-foreground">
-              <p>Location: Arada Sub city, Distrct 08 #600</p>
-              <p>Tel: +251 911 44 97 76</p>
-              <p>PoBox: 19451</p>
+              <p><strong>Location:</strong> Arada Sub city, Distrct 08 #600</p>
+              <p><strong>Tel:</strong> +251 911 44 97 76</p>
+              <p><strong>PoBox:</strong> 19451</p>
               <p>
                 <Link href="mailto:info@hdmxperts.com" className="hover:text-primary transition-colors">
                   info@hdmxperts.com
