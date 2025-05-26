@@ -5,20 +5,28 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, MapPin, CalendarDays } from 'lucide-react'; // Removed Mail, Phone, Star, DollarSign
+import { Briefcase, MapPin, CalendarDays } from 'lucide-react';
 import { PortfolioItemCard } from '@/components/professionals/PortfolioItemCard';
 import { ProfessionalDetailsClient } from '@/components/professionals/ProfessionalDetailsClient';
 import { notFound } from 'next/navigation';
 
 async function getProfessionalById(id: string): Promise<Professional | undefined> {
   // Simulate API call
-  return mockProfessionals.find(p => p.id === id);
+  console.log('[Server Component] getProfessionalById called with ID:', id);
+  console.log('[Server Component] Available Professional IDs in mockProfessionals:', mockProfessionals.map(p => p.id));
+  const professional = mockProfessionals.find(p => p.id === id);
+  if (!professional) {
+    console.error(`[Server Component] Professional with ID "${id}" not found in mockProfessionals.`);
+  }
+  return professional;
 }
 
 export default async function ProfessionalProfilePage({ params }: { params: { id: string } }) {
+  console.log('[Server Component] ProfessionalProfilePage rendering for params.id:', params.id);
   const professional = await getProfessionalById(params.id);
 
   if (!professional) {
+    console.log(`[Server Component] Triggering notFound() for ID: ${params.id}`);
     notFound();
   }
 
@@ -31,7 +39,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
           <Card className="overflow-hidden shadow-xl">
             <div className="relative h-48 w-full bg-gradient-to-r from-primary/30 to-accent/30">
               <Image
-                src={`https://picsum.photos/seed/${professional.id}_office/1200/300`}
+                src={professional.avatarUrl || `https://placehold.co/1200x300.png`}
                 alt={`${professional.name}'s banner`}
                 layout="fill"
                 objectFit="cover"
@@ -42,7 +50,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
             <CardContent className="p-6 relative -mt-16">
               <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6">
                 <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-                  <AvatarImage src={professional.avatarUrl || `https://picsum.photos/seed/${professional.id}_portrait/200/200`} alt={professional.name} data-ai-hint="professional portrait" />
+                  <AvatarImage src={professional.avatarUrl || `https://placehold.co/200x200.png`} alt={professional.name} data-ai-hint="professional portrait" />
                   <AvatarFallback className="text-4xl">{professional.name.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 text-center sm:text-left">
@@ -50,7 +58,6 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
                   <p className="text-lg text-muted-foreground flex items-center justify-center sm:justify-start mt-1">
                     <Briefcase className="h-5 w-5 mr-2 text-primary" /> {professional.industry}
                   </p>
-                  {/* Rating display removed */}
                 </div>
               </div>
             </CardContent>
@@ -68,7 +75,6 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
                   <div className="flex items-center"><MapPin className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Location:</strong>&nbsp; {professional.location}</div>
                 )}
                 <div className="flex items-center"><CalendarDays className="h-4 w-4 mr-2 text-muted-foreground" /> <strong>Experience:</strong>&nbsp; {professional.experienceYears} years</div>
-                {/* Hourly rate, email, and phone removed from public display */}
               </div>
               <div>
                 <h3 className="font-semibold mb-2 mt-3">Skills & Expertise:</h3>
@@ -112,7 +118,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
             </Card>
           )}
           
-          {/* Reviews Section (Placeholder) - Kept as placeholder, or remove if no reviews ever */}
+          {/* Reviews Section (Placeholder) */}
           <Card className="shadow-lg">
             <CardHeader><CardTitle>Client Reviews</CardTitle></CardHeader>
             <CardContent>
@@ -128,4 +134,3 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
     </div>
   );
 }
-

@@ -226,15 +226,15 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s13')!,
     ],
     researchSpecialties: [
-        'New business feasibility studies',
-        'IT infrastructure assessments (including maturity and capacity)',
-        'Cybersecurity strategy and implementation',
-        'Corporate/business/function-level strategic development',
-        'Risk maturity level assessments',
+        researchAreasList.find(r => r.id === 'ra_1')!.name, // New business feasibility studies
+        researchAreasList.find(r => r.id === 'ra_2')!.name, // IT infrastructure assessments
+        researchAreasList.find(r => r.id === 'ra_4')!.name, // Cybersecurity strategy and implementation
+        researchAreasList.find(r => r.id === 'ra_5')!.name, // Corporate/business/function-level strategic development
+        researchAreasList.find(r => r.id === 'ra_9')!.name, // Risk maturity level assessments
     ],
     trainingSpecialties: [
-        'Project Management',
-        'Cybersecurity Training',
+        businessTrainingAreasList.find(t => t.id === 'bt_2')!.name, // Project Management
+        itTrainingAreasList.find(t => t.id === 'it_2')!.name, // Cybersecurity Training
     ],
   },
   {
@@ -256,12 +256,12 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s10')!,
     ],
     researchSpecialties: [
-        'Cybersecurity Posture assessment',
-        'Cybersecurity strategy and implementation',
-        'Risk maturity level assessments',
+        researchAreasList.find(r => r.id === 'ra_3')!.name, // Cybersecurity Posture assessment
+        researchAreasList.find(r => r.id === 'ra_4')!.name, // Cybersecurity strategy and implementation
+        researchAreasList.find(r => r.id === 'ra_9')!.name, // Risk maturity level assessments
     ],
     trainingSpecialties: [
-        'Cybersecurity Training',
+        itTrainingAreasList.find(t => t.id === 'it_2')!.name, // Cybersecurity Training
     ],
   },
   {
@@ -282,15 +282,15 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s9')!,
     ],
     researchSpecialties: [
-        'Cybersecurity Posture assessment',
-        'Cybersecurity strategy and implementation',
-        'Reverse engineering',
-        'Malware analysis',
-        'Automated software analysis',
+        researchAreasList.find(r => r.id === 'ra_3')!.name, // Cybersecurity Posture assessment
+        researchAreasList.find(r => r.id === 'ra_4')!.name, // Cybersecurity strategy and implementation
+        researchAreasList.find(r => r.id === 'ra_12')!.name, // Reverse engineering
+        researchAreasList.find(r => r.id === 'ra_11')!.name, // Malware analysis
+        researchAreasList.find(r => r.id === 'ra_10')!.name, // Automated software analysis
     ],
     trainingSpecialties: [
-        'Cybersecurity Training',
-        'Software Development',
+        itTrainingAreasList.find(t => t.id === 'it_2')!.name, // Cybersecurity Training
+        itTrainingAreasList.find(t => t.id === 'it_5')!.name, // Software Development
     ],
   },
   {
@@ -313,13 +313,13 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s14')!,
     ],
     researchSpecialties: [
-        'New business feasibility studies',
-        'Market Analysis and Business Development',
-        'Employee/customer satisfaction surveys',
+        researchAreasList.find(r => r.id === 'ra_1')!.name, // New business feasibility studies
+        researchAreasList.find(r => r.id === 'ra_14')!.name, // Market Analysis and Business Development (using new ID)
+        researchAreasList.find(r => r.id === 'ra_7')!.name, // Employee/customer satisfaction surveys
     ],
     trainingSpecialties: [
-        'Sales and Marketing',
-        'Business Communication',
+        businessTrainingAreasList.find(t => t.id === 'bt_4')!.name, // Sales and Marketing
+        businessTrainingAreasList.find(t => t.id === 'bt_3')!.name, // Business Communication
     ],
   },
   {
@@ -340,12 +340,12 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s14')!,
     ],
     researchSpecialties: [
-        'Market Analysis and Business Development',
-        'Organizational culture/behavior/structure analysis',
+      researchAreasList.find(r => r.id === 'ra_14')!.name, // Market Analysis and Business Development (using new ID)
+      researchAreasList.find(r => r.id === 'ra_8')!.name, // Organizational culture/behavior/structure analysis
     ],
     trainingSpecialties: [
-        'Leadership Development',
-        'Sales and Marketing',
+        businessTrainingAreasList.find(t => t.id === 'bt_1')!.name, // Leadership Development
+        businessTrainingAreasList.find(t => t.id === 'bt_4')!.name, // Sales and Marketing
     ],
   },
   {
@@ -355,22 +355,24 @@ export const mockProfessionals: Professional[] = [
     industry: 'Lead Trainer – Agile and Project management',
     expertise: ['Agile', 'Scrum Master', 'Project Management', 'Lean', 'Digital Transformation', 'Quality Frameworks'],
     bio: "Credentials: PMP® - PRINCE2® - ICAgile ICP - ITIL®4 Leader: Digital and IT Strategy - PMI ACP - MBA - Certified scrum product owner - Diplôme d'études en française - Published Author.\n\nLeoul is a Project and Digital Transformation professional with a focus on driving organizational effectiveness. Skilled in Lean, Project Management, Quality and Scaled Agile frameworks.",
-    experienceYears: 10,
+    experienceYears: 10, // Estimated
     location: 'Remote',
     email: 'leoul.zewelde@hdmxperts.com',
     portfolio: [],
-    servicesOffered: [
+     servicesOffered: [
         mockServices.find(s => s.id === 'hdm_s1')!,
         mockServices.find(s => s.id === 'hdm_s7')!,
         mockServices.find(s => s.id === 'hdm_s11')!,
         mockServices.find(s => s.id === 'hdm_s12')!,
     ],
     researchSpecialties: [
-        'Organizational culture/behavior/structure analysis',
-        'Process Optimization and Improvement',
+        researchAreasList.find(r => r.id === 'ra_8')!.name, // Organizational culture/behavior/structure analysis
     ],
     trainingSpecialties: [
-        'Agile', 'Scrum Master', 'Project Management', 'Operational Excellence'
+        businessTrainingAreasList.find(t => t.id === 'bt_6')!.name, // Agile
+        businessTrainingAreasList.find(t => t.id === 'bt_7')!.name, // Scrum Master
+        businessTrainingAreasList.find(t => t.id === 'bt_2')!.name, // Project Management
+        businessTrainingAreasList.find(t => t.id === 'bt_5')!.name, // Operational Excellence
     ],
   },
   {
@@ -385,16 +387,16 @@ export const mockProfessionals: Professional[] = [
     email: 'ashenafi.mezgebe@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s1')!, 
-        mockServices.find(s => s.id === 'hdm_s12')!,
+        mockServices.find(s => s.id === 'hdm_s1')!, // Project, Program, & Portfolio Management Consulting
+        mockServices.find(s => s.id === 'hdm_s12')!,// Process Optimization and Improvement
     ],
     researchSpecialties: [
-        'IT infrastructure assessments (including maturity and capacity)',
-        'New business feasibility studies',
+        researchAreasList.find(r => r.id === 'ra_2')!.name, // IT infrastructure assessments
+        researchAreasList.find(r => r.id === 'ra_1')!.name, // New business feasibility studies
     ],
     trainingSpecialties: [
-         'Data Analytics',
-         'IT Service Management',
+         itTrainingAreasList.find(t => t.id === 'it_4')!.name, // Data Analytics
+         itTrainingAreasList.find(t => t.id === 'it_3')!.name, // IT Service Management
     ],
   },
   {
@@ -404,20 +406,23 @@ export const mockProfessionals: Professional[] = [
     industry: 'Lead Security Researcher',
     expertise: ['Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cyber threat intelligence', 'Binary analysis', 'Software security testing'],
     bio: "Credentials: PhD in Computer Science\n\nHighly skilled and experienced Computer Security professional with a strong background in automated software analysis (static & dynamic), binary analysis, software security testing, malware analysis, reverse engineering, and cyber threat intelligence. Proven ability to analyze complex systems and extract critical IOCs. Dedicated to fostering cybersecurity talent, having taught security courses at UniTN.",
-    experienceYears: 10,
+    experienceYears: 10, // Estimated
     location: 'Remote',
     email: 'biniam.demissie@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s3')!,
-        mockServices.find(s => s.id === 'hdm_s9')!,
+        mockServices.find(s => s.id === 'hdm_s3')!, // Cyber Security Analysis, Research & Forensics
+        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy and Implementation
     ],
     researchSpecialties: [
-        'Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cybersecurity Posture assessment'
+        researchAreasList.find(r => r.id === 'ra_10')!.name, // Automated software analysis
+        researchAreasList.find(r => r.id === 'ra_11')!.name, // Malware analysis
+        researchAreasList.find(r => r.id === 'ra_12')!.name, // Reverse engineering
+        researchAreasList.find(r => r.id === 'ra_3')!.name, // Cybersecurity Posture assessment
     ],
     trainingSpecialties: [
-        'Cybersecurity Training',
-        'Software Development',
+        itTrainingAreasList.find(t => t.id === 'it_2')!.name, // Cybersecurity Training
+        itTrainingAreasList.find(t => t.id === 'it_5')!.name, // Software Development
     ],
   },
   {
@@ -432,43 +437,49 @@ export const mockProfessionals: Professional[] = [
     email: 'mahir.jibril@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.name === 'Human Capital Management and Organizational Design')!, 
-        mockServices.find(s => s.name === 'Risk Management and Compliance')!, 
-        mockServices.find(s => s.name === 'Organizational Transformation and Change Management')!,
+        mockServices.find(s => s.id === 'hdm_s16')!, // Human Capital Management and Organizational Design
+        mockServices.find(s => s.id === 'hdm_s13')!, // Risk Management and Compliance
+        mockServices.find(s => s.id === 'hdm_s11')!, // Organizational Transformation and Change Management
     ],
     researchSpecialties: [
-        "Human Capital Management",
-        "Organizational Design and Change Management",
-        "Organizational culture/behavior/structure analysis",
-        "Risk maturity level assessments",
+        researchAreasList.find(r => r.id === 'ra_13')!.name, // Human Capital Management
+        researchAreasList.find(r => r.id === 'ra_14')!.name, // Organizational Design and Change Management
+        researchAreasList.find(r => r.id === 'ra_8')!.name, // Organizational culture/behavior/structure analysis
+        researchAreasList.find(r => r.id === 'ra_9')!.name, // Risk maturity level assessments
     ],
     trainingSpecialties: [
-        "Human Capital Management Training",
-        "Organizational Design & Change Management Training",
-        "Risk Management & Compliance Training",
-        "Leadership Development",
+        businessTrainingAreasList.find(t => t.id === 'bt_8')!.name, // Human Capital Management Training
+        businessTrainingAreasList.find(t => t.id === 'bt_9')!.name, // Organizational Design & Change Management Training
+        businessTrainingAreasList.find(t => t.id === 'bt_10')!.name, // Risk Management & Compliance Training
+        businessTrainingAreasList.find(t => t.id === 'bt_1')!.name, // Leadership Development
     ],
   },
   { // Abdselam Kedir - Ensure this entry is correct and present
-    id: 'hdm_p10',
+    id: 'hdm_p10', // Ensure this ID is unique and matches what's used for links/lookups
     name: 'Abdselam Kedir',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: 'https://placehold.co/200x200.png', // Placeholder image
     industry: 'Chief Technology Officer (CTO) / Software Architect / Engineer / Development Lead',
     expertise: ["Software Architecture", "Scalable Systems", "Agile Development", "Cloud Platforms", "Product Development", "System Design", "Software Engineering"],
     bio: "Credentials: BSc in Software Engineering – AASTU; Advanced Studies – Hilco University\n\nAbdselam Kedir is the Chief Technology Officer at SInq Technologies, where he leads software architecture and product development with a strong focus on scalability and innovation. With a foundation in software engineering and extensive experience from AASTU and Hilco University, Abdselam brings a strategic mindset and technical depth to complex system designs. Known for his collaborative leadership and commitment to engineering excellence, he drives forward-thinking digital solutions that enhance organizational agility and performance. His expertise spans system architecture, agile development, cloud-native platforms, and scalable infrastructure.",
-    experienceYears: 10, 
+    experienceYears: 10, // Estimated
     location: 'Remote',
     email: 'abdselam.kedir@hdmxperts.com',
-    portfolio: [],
+    portfolio: [], // Empty for now, can be updated
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s7')!, 
-        mockServices.find(s => s.id === 'hdm_s8')!, 
+        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
+        mockServices.find(s => s.id === 'hdm_s8')!, // IT Governance and Management
     ],
     researchSpecialties: [
-        "Software Architecture", "Scalable Systems", "Agile Product Development", "Cloud Infrastructure", "IT roadmap design"
+        researchAreasList.find(r => r.name === "Software Architecture")!.name,
+        researchAreasList.find(r => r.name === "Scalable Systems")!.name,
+        researchAreasList.find(r => r.name === "Agile Product Development")!.name,
+        researchAreasList.find(r => r.name === "Cloud Infrastructure")!.name,
+        researchAreasList.find(r => r.name === "IT roadmap design")!.name,
     ],
-    trainingSpecialties: [
-        "Software Development", "IT Infrastructure Management", "Agile"
+    trainingSpecialties: [ // Added based on potential relevance
+        itTrainingAreasList.find(t => t.name === "Software Development")!.name,
+        itTrainingAreasList.find(t => t.name === "IT Infrastructure Management")!.name,
+        businessTrainingAreasList.find(t => t.name === "Agile")!.name,
     ],
   }
 ];
