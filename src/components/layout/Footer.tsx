@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="text-left md:text-right mt-8 md:mt-0">
             <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} HDM Xperts. All rights reserved.</p>
             <p className="mt-1 text-sm text-muted-foreground">
-              developed by: HDM Xperts by{' '}
+              <strong>Developed by:</strong> HDM Xpert by{' '}
               <Link href="/professionals/hdm_p10" className="text-primary hover:underline">
                 Abdselam Kedir
               </Link>
