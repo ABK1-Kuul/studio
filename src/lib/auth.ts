@@ -18,6 +18,7 @@ const MOCK_USERS: Record<string, MockUser> = {
   prof7: { id: 'hdm_p7', name: 'Ashenafi Mezgebe', email: 'ashenafi.mezgebe@hdmxperts.com', role: 'professional' },
   prof8: { id: 'hdm_p8', name: 'Biniam F. Demissie, PhD', email: 'biniam.demissie@hdmxperts.com', role: 'professional' },
   prof9: { id: 'hdm_p9', name: 'Mahir Jibril (PhD)', email: 'mahir.jibril@hdmxperts.com', role: 'professional' },
+  prof10: { id: 'hdm_p10', name: 'Abdselam Kedir', email: 'abdselam.kedir@hdmxperts.com', role: 'professional' },
 };
 
 // This is a SERVER-SIDE function.
@@ -125,3 +126,4 @@ export async function logoutAction() {
   cookies().delete('mockUserEmail');
   redirect('/');
 }
+

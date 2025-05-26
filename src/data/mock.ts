@@ -115,7 +115,11 @@ export const researchAreasList: Topic[] = [
     { id: 'ra_11', name: 'Malware analysis', description: "In-depth examination of malicious software to understand its behavior, origin, and impact, aiding in threat mitigation and defense." },
     { id: 'ra_12', name: 'Reverse engineering', description: "Deconstruct software or hardware to understand its design, functionality, and identify potential vulnerabilities or areas for improvement." },
     { id: 'ra_13', name: 'Human Capital Management', description: "Research and strategies for optimizing talent acquisition, development, engagement, and retention to build a high-performing workforce." },
-    { id: 'ra_14', name: 'Organizational Design and Change Management', description: "Analyzing organizational structures and cultures to recommend and implement effective change management strategies for improved efficiency and adaptability." }
+    { id: 'ra_14', name: 'Organizational Design and Change Management', description: "Analyzing organizational structures and cultures to recommend and implement effective change management strategies for improved efficiency and adaptability." },
+    { id: 'ra_15', name: 'Software Architecture', description: "Research and design principles for robust and scalable software architectures." },
+    { id: 'ra_16', name: 'Scalable Systems', description: "Investigating methodologies for building and maintaining systems that can handle growing loads." },
+    { id: 'ra_17', name: 'Agile Product Development', description: "Exploring best practices and research in agile methodologies for efficient product development." },
+    { id: 'ra_18', name: 'Cloud Infrastructure', description: "Research into optimal cloud infrastructure design, deployment, and management." }
 ];
 
 export const businessTrainingAreasList: TrainingTopic[] = [
@@ -381,7 +385,7 @@ export const mockProfessionals: Professional[] = [
     email: 'ashenafi.mezgebe@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s1')!, // Project, Program, & Portfolio Management includes BA
+        mockServices.find(s => s.id === 'hdm_s1')!, 
         mockServices.find(s => s.id === 'hdm_s12')!,
     ],
     researchSpecialties: [
@@ -428,9 +432,9 @@ export const mockProfessionals: Professional[] = [
     email: 'mahir.jibril@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s16')!, // Human Capital Management and Organizational Design
-        mockServices.find(s => s.id === 'hdm_s13')!, // Risk Management and Compliance
-        mockServices.find(s => s.id === 'hdm_s11')!, // Organizational Transformation and Change Management
+        mockServices.find(s => s.name === 'Human Capital Management and Organizational Design')!, 
+        mockServices.find(s => s.name === 'Risk Management and Compliance')!, 
+        mockServices.find(s => s.name === 'Organizational Transformation and Change Management')!,
     ],
     researchSpecialties: [
         "Human Capital Management",
@@ -443,6 +447,28 @@ export const mockProfessionals: Professional[] = [
         "Organizational Design & Change Management Training",
         "Risk Management & Compliance Training",
         "Leadership Development",
+    ],
+  },
+  {
+    id: 'hdm_p10',
+    name: 'Abdselam Kedir',
+    avatarUrl: 'https://placehold.co/200x200.png',
+    industry: 'Chief Technology Officer (CTO) / Software Architect / Engineer / Development Lead',
+    expertise: ["Software Architecture", "Scalable Systems", "Agile Development", "Cloud Platforms", "Product Development", "System Design", "Software Engineering"],
+    bio: "Credentials: BSc in Software Engineering – AASTU; Advanced Studies – Hilco University\n\nAbdselam Kedir is the Chief Technology Officer at SInq Technologies, where he leads software architecture and product development with a strong focus on scalability and innovation. With a foundation in software engineering and extensive experience from AASTU and Hilco University, Abdselam brings a strategic mindset and technical depth to complex system designs. Known for his collaborative leadership and commitment to engineering excellence, he drives forward-thinking digital solutions that enhance organizational agility and performance. His expertise spans system architecture, agile development, cloud-native platforms, and scalable infrastructure.",
+    experienceYears: 10, // Estimated
+    location: 'Remote',
+    email: 'abdselam.kedir@hdmxperts.com',
+    portfolio: [],
+    servicesOffered: [
+        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
+        mockServices.find(s => s.id === 'hdm_s8')!, // IT Governance and Management
+    ],
+    researchSpecialties: [
+        "Software Architecture", "Scalable Systems", "Agile Product Development", "Cloud Infrastructure", "IT roadmap design"
+    ],
+    trainingSpecialties: [
+        "Software Development", "IT Infrastructure Management", "Agile"
     ],
   }
 ];
@@ -474,3 +500,4 @@ export const mockServiceRequests: ServiceRequest[] = [
     submittedAt: new Date(Date.now() - 86400000).toISOString(),
   },
 ];
+
