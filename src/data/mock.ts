@@ -427,7 +427,7 @@ export const mockProfessionals: Professional[] = [
     industry: 'Lead Researcher/Trainer/Coach/Culture critique/Educator',
     expertise: ["Human Capital Management", "Organizational Design", "Risk Management", "Compliance", "Organizational Transformation", "Change Management", "Research", "Training", "Coaching", "Culture Critique"],
     bio: "Credentials: PhD in Management and Organization\n\nMahir, PhD, is a key Trainer and Researcher at HDM, known for driving innovative solutions. His lifelong learning and intellectual curiosity fuel cutting-edge research, while his assertive yet empathetic approach makes him an effective trainer. Mahir excels at developing winning proposals and fostering strategic breakthroughs for clients in Human Capital Management, Organizational Design, Risk Management, Compliance, and Organizational Transformation and Change Management.",
-    experienceYears: 10,
+    experienceYears: 10, // Estimated
     location: 'Remote',
     email: 'mahir.jibril@hdmxperts.com',
     portfolio: [],
@@ -449,20 +449,20 @@ export const mockProfessionals: Professional[] = [
         "Leadership Development",
     ],
   },
-  {
+  { // Abdselam Kedir - Ensure this entry is correct and present
     id: 'hdm_p10',
     name: 'Abdselam Kedir',
     avatarUrl: 'https://placehold.co/200x200.png',
     industry: 'Chief Technology Officer (CTO) / Software Architect / Engineer / Development Lead',
     expertise: ["Software Architecture", "Scalable Systems", "Agile Development", "Cloud Platforms", "Product Development", "System Design", "Software Engineering"],
     bio: "Credentials: BSc in Software Engineering – AASTU; Advanced Studies – Hilco University\n\nAbdselam Kedir is the Chief Technology Officer at SInq Technologies, where he leads software architecture and product development with a strong focus on scalability and innovation. With a foundation in software engineering and extensive experience from AASTU and Hilco University, Abdselam brings a strategic mindset and technical depth to complex system designs. Known for his collaborative leadership and commitment to engineering excellence, he drives forward-thinking digital solutions that enhance organizational agility and performance. His expertise spans system architecture, agile development, cloud-native platforms, and scalable infrastructure.",
-    experienceYears: 10, // Estimated
+    experienceYears: 10, 
     location: 'Remote',
     email: 'abdselam.kedir@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
-        mockServices.find(s => s.id === 'hdm_s8')!, // IT Governance and Management
+        mockServices.find(s => s.id === 'hdm_s7')!, 
+        mockServices.find(s => s.id === 'hdm_s8')!, 
     ],
     researchSpecialties: [
         "Software Architecture", "Scalable Systems", "Agile Product Development", "Cloud Infrastructure", "IT roadmap design"
@@ -500,4 +500,3 @@ export const mockServiceRequests: ServiceRequest[] = [
     submittedAt: new Date(Date.now() - 86400000).toISOString(),
   },
 ];
-
