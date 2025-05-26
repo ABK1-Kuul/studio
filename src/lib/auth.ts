@@ -17,6 +17,7 @@ const MOCK_USERS: Record<string, MockUser> = {
   prof6: { id: 'hdm_p6', name: 'Leoul Zewelde', email: 'leoul.zewelde@hdmxperts.com', role: 'professional' },
   prof7: { id: 'hdm_p7', name: 'Ashenafi Mezgebe', email: 'ashenafi.mezgebe@hdmxperts.com', role: 'professional' },
   prof8: { id: 'hdm_p8', name: 'Biniam F. Demissie, PhD', email: 'biniam.demissie@hdmxperts.com', role: 'professional' },
+  prof9: { id: 'hdm_p9', name: 'Mahir Jibril (PhD)', email: 'mahir.jibril@hdmxperts.com', role: 'professional' },
 };
 
 // This is a SERVER-SIDE function.
@@ -84,8 +85,8 @@ export async function signupAction(formData: FormData) {
   }
 
   // Find the next available ID for the new professional
-  const existingProfIds = mockProfessionals.map(p => parseInt(p.id.split('_p')[1]));
-  const maxId = existingProfIds.length > 0 ? Math.max(...existingProfIds) : 0;
+  const existingProfIds = mockProfessionals.map(p => parseInt(p.id.replace('hdm_p', '')));
+  const maxId = existingProfIds.length > 0 ? Math.max(...existingProfIds.filter(id => !isNaN(id))) : 0;
   const newProfIdNumber = maxId + 1;
   const newProfId = `hdm_p${newProfIdNumber}`;
   
@@ -101,10 +102,8 @@ export async function signupAction(formData: FormData) {
     experienceYears: parseInt(experienceYearsRaw, 10) || 0,
     location: location || undefined,
     phone: phone || undefined,
-    portfolio: [], // Start with empty portfolio
-    servicesOffered: [], // Start with empty services
-    // researchSpecialties and trainingSpecialties will be populated via profile edit or default.
-    // avatarUrl will be undefined by default
+    portfolio: [], 
+    servicesOffered: [], 
   };
 
   const existingProfIndexInProfiles = mockProfessionals.findIndex(p => p.email === email);
@@ -126,4 +125,3 @@ export async function logoutAction() {
   cookies().delete('mockUserEmail');
   redirect('/');
 }
-
