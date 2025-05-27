@@ -28,18 +28,19 @@ export type SubmitServiceRequestActionState = {
   message: string | null;
   errors: ServiceRequestFormErrors | null;
   isSuccess: boolean;
-  serviceRequestId: string | null; // Explicitly string | null
+  serviceRequestId: string | null; 
 };
 
 
-// Nodemailer transporter setup - REPLACE WITH YOUR ACTUAL SMTP DETAILS
+// Nodemailer transporter setup
+// IMPORTANT: Replace dummy values with your actual SMTP details via environment variables
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.example.com", // Your SMTP host
-  port: parseInt(process.env.SMTP_PORT || "587"), // Your SMTP port
-  secure: (process.env.SMTP_SECURE === 'true'), // true for 465, false for other ports
+  host: process.env.SMTP_HOST || "smtp.example.com", 
+  port: parseInt(process.env.SMTP_PORT || "587"), 
+  secure: (process.env.SMTP_SECURE === 'true'), // `true` for port 465 (SSL), `false` for port 587 (STARTTLS)
   auth: {
-    user: process.env.SMTP_USER || "user@example.com", // Your SMTP username
-    pass: process.env.SMTP_PASS || "password", // Your SMTP password
+    user: process.env.SMTP_USER || "user@example.com", 
+    pass: process.env.SMTP_PASS || "password", 
   },
   // For development with self-signed certificates on local SMTP servers:
   // tls: {
@@ -70,7 +71,7 @@ export async function submitServiceRequestAction(
       message: "Validation failed. Please check your inputs.",
       errors: validatedFields.error.flatten().fieldErrors,
       isSuccess: false,
-      serviceRequestId: null, // Explicitly set to null
+      serviceRequestId: null, 
     };
   }
 
@@ -113,15 +114,15 @@ export async function submitServiceRequestAction(
   `;
 
   const mailOptions = {
-    from: process.env.SMTP_FROM_EMAIL || '"HDM Xperts Platform" <noreply@hdmxperts.com>', // Sender address
-    to: emailRecipients.join(", "), // List of receivers
-    subject: emailSubject, // Subject line
-    html: emailHtmlBody, // HTML body
+    from: process.env.SMTP_FROM_EMAIL || `"HDM Xperts Platform" <servicerequest@hdmxperts.com>`, // Default 'from' address if not set in env
+    to: emailRecipients.join(", "), 
+    subject: emailSubject, 
+    html: emailHtmlBody, 
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log("Email notification sent successfully to:", emailRecipients.join(", "));
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email notification sent successfully. Message ID:", info.messageId);
     return {
       message: "Service request submitted successfully and notification sent! The admin will review it shortly.",
       isSuccess: true,
@@ -130,9 +131,11 @@ export async function submitServiceRequestAction(
     };
   } catch (error) {
     console.error("Failed to send email notification:", error);
+    // It's often better to still return success for the form submission
+    // and log the email error for admin attention.
     return {
       message: "Service request submitted successfully, but there was an issue sending the email notification. The admin will still review your request.",
-      isSuccess: true, 
+      isSuccess: true, // Still true because the request itself was processed.
       errors: null,
       serviceRequestId: newServiceRequest.id, 
     };
