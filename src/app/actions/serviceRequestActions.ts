@@ -20,6 +20,18 @@ const serviceRequestSchema = z.object({
   serviceName: z.string().optional(), // Added to capture service name if provided
 });
 
+// Define specific type for Zod field errors
+export type ServiceRequestFormErrors = z.inferFlattenedErrors<typeof serviceRequestSchema>['fieldErrors'];
+
+// Define the state type for the action
+export type SubmitServiceRequestActionState = {
+  message: string | null;
+  errors: ServiceRequestFormErrors | null;
+  isSuccess: boolean;
+  serviceRequestId: string | null; // Explicitly string | null
+};
+
+
 // Nodemailer transporter setup - REPLACE WITH YOUR ACTUAL SMTP DETAILS
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.example.com", // Your SMTP host
@@ -35,7 +47,10 @@ const transporter = nodemailer.createTransport({
   // }
 });
 
-export async function submitServiceRequestAction(prevState: any, formData: FormData) {
+export async function submitServiceRequestAction(
+  prevState: SubmitServiceRequestActionState, 
+  formData: FormData
+): Promise<SubmitServiceRequestActionState> {
   const user = await getCurrentUser(); 
 
   const validatedFields = serviceRequestSchema.safeParse({
@@ -55,6 +70,7 @@ export async function submitServiceRequestAction(prevState: any, formData: FormD
       message: "Validation failed. Please check your inputs.",
       errors: validatedFields.error.flatten().fieldErrors,
       isSuccess: false,
+      serviceRequestId: null, // Explicitly set to null
     };
   }
 
@@ -114,13 +130,12 @@ export async function submitServiceRequestAction(prevState: any, formData: FormD
     };
   } catch (error) {
     console.error("Failed to send email notification:", error);
-    // Still return success for the form submission if email fails, but log the error.
-    // You might want a more robust error handling or retry mechanism in production.
     return {
       message: "Service request submitted successfully, but there was an issue sending the email notification. The admin will still review your request.",
-      isSuccess: true, // Still true as the request was logged
+      isSuccess: true, 
       errors: null,
       serviceRequestId: newServiceRequest.id, 
     };
   }
 }
+

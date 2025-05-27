@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { submitServiceRequestAction } from "@/app/actions/serviceRequestActions";
+import { submitServiceRequestAction, type SubmitServiceRequestActionState } from "@/app/actions/serviceRequestActions";
 import { Loader2 } from "lucide-react";
-import { useActionState, useEffect } from "react"; 
+import React, { useEffect } from "react"; 
 import { useToast } from "@/hooks/use-toast";
 import type { MockUser } from "@/lib/types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -42,11 +42,17 @@ const formSchema = z.object({
   projectDescription: z.string().min(20, { message: "Project description must be at least 20 characters." }),
   companySize: z.string().min(1, { message: "Please select your company size." }),
   timeline: z.string().optional(),
+  // serviceName is not part of the form a user fills directly, but passed if available
 });
 
 type ServiceRequestFormValues = z.infer<typeof formSchema>;
 
-const initialState = { message: null, errors: null, isSuccess: false, serviceRequestId: null };
+const initialState: SubmitServiceRequestActionState = { 
+  message: null, 
+  errors: null, 
+  isSuccess: false, 
+  serviceRequestId: null 
+};
 
 interface ServiceRequestFormProps {
   professionalId: string;
@@ -58,7 +64,7 @@ interface ServiceRequestFormProps {
 
 export function ServiceRequestForm({ professionalId, professionalName, serviceId, serviceName, currentUser }: ServiceRequestFormProps) {
   const { toast } = useToast();
-  const [state, formAction, isPending] = useActionState(submitServiceRequestAction, initialState);
+  const [state, formAction, isPending] = React.useActionState(submitServiceRequestAction, initialState);
 
   const form = useForm<ServiceRequestFormValues>({
     resolver: zodResolver(formSchema),
@@ -83,9 +89,18 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
       });
     }
     if (state.isSuccess) {
-        form.reset(); 
+        form.reset({
+            professionalId: professionalId, // Keep these pre-filled
+            professionalName: professionalName,
+            userName: currentUser?.name || "", // Reset or keep based on preference
+            userEmail: currentUser?.email || "",
+            companyName: "",
+            projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
+            companySize: "", 
+            timeline: "",
+        }); 
     }
-  }, [state, toast, form]);
+  }, [state, toast, form, professionalId, professionalName, serviceName, currentUser]);
   
   function onSubmit(values: ServiceRequestFormValues) {
     const formData = new FormData();
@@ -203,3 +218,4 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
     </Form>
   );
 }
+
