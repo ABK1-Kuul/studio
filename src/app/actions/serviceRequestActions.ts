@@ -5,6 +5,8 @@ import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { mockServiceRequests } from "@/data/mock"; 
 import type { ServiceRequest } from "@/lib/types";
+import nodemailer from "nodemailer";
+import { format } from "date-fns";
 
 const serviceRequestSchema = z.object({
   professionalId: z.string().min(1, "Professional ID is required."),
@@ -15,6 +17,22 @@ const serviceRequestSchema = z.object({
   projectDescription: z.string().min(10, "Project description must be at least 10 characters."),
   companySize: z.string().min(1, "Company size is required."),
   timeline: z.string().optional(),
+  serviceName: z.string().optional(), // Added to capture service name if provided
+});
+
+// Nodemailer transporter setup - REPLACE WITH YOUR ACTUAL SMTP DETAILS
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || "smtp.example.com", // Your SMTP host
+  port: parseInt(process.env.SMTP_PORT || "587"), // Your SMTP port
+  secure: (process.env.SMTP_SECURE === 'true'), // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER || "user@example.com", // Your SMTP username
+    pass: process.env.SMTP_PASS || "password", // Your SMTP password
+  },
+  // For development with self-signed certificates on local SMTP servers:
+  // tls: {
+  //   rejectUnauthorized: false 
+  // }
 });
 
 export async function submitServiceRequestAction(prevState: any, formData: FormData) {
@@ -29,6 +47,7 @@ export async function submitServiceRequestAction(prevState: any, formData: FormD
     projectDescription: formData.get("projectDescription"),
     companySize: formData.get("companySize"),
     timeline: formData.get("timeline"),
+    serviceName: formData.get("serviceName"),
   });
 
   if (!validatedFields.success) {
@@ -40,41 +59,68 @@ export async function submitServiceRequestAction(prevState: any, formData: FormD
   }
 
   const data = validatedFields.data;
+  const submissionTime = new Date();
 
   const newServiceRequest: ServiceRequest = {
-    id: `sr${mockServiceRequests.length + 1}`, 
+    id: `sr${mockServiceRequests.length + 1}_${submissionTime.getTime()}`, 
     ...data,
     status: "pending",
-    submittedAt: new Date().toISOString(),
+    submittedAt: submissionTime.toISOString(),
   };
   
   mockServiceRequests.push(newServiceRequest); 
-  console.log("New Service Request Submitted:", newServiceRequest);
+  console.log("New Service Request Submitted to mock data:", newServiceRequest);
 
-  // Simulate sending email notifications
-  // In a real application, you would use an email service (e.g., SendGrid, Resend, Nodemailer) here.
+  // Email details
   const emailRecipients = [
     "info@hdmxperts.com",
     "henokdoni@hdmxperts.com",
     "abk1kul@gmail.com"
   ];
+  const emailSubject = `New Service Request: ${newServiceRequest.id} - For ${data.professionalName}`;
+  const emailHtmlBody = `
+    <h1>New Service Request Received</h1>
+    <p>A new service request has been submitted on HDM Xperts.</p>
+    <h2>Request Details:</h2>
+    <ul>
+      <li><strong>Request ID:</strong> ${newServiceRequest.id}</li>
+      <li><strong>Submitted By:</strong> ${data.userName} (${data.userEmail})</li>
+      <li><strong>For Xpert:</strong> ${data.professionalName}</li>
+      ${data.serviceName ? `<li><strong>Specific Service:</strong> ${data.serviceName}</li>` : ''}
+      ${data.companyName ? `<li><strong>Company Name:</strong> ${data.companyName}</li>` : ''}
+      <li><strong>Company Size:</strong> ${data.companySize}</li>
+      <li><strong>Project Description:</strong><br/><pre>${data.projectDescription}</pre></li>
+      ${data.timeline ? `<li><strong>Expected Timeline:</strong> ${data.timeline}</li>` : ''}
+      <li><strong>Submitted At:</strong> ${format(submissionTime, "MMM d, yyyy 'at' h:mm a")}</li>
+    </ul>
+    <p>Please log in to the admin dashboard to review and manage this request.</p>
+  `;
 
-  console.log("--------------------------------------------------");
-  console.log("SIMULATING EMAIL NOTIFICATION:");
-  console.log(`Service Request ID: ${newServiceRequest.id}`);
-  console.log(`Submitted by: ${newServiceRequest.userName} (${newServiceRequest.userEmail})`);
-  console.log(`For Xpert: ${newServiceRequest.professionalName}`);
-  console.log("Project Description:", newServiceRequest.projectDescription);
-  console.log("Intended email recipients:", emailRecipients.join(", "));
-  console.log("To implement actual email sending, integrate an email service provider.");
-  console.log("--------------------------------------------------");
-
-
-  return {
-    message: "Service request submitted successfully! The admin will review it shortly.",
-    isSuccess: true,
-    errors: null,
-    serviceRequestId: newServiceRequest.id, 
+  const mailOptions = {
+    from: process.env.SMTP_FROM_EMAIL || '"HDM Xperts Platform" <noreply@hdmxperts.com>', // Sender address
+    to: emailRecipients.join(", "), // List of receivers
+    subject: emailSubject, // Subject line
+    html: emailHtmlBody, // HTML body
   };
-}
 
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email notification sent successfully to:", emailRecipients.join(", "));
+    return {
+      message: "Service request submitted successfully and notification sent! The admin will review it shortly.",
+      isSuccess: true,
+      errors: null,
+      serviceRequestId: newServiceRequest.id, 
+    };
+  } catch (error) {
+    console.error("Failed to send email notification:", error);
+    // Still return success for the form submission if email fails, but log the error.
+    // You might want a more robust error handling or retry mechanism in production.
+    return {
+      message: "Service request submitted successfully, but there was an issue sending the email notification. The admin will still review your request.",
+      isSuccess: true, // Still true as the request was logged
+      errors: null,
+      serviceRequestId: newServiceRequest.id, 
+    };
+  }
+}
