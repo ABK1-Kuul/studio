@@ -1,4 +1,4 @@
-# **App Name**: HDM ProConnect
+# **App Name**: HDMXperts
 
 ## Core Features:
 
