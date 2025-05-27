@@ -51,6 +51,24 @@ export async function submitServiceRequestAction(prevState: any, formData: FormD
   mockServiceRequests.push(newServiceRequest); 
   console.log("New Service Request Submitted:", newServiceRequest);
 
+  // Simulate sending email notifications
+  // In a real application, you would use an email service (e.g., SendGrid, Resend, Nodemailer) here.
+  const emailRecipients = [
+    "info@hdmxperts.com",
+    "henokdoni@hdmxperts.com",
+    "abk1kul@gmail.com"
+  ];
+
+  console.log("--------------------------------------------------");
+  console.log("SIMULATING EMAIL NOTIFICATION:");
+  console.log(`Service Request ID: ${newServiceRequest.id}`);
+  console.log(`Submitted by: ${newServiceRequest.userName} (${newServiceRequest.userEmail})`);
+  console.log(`For Xpert: ${newServiceRequest.professionalName}`);
+  console.log("Project Description:", newServiceRequest.projectDescription);
+  console.log("Intended email recipients:", emailRecipients.join(", "));
+  console.log("To implement actual email sending, integrate an email service provider.");
+  console.log("--------------------------------------------------");
+
 
   return {
     message: "Service request submitted successfully! The admin will review it shortly.",
