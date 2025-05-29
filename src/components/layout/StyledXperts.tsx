@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export function StyledXperts() {
@@ -9,7 +10,7 @@ export function StyledXperts() {
       >
         X
       </span>
-      <span className="-ml-[1px]">perts</span>
+      <span className="text-primary -ml-[1px]">perts</span>
     </>
   );
 }

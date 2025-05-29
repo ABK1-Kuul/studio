@@ -11,7 +11,7 @@ export function AppLogo() {
       <div className="flex items-baseline">
         <span className="text-2xl font-bold group-hover:text-accent transition-colors duration-150">HDM</span>
         <span
-          className="text-accent font-extrabold text-[1.6em] -ml-[1px] relative group-hover:text-primary transition-colors duration-150"
+          className="text-accent font-extrabold text-[2.0em] -ml-[1px] relative group-hover:text-primary transition-colors duration-150"
           style={{ top: '-0.05em' }}
         >
           X
