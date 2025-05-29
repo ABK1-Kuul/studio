@@ -11,14 +11,14 @@ export function AppLogo() {
       <div className="flex items-baseline">
         <span className="text-2xl font-bold group-hover:text-accent transition-colors duration-150">HDM</span>
         <span
-          className="text-accent font-extrabold text-[2.0em] -ml-[1px] relative group-hover:text-primary transition-colors duration-150"
+          className="text-accent font-extrabold text-[1.6em] -ml-[1px] relative group-hover:text-primary transition-colors duration-150"
           style={{ top: '-0.05em' }}
         >
           X
         </span>
-        <span className="text-2xl font-bold -ml-[1px] group-hover:text-accent transition-colors duration-150">perts</span>
+        <span className="text-2xl font-bold text-accent -ml-[1px] group-hover:text-primary transition-colors duration-150">perts</span>
       </div>
-      <span 
+      <span
         className="text-xs font-light text-muted-foreground tracking-tight group-hover:text-accent/80 transition-colors duration-150"
         style={{ marginTop: '-0.2rem' }}
       >
