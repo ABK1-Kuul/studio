@@ -30,13 +30,14 @@ export interface ServiceRequest {
   professionalName: string;
   userName: string;
   userEmail: string;
+  userPhone?: string; // Added
   companyName?: string;
   projectDescription: string;
   companySize?: string; 
   timeline?: string;
   status: 'pending' | 'reviewed' | 'contacted';
   submittedAt: string; // ISO date string
-  serviceName?: string; // Added to capture service name if provided
+  serviceName?: string; 
 }
 
 export type ServiceCategory = 'Consultation' | 'Research' | 'Training';
@@ -56,6 +57,7 @@ export interface MockUser {
   name: string;
   email: string;
   role: UserRole;
+  phone?: string; // Added for consistency if currentUser has phone
 }
 
 // Added for clarity on Research and Training pages

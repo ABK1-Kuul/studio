@@ -13,17 +13,16 @@ const serviceRequestSchema = z.object({
   professionalName: z.string().min(1, "Professional name is required."),
   userName: z.string().min(1, "Your name is required."),
   userEmail: z.string().email("A valid email is required."),
+  userPhone: z.string().optional(), // Added userPhone
   companyName: z.string().optional(),
   projectDescription: z.string().min(10, "Project description must be at least 10 characters."),
   companySize: z.string().min(1, "Company size is required."),
   timeline: z.string().optional(),
-  serviceName: z.string().optional(), // Added to capture service name if provided
+  serviceName: z.string().optional(), 
 });
 
-// Define specific type for Zod field errors
 export type ServiceRequestFormErrors = z.inferFlattenedErrors<typeof serviceRequestSchema>['fieldErrors'];
 
-// Define the state type for the action
 export type SubmitServiceRequestActionState = {
   message: string | null;
   errors: ServiceRequestFormErrors | null;
@@ -31,21 +30,14 @@ export type SubmitServiceRequestActionState = {
   serviceRequestId: string | null; 
 };
 
-
-// Nodemailer transporter setup
-// IMPORTANT: Replace dummy values with your actual SMTP details via environment variables
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.example.com", 
   port: parseInt(process.env.SMTP_PORT || "587"), 
-  secure: (process.env.SMTP_SECURE === 'true'), // `true` for port 465 (SSL), `false` for port 587 (STARTTLS)
+  secure: (process.env.SMTP_SECURE === 'true'), 
   auth: {
     user: process.env.SMTP_USER || "user@example.com", 
     pass: process.env.SMTP_PASS || "password", 
   },
-  // For development with self-signed certificates on local SMTP servers:
-  // tls: {
-  //   rejectUnauthorized: false 
-  // }
 });
 
 export async function submitServiceRequestAction(
@@ -59,6 +51,7 @@ export async function submitServiceRequestAction(
     professionalName: formData.get("professionalName"),
     userName: formData.get("userName"),
     userEmail: formData.get("userEmail"),
+    userPhone: formData.get("userPhone"), // Added
     companyName: formData.get("companyName"),
     projectDescription: formData.get("projectDescription"),
     companySize: formData.get("companySize"),
@@ -81,6 +74,7 @@ export async function submitServiceRequestAction(
   const newServiceRequest: ServiceRequest = {
     id: `sr${mockServiceRequests.length + 1}_${submissionTime.getTime()}`, 
     ...data,
+    userPhone: data.userPhone || undefined, // Ensure it's undefined if not provided
     status: "pending",
     submittedAt: submissionTime.toISOString(),
   };
@@ -88,7 +82,6 @@ export async function submitServiceRequestAction(
   mockServiceRequests.push(newServiceRequest); 
   console.log("New Service Request Submitted to mock data:", newServiceRequest);
 
-  // Email details
   const emailRecipients = [
     "info@hdmxperts.com",
     "henokdoni@hdmxperts.com",
@@ -102,6 +95,7 @@ export async function submitServiceRequestAction(
     <ul>
       <li><strong>Request ID:</strong> ${newServiceRequest.id}</li>
       <li><strong>Submitted By:</strong> ${data.userName} (${data.userEmail})</li>
+      ${data.userPhone ? `<li><strong>Phone:</strong> ${data.userPhone}</li>` : ''}
       <li><strong>For Xpert:</strong> ${data.professionalName}</li>
       ${data.serviceName ? `<li><strong>Specific Service:</strong> ${data.serviceName}</li>` : ''}
       ${data.companyName ? `<li><strong>Company Name:</strong> ${data.companyName}</li>` : ''}
@@ -114,7 +108,7 @@ export async function submitServiceRequestAction(
   `;
 
   const mailOptions = {
-    from: process.env.SMTP_FROM_EMAIL || `"HDM Xperts Platform" <servicerequest@hdmxperts.com>`, // Default 'from' address if not set in env
+    from: process.env.SMTP_FROM_EMAIL || `"HDM Xperts Platform" <servicerequest@hdmxperts.com>`,
     to: emailRecipients.join(", "), 
     subject: emailSubject, 
     html: emailHtmlBody, 
@@ -131,14 +125,11 @@ export async function submitServiceRequestAction(
     };
   } catch (error) {
     console.error("Failed to send email notification:", error);
-    // It's often better to still return success for the form submission
-    // and log the email error for admin attention.
     return {
       message: "Service request submitted successfully, but there was an issue sending the email notification. The admin will still review your request.",
-      isSuccess: true, // Still true because the request itself was processed.
+      isSuccess: true, 
       errors: null,
       serviceRequestId: newServiceRequest.id, 
     };
   }
 }
-

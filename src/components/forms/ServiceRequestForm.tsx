@@ -38,11 +38,11 @@ const formSchema = z.object({
   professionalName: z.string(),
   userName: z.string().min(2, { message: "Your name must be at least 2 characters." }),
   userEmail: z.string().email({ message: "Please enter a valid email address." }),
+  userPhone: z.string().optional(), // Added userPhone
   companyName: z.string().optional(),
   projectDescription: z.string().min(20, { message: "Project description must be at least 20 characters." }),
   companySize: z.string().min(1, { message: "Please select your company size." }),
   timeline: z.string().optional(),
-  // serviceName is not part of the form a user fills directly, but passed if available
 });
 
 type ServiceRequestFormValues = z.infer<typeof formSchema>;
@@ -73,6 +73,7 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
       professionalName: professionalName,
       userName: currentUser?.name || "",
       userEmail: currentUser?.email || "",
+      userPhone: currentUser?.phone || "", // Added
       companyName: "",
       projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
       companySize: "", 
@@ -90,10 +91,11 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
     }
     if (state.isSuccess) {
         form.reset({
-            professionalId: professionalId, // Keep these pre-filled
+            professionalId: professionalId, 
             professionalName: professionalName,
-            userName: currentUser?.name || "", // Reset or keep based on preference
+            userName: currentUser?.name || "", 
             userEmail: currentUser?.email || "",
+            userPhone: currentUser?.phone || "", // Added
             companyName: "",
             projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
             companySize: "", 
@@ -139,6 +141,15 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
             )}
           />
         </div>
+
+        <FormField control={form.control} name="userPhone" render={({ field }) => (
+            <FormItem>
+              <FormLabel>Your Phone Number (Optional)</FormLabel>
+              <FormControl><Input type="tel" placeholder="+1 555 123 4567" {...field} /></FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         
         <div className="grid md:grid-cols-2 gap-6">
           <FormField control={form.control} name="companyName" render={({ field }) => (
@@ -218,4 +229,3 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
     </Form>
   );
 }
-

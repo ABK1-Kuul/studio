@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { format, parseISO } from "date-fns";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
+import { Phone } from "lucide-react";
 
 interface ServiceRequestListProps {
   initialServiceRequests: ServiceRequest[];
@@ -69,6 +70,11 @@ export function ServiceRequestList({ initialServiceRequests }: ServiceRequestLis
             </div>
           </CardHeader>
           <CardContent>
+            {req.userPhone && (
+              <div className="flex items-center text-sm text-muted-foreground mb-2">
+                <Phone className="h-4 w-4 mr-2" /> {req.userPhone}
+              </div>
+            )}
             <p className="font-semibold mb-1">Project Description:</p>
             <p className="text-sm text-muted-foreground mb-3 whitespace-pre-wrap">{req.projectDescription}</p>
             

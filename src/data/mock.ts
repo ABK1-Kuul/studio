@@ -294,7 +294,7 @@ export const mockProfessionals: Professional[] = [
     email: 'yohannes.yemane@hdmxperts.com',
     portfolio: [],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s3')!, // This service is now category 'Research'
+        mockServices.find(s => s.id === 'hdm_s3')!, 
         mockServices.find(s => s.id === 'hdm_s9')!,
     ],
     researchSpecialties: [
@@ -330,7 +330,7 @@ export const mockProfessionals: Professional[] = [
     ],
     researchSpecialties: [
         researchAreasList.find(r => r.id === 'ra_1')!.name, 
-        researchAreasList.find(r => r.id === 'ra_5')!.name, // Corporate/business/function-level strategic development
+        researchAreasList.find(r => r.id === 'ra_5')!.name, 
         researchAreasList.find(r => r.id === 'ra_7')!.name, 
     ],
     trainingSpecialties: [
@@ -356,7 +356,7 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s14')!,
     ],
     researchSpecialties: [
-      researchAreasList.find(r => r.id === 'ra_14')!, 
+      researchAreasList.find(r => r.id === 'ra_14')!.name, 
       researchAreasList.find(r => r.id === 'ra_8')!.name, 
     ],
     trainingSpecialties: [
@@ -419,7 +419,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p8',
     name: 'Biniam F. Demissie, PhD',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: 'https://placehold.co/200x200.png', 
     industry: 'Lead Security Researcher',
     expertise: ['Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cyber threat intelligence', 'Binary analysis', 'Software security testing'],
     bio: "Credentials: PhD in Computer Science\n\nHighly skilled and experienced Computer Security professional with a strong background in automated software analysis (static & dynamic), binary analysis, software security testing, malware analysis, reverse engineering, and cyber threat intelligence. Proven ability to analyze complex systems and extract critical IOCs. Dedicated to fostering cybersecurity talent, having taught security courses at UniTN.",
@@ -454,37 +454,39 @@ export const mockProfessionals: Professional[] = [
     email: 'mahir.jibril@hdmxperts.com',
     portfolio: [], 
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s16')!, 
-        mockServices.find(s => s.id === 'hdm_s13')!, 
-        mockServices.find(s => s.id === 'hdm_s11')!, 
+        mockServices.find(s => s.name === 'Human Capital Management and Organizational Design')!, 
+        mockServices.find(s => s.name === 'Risk Management and Compliance')!, 
+        mockServices.find(s => s.name === 'Organizational Transformation and Change Management')!, 
     ],
     researchSpecialties: [
-        researchAreasList.find(r => r.id === 'ra_13')!.name, 
-        researchAreasList.find(r => r.id === 'ra_14')!.name, 
-        researchAreasList.find(r => r.id === 'ra_8')!.name, 
-        researchAreasList.find(r => r.id === 'ra_9')!.name, 
+        researchAreasList.find(r => r.name === 'Human Capital Management')!.name, 
+        researchAreasList.find(r => r.name === 'Organizational Design and Change Management')!.name, 
+        researchAreasList.find(r => r.name === 'Organizational culture/behavior/structure analysis')!.name,
+        researchAreasList.find(r => r.name === 'Risk maturity level assessments')!.name,
     ],
     trainingSpecialties: [ 
-        businessTrainingAreasList.find(t => t.id === 'bt_8')!.name, 
-        businessTrainingAreasList.find(t => t.id === 'bt_9')!.name, 
-        businessTrainingAreasList.find(t => t.id === 'bt_10')!.name, 
-        businessTrainingAreasList.find(t => t.id === 'bt_1')!.name, 
+        businessTrainingAreasList.find(t => t.name === 'Human Capital Management Training')!.name, 
+        businessTrainingAreasList.find(t => t.name === 'Organizational Design & Change Management Training')!.name, 
+        businessTrainingAreasList.find(t => t.name === 'Risk Management & Compliance Training')!.name, 
+        businessTrainingAreasList.find(t => t.name === 'Leadership Development')!.name,
     ],
   },
   { 
     id: 'hdm_p10', 
-    name: 'Abdselam Kedir',
+    name: 'Abdselam Kedir', // Developer
     avatarUrl: 'https://placehold.co/200x200.png', 
     industry: 'Chief Technology Officer (CTO) / Software Architect / Engineer / Development Lead',
-    expertise: ["Software Architecture", "Scalable Systems", "Agile Development", "Cloud Platforms", "Product Development", "System Design", "Software Engineering"],
+    expertise: ["Software Architecture", "Scalable Systems", "Agile Development", "Cloud Platforms", "Product Development", "System Design", "Software Engineering", "Next.js", "React", "TypeScript", "Tailwind CSS"],
     bio: "Credentials: BSc in Software Engineering – AASTU; Advanced Studies – Hilco University\n\nAbdselam Kedir is the Chief Technology Officer at SInq Technologies, where he leads software architecture and product development with a strong focus on scalability and innovation. With a foundation in software engineering and extensive experience from AASTU and Hilco University, Abdselam brings a strategic mindset and technical depth to complex system designs. Known for his collaborative leadership and commitment to engineering excellence, he drives forward-thinking digital solutions that enhance organizational agility and performance. His expertise spans system architecture, agile development, cloud-native platforms, and scalable infrastructure.",
     experienceYears: 10, 
     location: 'Remote',
     email: 'abdselam.kedir@hdmxperts.com',
-    portfolio: [], 
+    portfolio: [
+      { id: 'ak_p1', title: 'HDM Xperts Platform', description: 'Developed the HDM Xperts platform using Next.js, React, TypeScript, Tailwind CSS, and Genkit.', projectUrl: 'https://www.hdmxperts.com' }
+    ], 
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s7')!, 
-        mockServices.find(s => s.id === 'hdm_s8')!, 
+        mockServices.find(s => s.name === 'IT Project and Program Management')!, 
+        mockServices.find(s => s.name === 'IT Governance and Management')!, 
     ],
     researchSpecialties: [
         researchAreasList.find(r => r.name === "Software Architecture")!.name,
@@ -508,6 +510,7 @@ export const mockServiceRequests: ServiceRequest[] = [
     professionalName: 'Henok Doni',
     userName: 'Eve Client',
     userEmail: 'eve.client@example.com',
+    userPhone: '555-123-4567', // Added
     companyName: 'Eve Corp',
     projectDescription: 'Need a new e-commerce website for selling handmade crafts.',
     companySize: '11-50 employees',
