@@ -13,7 +13,7 @@ const serviceRequestSchema = z.object({
   professionalName: z.string().min(1, "Professional name is required."),
   userName: z.string().min(1, "Your name is required."),
   userEmail: z.string().email("A valid email is required."),
-  userPhone: z.string().optional(), // Added userPhone
+  userPhone: z.string().min(1, "Phone number is required."), // Changed from optional
   companyName: z.string().optional(),
   projectDescription: z.string().min(10, "Project description must be at least 10 characters."),
   companySize: z.string().min(1, "Company size is required."),
@@ -51,7 +51,7 @@ export async function submitServiceRequestAction(
     professionalName: formData.get("professionalName"),
     userName: formData.get("userName"),
     userEmail: formData.get("userEmail"),
-    userPhone: formData.get("userPhone"), // Added
+    userPhone: formData.get("userPhone"), 
     companyName: formData.get("companyName"),
     projectDescription: formData.get("projectDescription"),
     companySize: formData.get("companySize"),
@@ -74,7 +74,7 @@ export async function submitServiceRequestAction(
   const newServiceRequest: ServiceRequest = {
     id: `sr${mockServiceRequests.length + 1}_${submissionTime.getTime()}`, 
     ...data,
-    userPhone: data.userPhone || undefined, // Ensure it's undefined if not provided
+    userPhone: data.userPhone, // No longer needs to be conditionally undefined
     status: "pending",
     submittedAt: submissionTime.toISOString(),
   };
@@ -95,7 +95,7 @@ export async function submitServiceRequestAction(
     <ul>
       <li><strong>Request ID:</strong> ${newServiceRequest.id}</li>
       <li><strong>Submitted By:</strong> ${data.userName} (${data.userEmail})</li>
-      ${data.userPhone ? `<li><strong>Phone:</strong> ${data.userPhone}</li>` : ''}
+      <li><strong>Phone:</strong> ${data.userPhone}</li>
       <li><strong>For Xpert:</strong> ${data.professionalName}</li>
       ${data.serviceName ? `<li><strong>Specific Service:</strong> ${data.serviceName}</li>` : ''}
       ${data.companyName ? `<li><strong>Company Name:</strong> ${data.companyName}</li>` : ''}

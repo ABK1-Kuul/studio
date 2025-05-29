@@ -30,7 +30,7 @@ export interface ServiceRequest {
   professionalName: string;
   userName: string;
   userEmail: string;
-  userPhone?: string; // Added
+  userPhone: string; // Changed from optional
   companyName?: string;
   projectDescription: string;
   companySize?: string; 
@@ -57,10 +57,9 @@ export interface MockUser {
   name: string;
   email: string;
   role: UserRole;
-  phone?: string; // Added for consistency if currentUser has phone
+  phone?: string; 
 }
 
-// Added for clarity on Research and Training pages
 export interface Topic {
   id: string;
   name: string;

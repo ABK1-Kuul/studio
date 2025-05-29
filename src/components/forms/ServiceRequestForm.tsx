@@ -38,7 +38,7 @@ const formSchema = z.object({
   professionalName: z.string(),
   userName: z.string().min(2, { message: "Your name must be at least 2 characters." }),
   userEmail: z.string().email({ message: "Please enter a valid email address." }),
-  userPhone: z.string().optional(), // Added userPhone
+  userPhone: z.string().min(1, { message: "Phone number is required." }), // Changed from optional
   companyName: z.string().optional(),
   projectDescription: z.string().min(20, { message: "Project description must be at least 20 characters." }),
   companySize: z.string().min(1, { message: "Please select your company size." }),
@@ -73,7 +73,7 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
       professionalName: professionalName,
       userName: currentUser?.name || "",
       userEmail: currentUser?.email || "",
-      userPhone: currentUser?.phone || "", // Added
+      userPhone: currentUser?.phone || "", 
       companyName: "",
       projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
       companySize: "", 
@@ -95,7 +95,7 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
             professionalName: professionalName,
             userName: currentUser?.name || "", 
             userEmail: currentUser?.email || "",
-            userPhone: currentUser?.phone || "", // Added
+            userPhone: currentUser?.phone || "",
             companyName: "",
             projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
             companySize: "", 
@@ -144,7 +144,7 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
 
         <FormField control={form.control} name="userPhone" render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Phone Number (Optional)</FormLabel>
+              <FormLabel>Your Phone Number</FormLabel>
               <FormControl><Input type="tel" placeholder="+1 555 123 4567" {...field} /></FormControl>
               <FormMessage />
             </FormItem>

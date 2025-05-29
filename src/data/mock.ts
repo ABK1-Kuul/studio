@@ -21,7 +21,7 @@ export const mockServices: Service[] = [
     id: 'hdm_s3',
     name: 'Cyber Security Analysis, Research & Forensics',
     description: 'Dedicated cybersecurity analysis, research, programming, digital forensics, VAPT, reverse engineering, and mobile application security analysis.',
-    category: 'Research', // Categorized as Research
+    category: 'Research', 
     price: 'Contact for details'
   },
   {
@@ -432,9 +432,9 @@ export const mockProfessionals: Professional[] = [
         mockServices.find(s => s.id === 'hdm_s9')!, 
     ],
     researchSpecialties: [
-        researchAreasList.find(r => r.id === 'ra_10')!.name, 
-        researchAreasList.find(r => r.id === 'ra_11')!.name, 
-        researchAreasList.find(r => r.id === 'ra_12')!.name, 
+        researchAreasList.find(r => r.name === 'Automated software analysis')!.name, 
+        researchAreasList.find(r => r.name === 'Malware analysis')!.name, 
+        researchAreasList.find(r => r.name === 'Reverse engineering')!.name, 
         researchAreasList.find(r => r.id === 'ra_3')!.name, 
     ],
     trainingSpecialties: [
@@ -471,9 +471,10 @@ export const mockProfessionals: Professional[] = [
         businessTrainingAreasList.find(t => t.name === 'Leadership Development')!.name,
     ],
   },
+  // Abdselam Kedir - hdm_p10 - Developer
   { 
     id: 'hdm_p10', 
-    name: 'Abdselam Kedir', // Developer
+    name: 'Abdselam Kedir',
     avatarUrl: 'https://placehold.co/200x200.png', 
     industry: 'Chief Technology Officer (CTO) / Software Architect / Engineer / Development Lead',
     expertise: ["Software Architecture", "Scalable Systems", "Agile Development", "Cloud Platforms", "Product Development", "System Design", "Software Engineering", "Next.js", "React", "TypeScript", "Tailwind CSS"],
@@ -510,7 +511,7 @@ export const mockServiceRequests: ServiceRequest[] = [
     professionalName: 'Henok Doni',
     userName: 'Eve Client',
     userEmail: 'eve.client@example.com',
-    userPhone: '555-123-4567', // Added
+    userPhone: '555-123-4567', 
     companyName: 'Eve Corp',
     projectDescription: 'Need a new e-commerce website for selling handmade crafts.',
     companySize: '11-50 employees',
@@ -524,6 +525,7 @@ export const mockServiceRequests: ServiceRequest[] = [
     professionalName: 'Daniel Manaye',
     userName: 'Frank Customer',
     userEmail: 'frank.customer@example.com',
+    userPhone: '555-987-6543',
     projectDescription: 'Looking for a logo redesign and new brand guidelines for my small business.',
     companySize: '1-10 employees',
     timeline: '1 month',
