@@ -36,12 +36,16 @@ export interface ServiceRequest {
   timeline?: string;
   status: 'pending' | 'reviewed' | 'contacted';
   submittedAt: string; // ISO date string
+  serviceName?: string; // Added to capture service name if provided
 }
+
+export type ServiceCategory = 'Consultation' | 'Research' | 'Training';
 
 export interface Service {
   id: string;
   name: string;
   description: string;
+  category: ServiceCategory;
   price?: string; 
 }
 
@@ -58,10 +62,9 @@ export interface MockUser {
 export interface Topic {
   id: string;
   name: string;
-  description?: string; // Added description for research topics
+  description?: string; 
 }
 
 export interface TrainingTopic extends Topic {
-  description: string; // Training topics already had description
+  description: string; 
 }
-

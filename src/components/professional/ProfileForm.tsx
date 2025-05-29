@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import type { Professional, PortfolioItem, Service } from "@/lib/types";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import type { Professional, PortfolioItem, Service, ServiceCategory } from "@/lib/types";
 import { updateProfessionalProfileAction } from "@/actions/profileActions";
 import { Loader2, PlusCircle, Trash2 } from "lucide-react";
 import { useActionState, useEffect } from "react"; 
@@ -35,6 +37,9 @@ const serviceSchema = z.object({
   name: z.string().min(1, "Service name is required"),
   description: z.string().min(1, "Service description is required"),
   price: z.string().optional(),
+  category: z.enum(['Consultation', 'Research', 'Training'], {
+    required_error: "Service category is required.",
+  }),
 });
 
 const profileFormSchema = z.object({
@@ -52,6 +57,7 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 const initialState = { message: null, errors: null, isSuccess: false };
+const serviceCategories: ServiceCategory[] = ['Consultation', 'Research', 'Training'];
 
 export function ProfileForm({ professional }: { professional: Professional }) {
   const { toast } = useToast();
@@ -68,7 +74,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
       location: professional.location || "",
       phone: professional.phone || "",
       portfolioItems: professional.portfolio || [],
-      servicesOffered: professional.servicesOffered || [],
+      servicesOffered: professional.servicesOffered?.map(s => ({...s, category: s.category || 'Consultation'})) || [],
     },
   });
 
@@ -213,7 +219,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Services Offered</CardTitle>
-            <Button type="button" variant="outline" size="sm" onClick={() => appendService({ name: "", description: "", price: "" })}>
+            <Button type="button" variant="outline" size="sm" onClick={() => appendService({ name: "", description: "", price: "", category: "Consultation" })}>
               <PlusCircle className="mr-2 h-4 w-4" /> Add Service
             </Button>
           </CardHeader>
@@ -225,6 +231,28 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                 />
                 <FormField control={form.control} name={`servicesOffered.${index}.description`} render={({ field }) => (
                   <FormItem><FormLabel>Service Description</FormLabel><FormControl><Textarea {...field} rows={2} /></FormControl><FormMessage /></FormItem>)}
+                />
+                <FormField
+                  control={form.control}
+                  name={`servicesOffered.${index}.category`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Service Category</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {serviceCategories.map(cat => (
+                            <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
                 <FormField control={form.control} name={`servicesOffered.${index}.price`} render={({ field }) => (
                   <FormItem><FormLabel>Price Indication (Optional)</FormLabel><FormControl><Input placeholder="e.g., Project-based, From $500" {...field} /></FormControl><FormDescription>General pricing idea, admin will confirm final quote.</FormDescription><FormMessage /></FormItem>)}

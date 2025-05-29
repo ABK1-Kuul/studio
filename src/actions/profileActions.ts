@@ -1,9 +1,10 @@
+
 "use server";
 
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { mockProfessionals } from "@/data/mock"; // For demo, we'll "update" this mock array
-import type { PortfolioItem, Professional, Service } from "@/lib/types";
+import type { PortfolioItem, Professional, Service, ServiceCategory } from "@/lib/types";
 import { revalidatePath } from "next/cache";
 
 // Simplified schema for demo purposes
@@ -19,17 +20,19 @@ const serviceSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1, "Service name is required"),
   description: z.string().min(1, "Service description is required"),
-  price: z.string().optional(), // Price for service (e.g. "Project-based", "$500") is kept
+  price: z.string().optional(), 
+  category: z.enum(['Consultation', 'Research', 'Training'], {
+    required_error: "Service category is required.",
+  }),
 });
 
 const profileFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   industry: z.string().min(1, "Industry is required."),
-  expertise: z.string().min(1, "Expertise tags are required (comma-separated)."), // Will be split
+  expertise: z.string().min(1, "Expertise tags are required (comma-separated)."), 
   bio: z.string().min(20, "Bio must be at least 20 characters."),
   experienceYears: z.coerce.number().min(0, "Experience years cannot be negative."),
   location: z.string().optional(),
-  // hourlyRate removed
   phone: z.string().optional(),
   portfolioItems: z.string().transform((str) => {
     try {
@@ -40,7 +43,12 @@ const profileFormSchema = z.object({
   }),
   servicesOffered: z.string().transform((str) => {
     try {
-      return JSON.parse(str) as Partial<Service>[];
+      // Ensure that parsed services include the category
+      const parsedServices = JSON.parse(str) as (Partial<Service> & { category?: ServiceCategory })[];
+      return parsedServices.map(s => ({
+        ...s,
+        category: s.category || 'Consultation' // Default if category somehow missing, though schema should enforce
+      }));
     } catch (e) {
       return [];
     }
@@ -64,7 +72,6 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
     bio: formData.get("bio"),
     experienceYears: formData.get("experienceYears"),
     location: formData.get("location"),
-    // hourlyRate removed from formData parsing
     phone: formData.get("phone"),
     portfolioItems: formData.get("portfolioItemsJson"),
     servicesOffered: formData.get("servicesOfferedJson"),
@@ -100,7 +107,6 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
     bio: data.bio,
     experienceYears: data.experienceYears,
     location: data.location || existingProfessional.location,
-    // hourlyRate removed from update
     phone: data.phone || existingProfessional.phone,
     portfolio: data.portfolioItems.map((item, index) => ({
       id: item.id || `p_new_${Date.now()}_${index}`, 
@@ -114,9 +120,9 @@ export async function updateProfessionalProfileAction(prevState: any, formData: 
       name: service.name!,
       description: service.description!,
       price: service.price || undefined,
+      category: service.category!, // Category is now mandatory
     })),
   };
-  // Ensure hourlyRate is not accidentally re-added if it existed on existingProfessional
   delete updatedProfessional.hourlyRate;
 
 
