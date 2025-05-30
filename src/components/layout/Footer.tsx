@@ -29,7 +29,7 @@ export default function Footer() {
             <p className="mt-1 text-sm text-muted-foreground">
               <strong className="text-primary">Developed by:</strong> HDM Xpert {' '}
               <Link href="/professionals/hdm_p10" className="text-primary hover:underline">
-                Abdselam Kedir
+                SINQ
               </Link>
             </p>
           </div>
