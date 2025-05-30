@@ -492,7 +492,7 @@ export const mockProfessionals: Professional[] = [
     experienceYears: 5,
     location: 'Addis Ababa, Ethiopia',
     email: 'info@sinq.com',
-    phone: undefined, 
+    phone: undefined,
     portfolio: [
       {
         id: 'sinq_p1',
@@ -503,11 +503,11 @@ export const mockProfessionals: Professional[] = [
       }
     ],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s7')!, 
-        mockServices.find(s => s.id === 'hdm_s8')!, 
-        mockServices.find(s => s.id === 'hdm_s9')!, 
+        mockServices.find(s => s.id === 'hdm_s7')!,
+        mockServices.find(s => s.id === 'hdm_s8')!,
+        mockServices.find(s => s.id === 'hdm_s9')!,
         mockServices.find(s => s.id === 'hdm_s11')!,
-        mockServices.find(s => s.id === 'hdm_s13')!, 
+        mockServices.find(s => s.id === 'hdm_s13')!,
     ].filter(Boolean) as Service[],
     researchSpecialties: [
         researchAreasList.find(r => r.name === "IT roadmap design")?.name || "IT Roadmap Design",
