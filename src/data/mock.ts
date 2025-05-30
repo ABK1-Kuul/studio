@@ -224,7 +224,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p1',
     name: 'Henok Doni',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Consultant – Information System Project and Program Management',
     expertise: [
       'Business analysis', 'Project Management', 'Project Risk Management', 'Program Management',
@@ -256,7 +256,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p2',
     name: 'Daniel Manaye',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Consultant – Fraud Management',
     expertise: [
       'Fraud Management', 'Cybersecurity Controls and Implementation', 'Cybersecurity Training', 'Anti-Fraud Management', 'Digital Banking Security'
@@ -283,7 +283,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p3',
     name: 'Yohannes Yemane',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Consultant – Cyber Security Analyst and Digital Forensic.',
     expertise: [
       'Cybersecurity Analysis', 'Security Research', 'Programming', 'Digital Forensic', 'VAPT', 'Mobile Application Development', 'Mobile Security Analysis'
@@ -312,7 +312,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p4',
     name: 'Maedot Assefa',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Consultant – Digital Business',
     expertise: [
       'Digital Business Advisor', 'International Service Marketing', 'Service Management',
@@ -341,7 +341,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p5',
     name: 'Henok Heruy Gizaw',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Consultant – Hotel and Tourism Management',
     expertise: [
       'International Business', 'Hotel Management', 'Tourism Management', 'International Development Projects', 'International Marketing', 'Project Planning', 'Pedagogy', 'Leadership'
@@ -367,7 +367,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p6',
     name: 'Leoul Zewelde',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Trainer – Agile and Project management',
     expertise: ['Agile', 'Scrum Master', 'Project Management', 'Lean', 'Digital Transformation', 'Quality Frameworks'],
     bio: "Credentials: PMP® - PRINCE2® - ICAgile ICP - ITIL®4 Leader: Digital and IT Strategy - PMI ACP - MBA - Certified scrum product owner - Diplôme d'études en française - Published Author.\n\nLeoul is a Project and Digital Transformation professional with a focus on driving organizational effectiveness. Skilled in Lean, Project Management, Quality and Scaled Agile frameworks.",
@@ -395,7 +395,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p7',
     name: 'Ashenafi Mezgebe',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Business Analyst',
     expertise: ['Business Analysis', 'Requirement Development', 'Oracle ERP/EPM', 'Database Administration', 'Performance Optimization'],
     bio: "Credentials: MA in Project management\n\nAshenafi Mezgebe is a results-driven IT professional with 12+ years of experience specializing in enterprise-level Oracle ERP/EPM systems, database administration, and performance optimization. He combines deep technical expertise in managing cross-platform solutions with proven project leadership in large-scale IT implementations. Ashenafi also excels as a business and system requirements analyst in the financial and information technology sectors, driving efficient and robust Oracle solutions.",
@@ -419,7 +419,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p8',
     name: 'Biniam F. Demissie, PhD',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Security Researcher',
     expertise: ['Automated software analysis', 'Malware analysis', 'Reverse engineering', 'Cyber threat intelligence', 'Binary analysis', 'Software security testing'],
     bio: "Credentials: PhD in Computer Science\n\nHighly skilled and experienced Computer Security professional with a strong background in automated software analysis (static & dynamic), binary analysis, software security testing, malware analysis, reverse engineering, and cyber threat intelligence. Proven ability to analyze complex systems and extract critical IOCs. Dedicated to fostering cybersecurity talent, having taught security courses at UniTN.",
@@ -445,7 +445,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p9',
     name: 'Mahir Jibril (PhD)',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Lead Researcher/Trainer/Coach/Culture critique/Educator',
     expertise: ["Human Capital Management", "Organizational Design", "Risk Management", "Compliance", "Organizational Transformation", "Change Management", "Research", "Training", "Coaching", "Culture Critique"],
     bio: "Credentials: PhD in Management and Organization\n\nMahir, PhD, is a key Trainer and Researcher at HDM, known for driving innovative solutions. His lifelong learning and intellectual curiosity fuel cutting-edge research, while his assertive yet empathetic approach makes him an effective trainer. Mahir excels at developing winning proposals and fostering strategic breakthroughs for clients in Human Capital Management, Organizational Design, Risk Management, Compliance, and Organizational Transformation and Change Management.",
@@ -474,7 +474,7 @@ export const mockProfessionals: Professional[] = [
   {
     id: 'hdm_p10',
     name: 'SINQ',
-    avatarUrl: 'https://placehold.co/200x200.png',
+    avatarUrl: '/hdm-xperts-logo.png',
     industry: 'Digital Infrastructure Consultancy and Innovation Partner',
     expertise: [
       "Digital Infrastructure Modernization",
@@ -492,7 +492,7 @@ export const mockProfessionals: Professional[] = [
     experienceYears: 5,
     location: 'Addis Ababa, Ethiopia',
     email: 'info@sinq.com',
-    phone: undefined, // Company profile, phone might be different or through a general line
+    phone: undefined, 
     portfolio: [
       {
         id: 'sinq_p1',
@@ -503,11 +503,11 @@ export const mockProfessionals: Professional[] = [
       }
     ],
     servicesOffered: [
-        mockServices.find(s => s.id === 'hdm_s7')!, // IT Project and Program Management
-        mockServices.find(s => s.id === 'hdm_s8')!, // IT Governance and Management
-        mockServices.find(s => s.id === 'hdm_s9')!, // Cybersecurity Strategy and Implementation
-        mockServices.find(s => s.id === 'hdm_s11')!, // Organizational Transformation
-        mockServices.find(s => s.id === 'hdm_s13')!, // Risk Management and Compliance
+        mockServices.find(s => s.id === 'hdm_s7')!, 
+        mockServices.find(s => s.id === 'hdm_s8')!, 
+        mockServices.find(s => s.id === 'hdm_s9')!, 
+        mockServices.find(s => s.id === 'hdm_s11')!,
+        mockServices.find(s => s.id === 'hdm_s13')!, 
     ].filter(Boolean) as Service[],
     researchSpecialties: [
         researchAreasList.find(r => r.name === "IT roadmap design")?.name || "IT Roadmap Design",
