@@ -67,7 +67,7 @@ export default async function AdminDashboardPage() {
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> 
+            <Link href="/admin/manage-xperts"> 
               <Users className="h-5 w-5" />
               Manage <StyledXperts />
             </Link>
@@ -79,13 +79,13 @@ export default async function AdminDashboardPage() {
             </Link>
           </Button>
           <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> 
+            <Link href="/admin/settings"> 
               <Settings className="h-5 w-5" />
               Platform Settings
             </Link>
           </Button>
            <Button variant="outline" asChild className="justify-start gap-2 p-6 text-left h-auto">
-            <Link href="#"> 
+            <Link href="/admin/analytics"> 
               <BarChart3 className="h-5 w-5" />
               View Analytics
             </Link>
