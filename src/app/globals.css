@@ -96,6 +96,50 @@
     --sidebar-border: 225 15% 25%;
     --sidebar-ring: 26 95% 58%;
   }
+
+  /* Professional Dashboard Theme Override - Light Mode */
+  .professional-dashboard-theme {
+    --primary: 225 65% 32%; /* Navy Blue for primary */
+    --primary-foreground: 0 0% 100%; /* White text on Navy */
+    
+    --accent: 26 95% 53%;   /* Orange for accent */
+    --accent-foreground: 0 0% 10%;   /* Dark text on Orange */
+    
+    --ring: 225 65% 32%; /* Navy for focus rings */
+
+    /* Inverted sidebar colors for professional dashboard if a sidebar is used there */
+    --sidebar-primary: 225 65% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 26 95% 53%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-ring: 225 65% 32%;
+
+    /* Example: Inverting chart colors if they directly use primary/accent */
+    /* Keep other chart colors as they are if they are independent */
+    --chart-1: 225 65% 32%; /* Swapped from original --primary */
+    /* --chart-2 might become orange if it was accent, or stay if it was specific */
+  }
+
+  /* Professional Dashboard Theme Override - Dark Mode */
+  .dark .professional-dashboard-theme {
+    --primary: 225 70% 55%; /* Brighter Navy Blue for primary */
+    --primary-foreground: 0 0% 100%; /* White text on Navy */
+    
+    --accent: 26 95% 58%;   /* Lighter/Brighter Orange for accent */
+    --accent-foreground: 0 0% 10%;   /* Dark text on Orange */
+    
+    --ring: 225 70% 55%; /* Brighter Navy for focus rings */
+
+    /* Inverted sidebar colors for professional dashboard - dark mode */
+    --sidebar-primary: 225 70% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 26 95% 58%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-ring: 225 70% 55%;
+    
+    /* Example: Inverting chart colors for dark mode */
+    --chart-1: 225 70% 55%;
+  }
 }
 
 @layer base {
