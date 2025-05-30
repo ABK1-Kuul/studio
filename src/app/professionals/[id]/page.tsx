@@ -39,7 +39,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
           <Card className="overflow-hidden shadow-xl">
             <div className="relative h-48 w-full bg-gradient-to-r from-primary/30 to-accent/30">
               <Image
-                src={professional.avatarUrl || `https://placehold.co/1200x300.png`}
+                src={professional.avatarUrl || `/hdm-xperts-logo.png`}
                 alt={`${professional.name}'s banner`}
                 layout="fill"
                 objectFit="cover"
@@ -50,7 +50,7 @@ export default async function ProfessionalProfilePage({ params }: { params: { id
             <CardContent className="p-6 relative -mt-16">
               <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6">
                 <Avatar className="h-32 w-32 border-4 border-background shadow-lg">
-                  <AvatarImage src={professional.avatarUrl || `https://placehold.co/200x200.png`} alt={professional.name} data-ai-hint="professional portrait" />
+                  <AvatarImage src={professional.avatarUrl || `/hdm-xperts-logo.png`} alt={professional.name} data-ai-hint="professional portrait" />
                   <AvatarFallback className="text-4xl">{professional.name.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 text-center sm:text-left">
