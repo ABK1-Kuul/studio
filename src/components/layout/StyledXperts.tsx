@@ -10,7 +10,7 @@ export function StyledXperts() {
       >
         X
       </span>
-      <span className="-ml-[1px]">perts</span>
+      <span className="-ml-[1px] text-accent">perts</span>
     </>
   );
 }
