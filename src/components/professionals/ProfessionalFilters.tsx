@@ -48,7 +48,7 @@ export function ProfessionalFilters({ allProfessionals, onFilterChange }: Profes
           <Input
             id="search-term"
             type="text"
-            placeholder="e.g., John Doe, React Developer"
+            placeholder="e.g., Abebe Kebede, Software Engineer"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="h-10"

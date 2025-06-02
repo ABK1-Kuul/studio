@@ -104,7 +104,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} disabled={isPending} />
+                <Input placeholder="e.g., Abebe Kebede" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -156,7 +156,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel>Industry</FormLabel>
               <FormControl>
-                <Input placeholder="e.g., Web Development, Cybersecurity" {...field} disabled={isPending} />
+                <Input placeholder="e.g., FinTech, AgriTech, Tourism" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -169,7 +169,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel>Expertise / Skills</FormLabel>
               <FormControl>
-                <Input placeholder="e.g., React, UI/UX, SEO (comma-separated)" {...field} disabled={isPending} />
+                <Input placeholder="e.g., Java, Project Management, Digital Marketing (comma-separated)" {...field} disabled={isPending} />
               </FormControl>
               <FormDescription>Separate skills with a comma.</FormDescription>
               <FormMessage />
@@ -209,7 +209,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel>Location (Optional)</FormLabel>
               <FormControl>
-                <Input placeholder="e.g., San Francisco, CA or Remote" {...field} disabled={isPending} />
+                <Input placeholder="e.g., Addis Ababa, Bahir Dar or Remote" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -222,7 +222,7 @@ export function SignupForm() {
             <FormItem>
               <FormLabel>Phone Number (Optional)</FormLabel>
               <FormControl>
-                <Input type="tel" placeholder="e.g., +1 555 123 4567" {...field} disabled={isPending} />
+                <Input type="tel" placeholder="e.g., +251 91 234 5678" {...field} disabled={isPending} />
               </FormControl>
               <FormDescription>This will be used for administrative purposes if needed and not displayed publicly.</FormDescription>
               <FormMessage />

@@ -1,3 +1,4 @@
+
 import type { Professional } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +17,11 @@ export function ProfessionalCard({ professional }: ProfessionalCardProps) {
     <Card className="flex flex-col h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
       <CardHeader className="flex flex-row items-start gap-4 p-4">
         <Avatar className="h-20 w-20 border-2 border-primary">
-          <AvatarImage src={professional.avatarUrl || `https://picsum.photos/seed/${professional.id}/200/200`} alt={professional.name} data-ai-hint="professional avatar" />
+          <AvatarImage 
+            src={professional.avatarUrl || `https://picsum.photos/seed/${professional.id}/200/200`} 
+            alt={professional.name} 
+            data-ai-hint={professional.avatarUrl && professional.avatarUrl.includes('picsum.photos') ? "professional avatar" : undefined}
+          />
           <AvatarFallback>{professional.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
         <div className="flex-1">

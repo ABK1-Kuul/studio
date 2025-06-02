@@ -127,7 +127,7 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
           <FormField control={form.control} name="userName" render={({ field }) => (
               <FormItem>
                 <FormLabel>Your Name</FormLabel>
-                <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                <FormControl><Input placeholder="e.g., Abebe Kebede" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -155,7 +155,7 @@ export function ServiceRequestForm({ professionalId, professionalName, serviceId
           <FormField control={form.control} name="companyName" render={({ field }) => (
             <FormItem>
               <FormLabel>Company Name (Optional)</FormLabel>
-              <FormControl><Input placeholder="Your Company Inc." {...field} /></FormControl>
+              <FormControl><Input placeholder="e.g., Selam PLC" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}

@@ -127,7 +127,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
             <FormField control={form.control} name="industry" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Industry</FormLabel>
-                  <FormControl><Input placeholder="e.g., Web Development, Graphic Design" {...field} /></FormControl>
+                  <FormControl><Input placeholder="e.g., FinTech, AgriTech, Tourism" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -135,7 +135,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
             <FormField control={form.control} name="expertise" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Expertise / Skills</FormLabel>
-                  <FormControl><Input placeholder="e.g., React, UI/UX, SEO (comma-separated)" {...field} /></FormControl>
+                  <FormControl><Input placeholder="e.g., Java, Project Management, Digital Marketing (comma-separated)" {...field} /></FormControl>
                   <FormDescription>Separate skills with a comma.</FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -167,7 +167,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                <FormField control={form.control} name="phone" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Phone Number (Optional - for admin use)</FormLabel>
-                  <FormControl><Input type="tel" placeholder="e.g., (555) 123-4567" {...field} /></FormControl>
+                  <FormControl><Input type="tel" placeholder="e.g., +251 91 234 5678" {...field} /></FormControl>
                   <FormDescription>This will not be shown publicly.</FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -177,7 +177,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
             <FormField control={form.control} name="location" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Location</FormLabel>
-                  <FormControl><Input placeholder="e.g., San Francisco, CA or Remote" {...field} /></FormControl>
+                  <FormControl><Input placeholder="e.g., Addis Ababa, Bahir Dar or Remote" {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -255,7 +255,7 @@ export function ProfileForm({ professional }: { professional: Professional }) {
                   )}
                 />
                 <FormField control={form.control} name={`servicesOffered.${index}.price`} render={({ field }) => (
-                  <FormItem><FormLabel>Price Indication (Optional)</FormLabel><FormControl><Input placeholder="e.g., Project-based, From $500" {...field} /></FormControl><FormDescription>General pricing idea, admin will confirm final quote.</FormDescription><FormMessage /></FormItem>)}
+                  <FormItem><FormLabel>Price Indication (Optional)</FormLabel><FormControl><Input placeholder="e.g., Project-based, From 10,000 ETB" {...field} /></FormControl><FormDescription>General pricing idea, admin will confirm final quote.</FormDescription><FormMessage /></FormItem>)}
                 />
                  <Button type="button" variant="destructive" size="sm" onClick={() => removeService(index)} className="absolute top-2 right-2">
                   <Trash2 className="h-4 w-4" />

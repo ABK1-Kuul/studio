@@ -40,7 +40,7 @@ const formSchema = z.object({
   userEmail: z.string().email({ message: "Please enter a valid email address." }),
   companyName: z.string().optional(),
   projectDescription: z.string().min(20, { message: "Project description must be at least 20 characters." }),
-  companySize: z.string().min(1, { message: "Please select your company size." }), // Added
+  companySize: z.string().min(1, { message: "Please select your company size." }), 
   timeline: z.string().optional(),
 });
 
@@ -69,7 +69,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
       userEmail: currentUser?.email || "",
       companyName: "",
       projectDescription: serviceName ? `Enquiry about service: ${serviceName}\n\n` : "",
-      companySize: "", // Default to empty
+      companySize: "", 
       timeline: "",
     },
   });
@@ -83,7 +83,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
       });
     }
     if (state.isSuccess) {
-        form.reset(); // Reset form on successful submission
+        form.reset(); 
     }
   }, [state, toast, form]);
   
@@ -94,7 +94,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
             formData.append(key, String(value));
         }
     });
-    // Optionally add serviceId and serviceName if present
+    
     if (serviceId) formData.append('serviceId', serviceId);
     if (serviceName) formData.append('serviceName', serviceName);
     
@@ -104,7 +104,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Hidden fields for professionalId and professionalName */}
+        
         <input type="hidden" {...form.register("professionalId")} />
         <input type="hidden" {...form.register("professionalName")} />
 
@@ -112,7 +112,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
           <FormField control={form.control} name="userName" render={({ field }) => (
               <FormItem>
                 <FormLabel>Your Name</FormLabel>
-                <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                <FormControl><Input placeholder="e.g., Abebe Kebede" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -131,7 +131,7 @@ export function QuoteRequestForm({ professionalId, professionalName, serviceId, 
           <FormField control={form.control} name="companyName" render={({ field }) => (
             <FormItem>
               <FormLabel>Company Name (Optional)</FormLabel>
-              <FormControl><Input placeholder="Your Company Inc." {...field} /></FormControl>
+              <FormControl><Input placeholder="e.g., Selam PLC" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}

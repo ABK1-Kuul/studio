@@ -1,3 +1,4 @@
+
 import type { PortfolioItem } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,7 +20,7 @@ export function PortfolioItemCard({ item }: PortfolioItemCardProps) {
             alt={item.title} 
             layout="fill" 
             objectFit="cover"
-            data-ai-hint="portfolio project"
+            data-ai-hint={item.imageUrl.startsWith('https://placehold.co') ? "portfolio project" : undefined}
           />
         </div>
       )}
