@@ -25,11 +25,11 @@ export default function Footer() {
 
           {/* Copyright and Developer Credit - Far Right */}
           <div className="text-left md:text-right mt-8 md:mt-0">
-            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} HDM Xperts. All rights reserved.</p>
+            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} HDM Business Consulting One Member PLC.</p>
             <p className="mt-1 text-sm text-muted-foreground">
               <strong className="text-primary">Developed by:</strong> HDM Xpert {' '}
               <Link href="/professionals/hdm_p10" className="text-primary hover:underline">
-                SINQ
+                SINQ Technologies
               </Link>
             </p>
           </div>
